@@ -153,7 +153,7 @@ const PrescriptionComponent: React.FC<EventRendererProps> = ({ event }) => {
   )
 }
 
-const EventRenderer: React.FC<EventRendererProps> = ({ event }) => {
+const DetailedEventContainer: React.FC<EventRendererProps> = ({ event }) => {
   switch (event.type) {
     case EventTypes.DoctorVisit:
       const doctorVisitEvent = event as DoctorVisit
@@ -200,4 +200,4 @@ const EventRenderer: React.FC<EventRendererProps> = ({ event }) => {
   }
 }
 
-export default EventRenderer
+export default DetailedEventContainer

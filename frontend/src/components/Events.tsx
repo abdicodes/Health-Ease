@@ -2,6 +2,7 @@ import React from 'react'
 import { Event } from '../types'
 import EventContainer from './EventContainer'
 import { isFutureEvent } from '../utils/isFutureEvent'
+import { Link } from 'react-router-dom'
 
 interface EventsProps {
   events: Event[]
@@ -25,6 +26,9 @@ const Events: React.FC<EventsProps> = ({ events }) => {
           isFutureEvent(event.dateTime) ? (
             <div style={containerStyle} key={event.id}>
               <EventContainer event={event} />
+              <Link to={`/${event.id}`}>
+                <button>Show Details</button>
+              </Link>
             </div>
           ) : null
         )
@@ -38,6 +42,10 @@ const Events: React.FC<EventsProps> = ({ events }) => {
         !isFutureEvent(event.dateTime) ? (
           <div style={containerStyle} key={event.id}>
             <EventContainer event={event} />
+            <Link to={`/${event.id}`}>
+              {' '}
+              <button>Show Details</button>
+            </Link>
           </div>
         ) : null
       )}
