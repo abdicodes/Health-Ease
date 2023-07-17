@@ -20,10 +20,18 @@ const assertNever = (value: never): never => {
   throw new Error(`Unhandled error ${JSON.stringify(value)}`)
 }
 
+const containerStyle: React.CSSProperties = {
+  border: '1px solid #ccc',
+  borderRadius: '4px',
+  padding: '10px',
+  margin: '25px auto',
+  maxWidth: '400px',
+}
+
 const DoctorVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
   const doctorVisitEvent = event as DoctorVisit
   return (
-    <div>
+    <div style={containerStyle}>
       {doctorVisitEvent.diagnosis && (
         <p> Diagnosis: {doctorVisitEvent.diagnosis}</p>
       )}
@@ -37,7 +45,7 @@ const DoctorVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
 const NurseVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
   const nurseVisitEvent = event as NurseVisit
   return (
-    <div>
+    <div style={containerStyle}>
       {nurseVisitEvent.diagnosis && (
         <p> Diagnosis: {nurseVisitEvent.diagnosis}</p>
       )}
@@ -52,7 +60,7 @@ const NurseVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
 const AdmissionComponent: React.FC<EventRendererProps> = ({ event }) => {
   const admissionVisitEvent = event as Admission
   return (
-    <div>
+    <div style={containerStyle}>
       {admissionVisitEvent.diagnosis && (
         <p> Diagnosis: {admissionVisitEvent.diagnosis}</p>
       )}
@@ -67,7 +75,7 @@ const AdmissionComponent: React.FC<EventRendererProps> = ({ event }) => {
 const InPatientVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
   const inPatientVisitEvent = event as InPatientVisit
   return (
-    <div>
+    <div style={containerStyle}>
       {inPatientVisitEvent.diagnosis && (
         <p> Diagnosis: {inPatientVisitEvent.diagnosis}</p>
       )}
@@ -82,7 +90,7 @@ const InPatientVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
 const DischargeComponent: React.FC<EventRendererProps> = ({ event }) => {
   const dischargeEvent = event as Discharge
   return (
-    <div>
+    <div style={containerStyle}>
       <p>Discharge summary : {dischargeEvent.details}</p>
       <p>Doctor's name: {dischargeEvent.doctorName}</p>
     </div>
@@ -92,7 +100,7 @@ const DischargeComponent: React.FC<EventRendererProps> = ({ event }) => {
 const LabComponent: React.FC<EventRendererProps> = ({ event }) => {
   const labEvent = event as Lab
   return (
-    <div>
+    <div style={containerStyle}>
       <p>Tests requested:</p>
       <ul>
         {labEvent.tests.map((test, i) => (
@@ -114,7 +122,7 @@ const LabComponent: React.FC<EventRendererProps> = ({ event }) => {
 const ScanComponent: React.FC<EventRendererProps> = ({ event }) => {
   const scanEvent = event as Scan
   return (
-    <div>
+    <div style={containerStyle}>
       <p>Tests requested: {scanEvent.scan}</p>
 
       <p> Requested by Dr: {scanEvent.doctorName}</p>
@@ -127,8 +135,8 @@ const ScanComponent: React.FC<EventRendererProps> = ({ event }) => {
 const PrescriptionComponent: React.FC<EventRendererProps> = ({ event }) => {
   const prescriptionEvent = event as Prescription
   return (
-    <div>
-      <p>prescriptios : </p>
+    <div style={containerStyle}>
+      <p>prescriptions : </p>
       <ul>
         {prescriptionEvent.drugs.map((drug, i) => (
           <li key={i}>
@@ -140,7 +148,7 @@ const PrescriptionComponent: React.FC<EventRendererProps> = ({ event }) => {
       {prescriptionEvent.pharmacist && (
         <p> Done by : {prescriptionEvent.pharmacist}</p>
       )}
-      <p> Prescription Exiration date: {prescriptionEvent.expirayDate}</p>
+      <p> Prescription Expiration date: {prescriptionEvent.expirayDate}</p>
     </div>
   )
 }
