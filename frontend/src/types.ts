@@ -31,7 +31,7 @@ export interface DoctorVisit extends BasicEvent {
 
 export interface NurseVisit extends BasicEvent {
   type: EventTypes.NurseVisit
-  diagnosis: string
+  diagnosis?: string
   nurseName: string
   details: string
 }

@@ -37,6 +37,13 @@ const data: Event[] = [
     results: ['CRP : negative', 'CBC : negative'],
     pending: false,
   },
+  {
+    id: 4,
+    type: EventTypes.NurseVisit,
+    dateTime: '2023-8-02',
+    nurseName: 'Bianca',
+    details: ' ',
+  },
 ]
 
 export default data

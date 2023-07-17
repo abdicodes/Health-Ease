@@ -11,8 +11,6 @@ function App() {
         <Route path="/" element={<Events events={data} />} />
         <Route path="/:id" element={<DetailedEvent />} />
       </Routes>
-
-      {/* <PastEvents events={events} /> */}
     </>
   )
 }

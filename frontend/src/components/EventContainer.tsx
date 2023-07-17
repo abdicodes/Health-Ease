@@ -5,9 +5,7 @@ type eventProps = {
   event: Event
 }
 const EventContainer = ({ event }: eventProps) => {
-  const handleRenewalRequest = (eventId: number): void => {
-    console.log(eventId)
-  }
+  const handleRenewalRequest = (eventId: number): void => {}
   return (
     <div>
       <h3>{event.type}</h3>

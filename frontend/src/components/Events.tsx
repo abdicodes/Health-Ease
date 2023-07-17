@@ -29,6 +29,8 @@ const Events: React.FC<EventsProps> = ({ events }) => {
               <Link to={`/${event.id}`}>
                 <button>Show Details</button>
               </Link>
+              <button> cancel </button>
+              <button> reschedule </button>
             </div>
           ) : null
         )
