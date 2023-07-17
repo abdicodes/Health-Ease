@@ -1,32 +1,33 @@
-interface Event {
-  id: number
-  type: string
-  dateTime: string
-}
+import React from 'react'
+import { Event } from '../types'
+// import EventContainer from './EventContainer'
+import { isFutureEvent } from '../utils/isFutureEvent'
+import EventRenderer from './EventRenderer'
 
 interface PastEventsProps {
   events: Event[]
 }
 
 const PastEvents: React.FC<PastEventsProps> = ({ events }) => {
-  const handleRenewalRequest = (eventId: number) => {
-    console.log('request renewal')
-  }
-
   return (
     <div>
+      <h2> Future Events</h2>
+      {events.filter((element) => isFutureEvent(element.dateTime)).length >
+      0 ? (
+        events.map((event) =>
+          isFutureEvent(event.dateTime) ? (
+            <EventRenderer event={event} key={event.id} />
+          ) : null
+        )
+      ) : (
+        <p>No events!</p>
+      )}
       <h2>Past Events</h2>
-      {events.map((event) => (
-        <div key={event.id}>
-          <h3>{event.type}</h3>
-          <p>Date/Time: {event.dateTime.toString()}</p>
-          {event.type === 'prescription' && (
-            <button onClick={() => handleRenewalRequest(event.id)}>
-              Renewal Request
-            </button>
-          )}
-        </div>
-      ))}
+      {events.map((event) =>
+        !isFutureEvent(event.dateTime) ? (
+          <EventRenderer event={event} key={event.id} />
+        ) : null
+      )}
     </div>
   )
 }

@@ -24,7 +24,7 @@ export interface BasicEvent {
 
 export interface DoctorVisit extends BasicEvent {
   type: EventTypes.DoctorVisit
-  diagnosis: string
+  diagnosis?: string
   doctorName: string
   details: string
 }
@@ -38,7 +38,7 @@ export interface NurseVisit extends BasicEvent {
 
 export interface Admission extends BasicEvent {
   type: EventTypes.Admission
-  diagnosis: string
+  diagnosis?: string
   doctorName: string
   details: string
 }
@@ -51,7 +51,7 @@ export interface Discharge extends BasicEvent {
 
 export interface InPatientVisit extends BasicEvent {
   type: EventTypes.InPatientVisit
-  diagnosis: string
+  diagnosis?: string
   doctorName: string
   details: string
 }

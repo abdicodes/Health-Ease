@@ -1,11 +1,15 @@
 import React from 'react'
 import { Event } from '../types'
-const EventContainer = (event: Event): JSX.Element => {
+
+type eventProps = {
+  event: Event
+}
+const EventContainer = ({ event }: eventProps) => {
   const handleRenewalRequest = (eventId: number): void => {
     console.log(eventId)
   }
   return (
-    <div key={event.id}>
+    <div>
       <h3>{event.type}</h3>
       <p>Date/Time: {event.dateTime.toString()}</p>
       {event.type === 'Prescription' && event.active === false && (
