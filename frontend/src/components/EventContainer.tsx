@@ -4,7 +4,7 @@ import { Event } from '../types'
 type eventProps = {
   event: Event
 }
-const EventContainer = ({ event }: eventProps) => {
+const EventContainer: React.FC<eventProps> = ({ event }: eventProps) => {
   const handleRenewalRequest = (eventId: number): void => {}
   return (
     <div>

@@ -12,7 +12,7 @@ import {
   Prescription,
 } from '../types'
 
-interface EventRendererProps {
+interface DoctorVisitComponentProps {
   event: Event
 }
 
@@ -28,7 +28,9 @@ const containerStyle: React.CSSProperties = {
   maxWidth: '400px',
 }
 
-const DoctorVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
+const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
+  event,
+}) => {
   const doctorVisitEvent = event as DoctorVisit
   return (
     <div style={containerStyle}>
@@ -42,7 +44,9 @@ const DoctorVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
   )
 }
 
-const NurseVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
+const NurseVisitComponent: React.FC<DoctorVisitComponentProps> = ({
+  event,
+}) => {
   const nurseVisitEvent = event as NurseVisit
   return (
     <div style={containerStyle}>
@@ -57,7 +61,7 @@ const NurseVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
   )
 }
 
-const AdmissionComponent: React.FC<EventRendererProps> = ({ event }) => {
+const AdmissionComponent: React.FC<DoctorVisitComponentProps> = ({ event }) => {
   const admissionVisitEvent = event as Admission
   return (
     <div style={containerStyle}>
@@ -72,7 +76,9 @@ const AdmissionComponent: React.FC<EventRendererProps> = ({ event }) => {
   )
 }
 
-const InPatientVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
+const InPatientVisitComponent: React.FC<DoctorVisitComponentProps> = ({
+  event,
+}) => {
   const inPatientVisitEvent = event as InPatientVisit
   return (
     <div style={containerStyle}>
@@ -87,7 +93,7 @@ const InPatientVisitComponent: React.FC<EventRendererProps> = ({ event }) => {
   )
 }
 
-const DischargeComponent: React.FC<EventRendererProps> = ({ event }) => {
+const DischargeComponent: React.FC<DoctorVisitComponentProps> = ({ event }) => {
   const dischargeEvent = event as Discharge
   return (
     <div style={containerStyle}>
@@ -97,7 +103,7 @@ const DischargeComponent: React.FC<EventRendererProps> = ({ event }) => {
   )
 }
 
-const LabComponent: React.FC<EventRendererProps> = ({ event }) => {
+const LabComponent: React.FC<DoctorVisitComponentProps> = ({ event }) => {
   const labEvent = event as Lab
   return (
     <div style={containerStyle}>
@@ -119,7 +125,7 @@ const LabComponent: React.FC<EventRendererProps> = ({ event }) => {
   )
 }
 
-const ScanComponent: React.FC<EventRendererProps> = ({ event }) => {
+const ScanComponent: React.FC<DoctorVisitComponentProps> = ({ event }) => {
   const scanEvent = event as Scan
   return (
     <div style={containerStyle}>
@@ -132,7 +138,9 @@ const ScanComponent: React.FC<EventRendererProps> = ({ event }) => {
   )
 }
 
-const PrescriptionComponent: React.FC<EventRendererProps> = ({ event }) => {
+const PrescriptionComponent: React.FC<DoctorVisitComponentProps> = ({
+  event,
+}) => {
   const prescriptionEvent = event as Prescription
   return (
     <div style={containerStyle}>
@@ -144,7 +152,7 @@ const PrescriptionComponent: React.FC<EventRendererProps> = ({ event }) => {
           </li>
         ))}
       </ul>
-      <p> Requested by Dr: {prescriptionEvent.doctorName}</p>
+      <p> Prescribed by Dr: {prescriptionEvent.doctorName}</p>
       {prescriptionEvent.pharmacist && (
         <p> Done by : {prescriptionEvent.pharmacist}</p>
       )}
@@ -153,7 +161,9 @@ const PrescriptionComponent: React.FC<EventRendererProps> = ({ event }) => {
   )
 }
 
-const DetailedEventContainer: React.FC<EventRendererProps> = ({ event }) => {
+const DetailedEventContainer: React.FC<DoctorVisitComponentProps> = ({
+  event,
+}) => {
   switch (event.type) {
     case EventTypes.DoctorVisit:
       const doctorVisitEvent = event as DoctorVisit

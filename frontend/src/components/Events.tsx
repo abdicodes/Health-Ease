@@ -45,7 +45,6 @@ const Events: React.FC<EventsProps> = ({ events }) => {
           <div style={containerStyle} key={event.id}>
             <EventContainer event={event} />
             <Link to={`/${event.id}`}>
-              {' '}
               <button>Show Details</button>
             </Link>
           </div>
