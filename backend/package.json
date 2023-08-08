@@ -6,14 +6,20 @@
   "scripts": {
     "tsc": "tsc",
     "start": "node build/index.js",
-    "dev": "ts-node-dev index.ts",
+    "dev": "ts-node-dev src/index.ts",
+    "migration:down": "ts-node-dev src/utils/rollback.ts",
     "lint": "eslint --ext .ts .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.17",
+    "@types/pg": "^8.10.2",
+    "@types/sequelize": "^4.28.15",
+    "@types/umzug": "^2.3.3",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "eslint": "^8.46.0",
@@ -23,7 +29,12 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "sequelize": "^6.32.1"
+    "express-async-errors": "^3.1.1",
+    "pg": "^8.11.2",
+    "sequelize": "^6.32.1",
+    "umzug": "^3.3.1"
   }
 }
