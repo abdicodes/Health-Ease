@@ -2,6 +2,7 @@ export enum EventTypes {
   DoctorVisit = 'Doctor Visit',
   NurseVisit = 'Nurse Visit',
   Admission = 'Admission',
+  EmergencyVisit = 'Emergency Visit',
   Discharge = 'discharge',
   InPatientVisit = 'In-patient Visit',
   Lab = 'Lab Test',
@@ -46,11 +47,19 @@ export interface Admission extends BasicEvent {
 export interface Discharge extends BasicEvent {
   type: EventTypes.Discharge
   doctorName: string
+  diagnosis?: string
   details: string
 }
 
 export interface InPatientVisit extends BasicEvent {
   type: EventTypes.InPatientVisit
+  diagnosis?: string
+  doctorName: string
+  details: string
+}
+
+export interface EmergencyVisit extends BasicEvent {
+  type: EventTypes.EmergencyVisit
   diagnosis?: string
   doctorName: string
   details: string
@@ -87,6 +96,7 @@ export type Event =
   | DoctorVisit
   | NurseVisit
   | Admission
+  | EmergencyVisit
   | InPatientVisit
   | Discharge
   | Lab
