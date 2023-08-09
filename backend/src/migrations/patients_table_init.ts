@@ -25,6 +25,19 @@ module.exports = {
       },
       email: {
         type: DataTypes.STRING,
+        unique: true,
+        validate: {
+          isEmail: true,
+        },
+      },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       phone_number: {
         type: DataTypes.STRING,
