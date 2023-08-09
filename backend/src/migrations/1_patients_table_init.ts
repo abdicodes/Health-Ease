@@ -1,9 +1,5 @@
 import { QueryInterface, DataTypes } from 'sequelize'
 
-console.log('===========')
-console.log('this file has been opened')
-console.log('===========')
-
 enum GenderEnum {
   Male = 'male',
   Female = 'female',
@@ -54,6 +50,16 @@ module.exports = {
       },
       blood_type: {
         type: DataTypes.STRING,
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updated_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
       },
     })
   },

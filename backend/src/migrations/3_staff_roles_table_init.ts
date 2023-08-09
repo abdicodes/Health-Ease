@@ -31,10 +31,20 @@ module.exports = {
         allowNull: false,
         references: { model: 'roles', key: 'id' },
       },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
+      updated_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
     })
   },
 
-  // rollback action, here we drop tables table
+  // rollback action, here we drop roles and staff_roles tables
   down: async ({ context: queryInterface }: { context: QueryInterface }) => {
     await queryInterface.dropTable('roles')
     await queryInterface.dropTable('staff_roles')
