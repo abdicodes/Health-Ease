@@ -36,7 +36,7 @@ LabEvent.init(
   {
     sequelize,
     underscored: true,
-    modelName: 'lab_event',
+    modelName: 'labEvent',
   }
 )
 
@@ -74,7 +74,7 @@ ScanEvent.init(
   {
     sequelize,
     underscored: true,
-    modelName: 'scan_event',
+    modelName: 'scanEvent',
   }
 )
 

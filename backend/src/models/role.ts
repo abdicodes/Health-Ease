@@ -46,7 +46,7 @@ StaffRole.init(
   {
     sequelize,
     underscored: true,
-    modelName: 'staff_role',
+    modelName: 'staffRole',
   }
 )
 
