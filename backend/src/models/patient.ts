@@ -57,7 +57,7 @@ Patient.init(
   {
     sequelize,
     underscored: true,
-    modelName: 'staff',
+    modelName: 'patients',
   }
 )
 

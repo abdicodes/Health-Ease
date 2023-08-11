@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import { connectToDatabase } from './utils/db'
 import config from './utils/config'
+import events from './routes/events'
 
 const app = express()
 app.use(express.json())
@@ -19,6 +20,8 @@ app.get('/api/ping', (_req, res) => {
   console.log('someone pinged here')
   res.send('pong')
 })
+
+app.use('/events', events)
 
 const start = async (): Promise<void> => {
   await connectToDatabase()
