@@ -19,14 +19,15 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: { model: 'staffs', key: 'id' },
       },
       details: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       comments: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       created_at: {
         type: DataTypes.DATE,
@@ -57,15 +58,16 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: { model: 'staffs', key: 'id' },
       },
       details: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       comments: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       created_at: {
         type: DataTypes.DATE,
@@ -96,15 +98,16 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: { model: 'staffs', key: 'id' },
       },
       details: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       comments: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       created_at: {
         type: DataTypes.DATE,
@@ -118,7 +121,7 @@ module.exports = {
       },
     })
 
-    // Hospital admission
+    // Hospital discharge
     await queryInterface.createTable('discharges', {
       id: {
         type: DataTypes.INTEGER,
@@ -135,15 +138,16 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: { model: 'staffs', key: 'id' },
       },
       details: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       comments: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       created_at: {
         type: DataTypes.DATE,
@@ -157,7 +161,7 @@ module.exports = {
       },
     })
 
-    //
+    // emergency visit
     await queryInterface.createTable('emergency_visits', {
       id: {
         type: DataTypes.INTEGER,
@@ -174,15 +178,16 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: { model: 'staffs', key: 'id' },
       },
       details: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       comments: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       created_at: {
         type: DataTypes.DATE,
@@ -195,7 +200,7 @@ module.exports = {
         defaultValue: DataTypes.NOW,
       },
     })
-
+    // nurse visit
     await queryInterface.createTable('nurse_visits', {
       id: {
         type: DataTypes.INTEGER,
@@ -212,49 +217,16 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: { model: 'staffs', key: 'id' },
       },
       details: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
-      created_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW,
-      },
-      updated_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW,
-      },
-    })
-
-    // Scan event table
-    await queryInterface.createTable('scan_events', {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true,
-      },
-      patient_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: { model: 'patients', key: 'id' },
-      },
-      ordered_by: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: { model: 'staffs', key: 'id' },
-      },
-      processed_by: {
-        type: DataTypes.INTEGER,
-        references: { model: 'staffs', key: 'id' },
-      },
-      tests: {
-        type: DataTypes.JSONB, // Store an array of test objects here
+      comments: {
+        type: DataTypes.TEXT,
       },
       created_at: {
         type: DataTypes.DATE,
@@ -271,6 +243,11 @@ module.exports = {
 
   // rollback action, here we drop patients table
   down: async ({ context: queryInterface }: { context: QueryInterface }) => {
-    await queryInterface.dropTable('patients')
+    await queryInterface.dropTable('outpatient_visits')
+    await queryInterface.dropTable('inpatient_visits')
+    await queryInterface.dropTable('discharges')
+    await queryInterface.dropTable('emergency_visits')
+    await queryInterface.dropTable('admissions')
+    await queryInterface.dropTable('nurse_visits')
   },
 }

@@ -21,8 +21,9 @@ OutpatientVisit.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: { model: 'staffs', key: 'id' },
     },
     details: {
       type: DataTypes.STRING,
@@ -34,7 +35,7 @@ OutpatientVisit.init(
   {
     sequelize,
     underscored: true,
-    modelName: 'outpatient_visit',
+    modelName: 'outpatientVisit',
   }
 )
 
@@ -57,8 +58,9 @@ NurseVisit.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: { model: 'staffs', key: 'id' },
     },
     details: {
       type: DataTypes.STRING,
@@ -70,7 +72,7 @@ NurseVisit.init(
   {
     sequelize,
     underscored: true,
-    modelName: 'nurse_visit',
+    modelName: 'nurseVisit',
   }
 )
 
@@ -93,8 +95,9 @@ InpatientVisit.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: { model: 'staffs', key: 'id' },
     },
     details: {
       type: DataTypes.STRING,
@@ -106,7 +109,7 @@ InpatientVisit.init(
   {
     sequelize,
     underscored: true,
-    modelName: 'inpatient_visit',
+    modelName: 'inpatientVisit',
   }
 )
 
@@ -129,8 +132,9 @@ EmergencyVisit.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: { model: 'staffs', key: 'id' },
     },
     details: {
       type: DataTypes.STRING,
@@ -142,7 +146,7 @@ EmergencyVisit.init(
   {
     sequelize,
     underscored: true,
-    modelName: 'emergency_visit',
+    modelName: 'emergencyVisit',
   }
 )
 
@@ -165,8 +169,9 @@ Admission.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: { model: 'staffs', key: 'id' },
     },
     details: {
       type: DataTypes.STRING,
@@ -201,8 +206,9 @@ Discharge.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: { model: 'staffs', key: 'id' },
     },
     details: {
       type: DataTypes.STRING,
