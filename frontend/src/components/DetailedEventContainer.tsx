@@ -6,16 +6,52 @@ import {
   NurseVisit,
   Admission,
   InPatientVisit,
+  EmergencyVisit,
   Discharge,
   Lab,
   Scan,
   Prescription,
 } from '../types'
 
-interface DoctorVisitComponentProps {
-  event: Event
+interface EventProps {
+  event: Event | never
 }
 
+interface DoctorVisitComponentProps {
+  event: DoctorVisit
+}
+
+interface AdmissionComponentProps {
+  event: Admission
+}
+
+interface InPatientVisitComponentProps {
+  event: InPatientVisit
+}
+
+interface DischargeComponentProps {
+  event: Discharge
+}
+
+interface EmergencyVisitComponentProps {
+  event: EmergencyVisit
+}
+
+interface NurseVisitComponentProps {
+  event: NurseVisit
+}
+
+interface LabComponentProps {
+  event: Lab
+}
+
+interface ScanComponentProps {
+  event: Scan
+}
+
+interface PrescriptionComponentProps {
+  event: Prescription
+}
 const assertNever = (value: never): never => {
   throw new Error(`Unhandled error ${JSON.stringify(value)}`)
 }
@@ -31,93 +67,91 @@ const containerStyle: React.CSSProperties = {
 const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
   event,
 }) => {
-  const doctorVisitEvent = event as DoctorVisit
   return (
     <div style={containerStyle}>
-      {doctorVisitEvent.diagnosis && (
-        <p> Diagnosis: {doctorVisitEvent.diagnosis}</p>
-      )}
+      {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
 
-      <p>Visit summary : {doctorVisitEvent.details}</p>
-      <p>Doctor's name: {doctorVisitEvent.doctorName}</p>
+      <p>Visit summary : {event.details}</p>
+      <p>Doctor's name: {event.doctorName}</p>
     </div>
   )
 }
 
-const NurseVisitComponent: React.FC<DoctorVisitComponentProps> = ({
+const NurseVisitComponent: React.FC<NurseVisitComponentProps> = ({ event }) => {
+  return (
+    <div style={containerStyle}>
+      {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
+
+      <p>Visit summary : {event.details}</p>
+
+      <p>Nurse's name: {event.nurseName}</p>
+    </div>
+  )
+}
+
+const EmergencyVisitComponent: React.FC<EmergencyVisitComponentProps> = ({
   event,
 }) => {
-  const nurseVisitEvent = event as NurseVisit
   return (
     <div style={containerStyle}>
-      {nurseVisitEvent.diagnosis && (
-        <p> Diagnosis: {nurseVisitEvent.diagnosis}</p>
-      )}
+      {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
 
-      <p>Visit summary : {nurseVisitEvent.details}</p>
+      <p>Visit summary : {event.details}</p>
 
-      <p>Nurse's name: {nurseVisitEvent.nurseName}</p>
+      <p>Nurse's name: {event.doctorName}</p>
     </div>
   )
 }
 
-const AdmissionComponent: React.FC<DoctorVisitComponentProps> = ({ event }) => {
-  const admissionVisitEvent = event as Admission
+const AdmissionComponent: React.FC<AdmissionComponentProps> = ({ event }) => {
   return (
     <div style={containerStyle}>
-      {admissionVisitEvent.diagnosis && (
-        <p> Diagnosis: {admissionVisitEvent.diagnosis}</p>
-      )}
+      {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
 
-      <p>Admission summary : {admissionVisitEvent.details}</p>
+      <p>Admission summary : {event.details}</p>
 
-      <p>Doctor's name: {admissionVisitEvent.doctorName}</p>
+      <p>Doctor's name: {event.doctorName}</p>
     </div>
   )
 }
 
-const InPatientVisitComponent: React.FC<DoctorVisitComponentProps> = ({
+const InPatientVisitComponent: React.FC<InPatientVisitComponentProps> = ({
   event,
 }) => {
-  const inPatientVisitEvent = event as InPatientVisit
   return (
     <div style={containerStyle}>
-      {inPatientVisitEvent.diagnosis && (
-        <p> Diagnosis: {inPatientVisitEvent.diagnosis}</p>
-      )}
+      {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
 
-      <p>Ward Visit summary : {inPatientVisitEvent.details}</p>
+      <p>Ward Visit summary : {event.details}</p>
 
-      <p>Doctor's name: {inPatientVisitEvent.doctorName}</p>
+      <p>Doctor's name: {event.doctorName}</p>
     </div>
   )
 }
 
-const DischargeComponent: React.FC<DoctorVisitComponentProps> = ({ event }) => {
-  const dischargeEvent = event as Discharge
+const DischargeComponent: React.FC<DischargeComponentProps> = ({ event }) => {
   return (
     <div style={containerStyle}>
-      <p>Discharge summary : {dischargeEvent.details}</p>
-      <p>Doctor's name: {dischargeEvent.doctorName}</p>
+      <p>Discharge summary : {event.details}</p>
+      <p>Doctor's name: {event.doctorName}</p>
     </div>
   )
 }
 
-const LabComponent: React.FC<DoctorVisitComponentProps> = ({ event }) => {
-  const labEvent = event as Lab
+const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
   return (
     <div style={containerStyle}>
       <p>Tests requested:</p>
       <ul>
-        {labEvent.tests.map((test, i) => (
+        {event.tests.map((test, i) => (
           <li key={i}>{test}</li>
         ))}
       </ul>
-      <p> Requested by Dr: {labEvent.doctorName}</p>
-      {labEvent.technicianName && <p> Done by : {labEvent.technicianName}</p>}
+      <p> Requested by Dr: {event.doctorName}</p>
+      {event.technicianName && <p> Done by : {event.technicianName}</p>}
       <p> Results: </p>
       <ul>
-        {labEvent.results.map((result, i) => (
+        {event.results.map((result, i) => (
           <li key={i}>{result}</li>
         ))}
       </ul>
@@ -125,85 +159,66 @@ const LabComponent: React.FC<DoctorVisitComponentProps> = ({ event }) => {
   )
 }
 
-const ScanComponent: React.FC<DoctorVisitComponentProps> = ({ event }) => {
-  const scanEvent = event as Scan
+const ScanComponent: React.FC<ScanComponentProps> = ({ event }) => {
   return (
     <div style={containerStyle}>
-      <p>Tests requested: {scanEvent.scan}</p>
+      <p>Tests requested: {event.scan}</p>
 
-      <p> Requested by Dr: {scanEvent.doctorName}</p>
-      {scanEvent.technicianName && <p> Done by : {scanEvent.technicianName}</p>}
-      <p> Results: {scanEvent.results}</p>
+      <p> Requested by Dr: {event.doctorName}</p>
+      {event.technicianName && <p> Done by : {event.technicianName}</p>}
+      <p> Results: {event.results}</p>
     </div>
   )
 }
 
-const PrescriptionComponent: React.FC<DoctorVisitComponentProps> = ({
+const PrescriptionComponent: React.FC<PrescriptionComponentProps> = ({
   event,
 }) => {
-  const prescriptionEvent = event as Prescription
   return (
     <div style={containerStyle}>
       <p>prescriptions : </p>
       <ul>
-        {prescriptionEvent.drugs.map((drug, i) => (
+        {event.drugs.map((drug, i) => (
           <li key={i}>
             drug name: {drug.name} quantity: {drug.quantity} dose: {drug.dose}
           </li>
         ))}
       </ul>
-      <p> Prescribed by Dr: {prescriptionEvent.doctorName}</p>
-      {prescriptionEvent.pharmacist && (
-        <p> Done by : {prescriptionEvent.pharmacist}</p>
-      )}
-      <p> Prescription Expiration date: {prescriptionEvent.expirayDate}</p>
+      <p> Prescribed by Dr: {event.doctorName}</p>
+      {event.pharmacist && <p> Done by : {event.pharmacist}</p>}
+      <p> Prescription Expiration date: {event.expirayDate}</p>
     </div>
   )
 }
 
-const DetailedEventContainer: React.FC<DoctorVisitComponentProps> = ({
-  event,
-}) => {
+const DetailedEventContainer: React.FC<EventProps> = ({ event }) => {
   switch (event.type) {
     case EventTypes.DoctorVisit:
-      const doctorVisitEvent = event as DoctorVisit
-
-      return <DoctorVisitComponent event={doctorVisitEvent} />
+      return <DoctorVisitComponent event={event} />
 
     case EventTypes.NurseVisit:
-      const nurseVisitEvent = event as NurseVisit
-
-      return <NurseVisitComponent event={nurseVisitEvent} />
+      return <NurseVisitComponent event={event} />
 
     case EventTypes.Admission:
-      const admissionEvent = event as Admission
-
-      return <AdmissionComponent event={admissionEvent} />
+      return <AdmissionComponent event={event} />
 
     case EventTypes.InPatientVisit:
-      const inPatientVisitEvent = event as InPatientVisit
-
-      return <InPatientVisitComponent event={inPatientVisitEvent} />
+      return <InPatientVisitComponent event={event} />
 
     case EventTypes.Discharge:
-      const dischargeEvent = event as Discharge
-
-      return <DischargeComponent event={dischargeEvent} />
+      return <DischargeComponent event={event} />
 
     case EventTypes.Lab:
-      const labEvent = event as Lab
-
-      return <LabComponent event={labEvent} />
+      return <LabComponent event={event} />
 
     case EventTypes.Scan:
-      const scanEvent = event as Scan
-
-      return <ScanComponent event={scanEvent} />
+      return <ScanComponent event={event} />
 
     case EventTypes.Prescription:
-      const prescriptionEvent = event as Prescription
+      return <PrescriptionComponent event={event} />
 
-      return <PrescriptionComponent event={prescriptionEvent} />
+    case EventTypes.EmergencyVisit:
+      return <EmergencyVisitComponent event={event} />
 
     default:
       return assertNever(event)

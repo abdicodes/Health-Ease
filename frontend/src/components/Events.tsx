@@ -39,7 +39,7 @@ const Events: React.FC<EventsProps> = ({ events }) => {
           <p>No future events!</p>
         </div>
       )}
-      <h2 style={{ textAlign: 'center' }}>Past Events</h2>
+      <h2 className="text-3xl font-bold underline">Past Events</h2>
       {events.map((event) =>
         !isFutureEvent(event.dateTime) ? (
           <div style={containerStyle} key={event.id}>
