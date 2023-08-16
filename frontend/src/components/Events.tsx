@@ -8,23 +8,15 @@ interface EventsProps {
   events: Event[]
 }
 
-const containerStyle: React.CSSProperties = {
-  border: '1px solid #ccc',
-  borderRadius: '4px',
-  padding: '10px',
-  margin: '10px auto',
-  maxWidth: '400px',
-}
-
 const Events: React.FC<EventsProps> = ({ events }) => {
   return (
     <div>
-      <h2 style={{ textAlign: 'center' }}>Future Events</h2>
+      <h2 className="">Future Events</h2>
       {events.filter((element) => isFutureEvent(element.dateTime)).length >
       0 ? (
         events.map((event) =>
           isFutureEvent(event.dateTime) ? (
-            <div style={containerStyle} key={event.id}>
+            <div key={event.id}>
               <EventContainer event={event} />
               <Link to={`/${event.id}`}>
                 <button>Show Details</button>
@@ -35,14 +27,14 @@ const Events: React.FC<EventsProps> = ({ events }) => {
           ) : null
         )
       ) : (
-        <div style={containerStyle}>
+        <div>
           <p>No future events!</p>
         </div>
       )}
-      <h2 className="text-3xl font-bold underline">Past Events</h2>
+      <h2>Past Events</h2>
       {events.map((event) =>
         !isFutureEvent(event.dateTime) ? (
-          <div style={containerStyle} key={event.id}>
+          <div key={event.id}>
             <EventContainer event={event} />
             <Link to={`/${event.id}`}>
               <button>Show Details</button>

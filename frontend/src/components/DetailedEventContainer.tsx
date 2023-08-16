@@ -56,19 +56,11 @@ const assertNever = (value: never): never => {
   throw new Error(`Unhandled error ${JSON.stringify(value)}`)
 }
 
-const containerStyle: React.CSSProperties = {
-  border: '1px solid #ccc',
-  borderRadius: '4px',
-  padding: '10px',
-  margin: '25px auto',
-  maxWidth: '400px',
-}
-
 const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
   event,
 }) => {
   return (
-    <div style={containerStyle}>
+    <div>
       {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
 
       <p>Visit summary : {event.details}</p>
@@ -79,7 +71,7 @@ const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
 
 const NurseVisitComponent: React.FC<NurseVisitComponentProps> = ({ event }) => {
   return (
-    <div style={containerStyle}>
+    <div>
       {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
 
       <p>Visit summary : {event.details}</p>
@@ -93,7 +85,7 @@ const EmergencyVisitComponent: React.FC<EmergencyVisitComponentProps> = ({
   event,
 }) => {
   return (
-    <div style={containerStyle}>
+    <div>
       {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
 
       <p>Visit summary : {event.details}</p>
@@ -105,7 +97,7 @@ const EmergencyVisitComponent: React.FC<EmergencyVisitComponentProps> = ({
 
 const AdmissionComponent: React.FC<AdmissionComponentProps> = ({ event }) => {
   return (
-    <div style={containerStyle}>
+    <div>
       {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
 
       <p>Admission summary : {event.details}</p>
@@ -119,7 +111,7 @@ const InPatientVisitComponent: React.FC<InPatientVisitComponentProps> = ({
   event,
 }) => {
   return (
-    <div style={containerStyle}>
+    <div>
       {event.diagnosis && <p> Diagnosis: {event.diagnosis}</p>}
 
       <p>Ward Visit summary : {event.details}</p>
@@ -131,7 +123,7 @@ const InPatientVisitComponent: React.FC<InPatientVisitComponentProps> = ({
 
 const DischargeComponent: React.FC<DischargeComponentProps> = ({ event }) => {
   return (
-    <div style={containerStyle}>
+    <div>
       <p>Discharge summary : {event.details}</p>
       <p>Doctor's name: {event.doctorName}</p>
     </div>
@@ -140,7 +132,7 @@ const DischargeComponent: React.FC<DischargeComponentProps> = ({ event }) => {
 
 const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
   return (
-    <div style={containerStyle}>
+    <div>
       <p>Tests requested:</p>
       <ul>
         {event.tests.map((test, i) => (
@@ -161,7 +153,7 @@ const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
 
 const ScanComponent: React.FC<ScanComponentProps> = ({ event }) => {
   return (
-    <div style={containerStyle}>
+    <div>
       <p>Tests requested: {event.scan}</p>
 
       <p> Requested by Dr: {event.doctorName}</p>
@@ -175,7 +167,7 @@ const PrescriptionComponent: React.FC<PrescriptionComponentProps> = ({
   event,
 }) => {
   return (
-    <div style={containerStyle}>
+    <div>
       <p>prescriptions : </p>
       <ul>
         {event.drugs.map((drug, i) => (

@@ -5,7 +5,9 @@ type eventProps = {
   event: Event
 }
 const EventContainer: React.FC<eventProps> = ({ event }: eventProps) => {
-  const handleRenewalRequest = (eventId: number): void => {}
+  const handleRenewalRequest = (eventId: number): void => {
+    console.log(eventId)
+  }
   return (
     <div>
       <h3>{event.type}</h3>
