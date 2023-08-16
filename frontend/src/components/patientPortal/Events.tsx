@@ -1,7 +1,7 @@
 import React from 'react'
-import { Event } from '../types'
+import { Event } from '../../types'
 import EventContainer from './EventContainer'
-import { isFutureEvent } from '../utils/isFutureEvent'
+import { isFutureEvent } from '../../utils/isFutureEvent'
 import { Link } from 'react-router-dom'
 
 interface EventsProps {

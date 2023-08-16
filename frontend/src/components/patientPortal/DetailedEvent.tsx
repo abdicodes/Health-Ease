@@ -1,6 +1,6 @@
 import { useMatch } from 'react-router-dom'
-import data from '../data'
-import { Event } from '../types'
+import data from '../../data'
+import { Event } from '../../types'
 import DetailedEventContainer from './DetailedEventContainer'
 import { Link } from 'react-router-dom'
 

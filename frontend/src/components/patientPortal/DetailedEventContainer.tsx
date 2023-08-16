@@ -11,7 +11,7 @@ import {
   Lab,
   Scan,
   Prescription,
-} from '../types'
+} from '../../types'
 
 interface EventProps {
   event: Event | never
