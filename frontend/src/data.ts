@@ -18,8 +18,18 @@ const data: Event[] = [
     type: EventTypes.Prescription,
     dateTime: '2023-05-02',
     drugs: [
-      { name: 'antihistamin', quantity: 60, dose: '10mg' },
-      { name: 'Paracetamol', quantity: 30, dose: '500mg' },
+      {
+        name: 'antihistamin',
+        quantity: 60,
+        dose: '10mg',
+        instruction: 'after food',
+      },
+      {
+        name: 'Paracetamol',
+        quantity: 30,
+        dose: '500mg',
+        instruction: 'before food',
+      },
     ],
     doctorName: 'Avicenna',
     comments: '1 10mg tablet x2 times a day ',

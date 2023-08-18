@@ -10,7 +10,7 @@ const EventContainer: React.FC<eventProps> = ({ event }: eventProps) => {
   }
   return (
     <div>
-      <h3>{event.type}</h3>
+      <h3 className="text-center text-blue-800 ">{event.type}</h3>
       <p>Date/Time: {event.dateTime.toString()}</p>
       {event.type === 'Prescription' && event.active === false && (
         <button onClick={() => handleRenewalRequest(event.id)}>

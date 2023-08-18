@@ -1,35 +1,28 @@
-import { useMatch } from 'react-router-dom'
+import { useMatch, Link } from 'react-router-dom'
 import data from '../../data'
 import { Event } from '../../types'
 import DetailedEventContainer from './DetailedEventContainer'
-import { Link } from 'react-router-dom'
-
-const containerStyle: React.CSSProperties = {
-  padding: '10px',
-  margin: '25px auto',
-  maxWidth: '400px',
-}
 
 const DetailedEvent = () => {
   const match = useMatch('/:id')
   if (!match) return null
+
   const { id } = match.params
 
-  if (id === null) {
-    return null
-  }
+  if (!id) return null
 
   const event = data.find((element: Event) => element.id === Number(id))
   if (!event) return null
+
   return (
-    <div style={containerStyle}>
-      <h3> {event.type}</h3>
-      <h4> Date: {event.dateTime}</h4>
+    <main className="bg-blue-50 min-h-screen flex flex-col items-center justify-center">
       <DetailedEventContainer event={event} />
-      <Link to={`/`}>
-        <button>Go back</button>
+      <Link to="/">
+        <div className="bg-blue-500 text-white p-2 px-4 mt-4 rounded-2xl shadow-md hover:bg-blue-600 cursor-pointer">
+          <h2 className="font-medium">Go Back</h2>
+        </div>
       </Link>
-    </div>
+    </main>
   )
 }
 

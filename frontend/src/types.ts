@@ -14,6 +14,7 @@ interface Drug {
   name: string
   quantity: number
   dose: string
+  instruction: string
 }
 
 export interface BasicEvent {
@@ -76,10 +77,10 @@ export interface Lab extends BasicEvent {
 
 export interface Scan extends BasicEvent {
   type: EventTypes.Scan
-  scan: string
+  tests: string[]
   doctorName: string
   technicianName?: string
-  results: string
+  results: string[]
   pending: boolean
 }
 
