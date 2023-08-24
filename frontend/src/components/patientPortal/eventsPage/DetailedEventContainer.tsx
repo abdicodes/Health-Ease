@@ -11,7 +11,7 @@ import {
   Lab,
   Scan,
   Prescription,
-} from '../../types'
+} from '../../../types'
 import doctor from '/doctor.png'
 import nurse from '/nurse.png'
 import emergency from '/emergency.png'

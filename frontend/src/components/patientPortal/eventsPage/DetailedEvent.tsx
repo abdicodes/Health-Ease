@@ -1,6 +1,6 @@
 import { useMatch, Link } from 'react-router-dom'
-import data from '../../data'
-import { Event } from '../../types'
+import data from '../../../data'
+import { Event } from '../../../types'
 import DetailedEventContainer from './DetailedEventContainer'
 
 const DetailedEvent = () => {

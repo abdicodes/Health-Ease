@@ -1,9 +1,9 @@
 import React from 'react'
-import { Event } from '../../types'
+import { Event } from '../../../types'
 import EventContainer from './EventContainer'
-import { isFutureEvent } from '../../utils/isFutureEvent'
+import { isFutureEvent } from '../../../utils/isFutureEvent'
 import { Link } from 'react-router-dom'
-import Navbar from '../NavBar'
+import Navbar from '../../NavBar'
 
 interface EventsProps {
   events: Event[]
@@ -21,10 +21,7 @@ const Events: React.FC<EventsProps> = ({ events }) => {
         0 ? (
           events.map((event) =>
             isFutureEvent(event.dateTime) ? (
-              <div
-                key={event.id}
-                className="py-5 shadow-md bg-blue-100 pl-6 rounded-2xl"
-              >
+              <div key={event.id}>
                 <EventContainer event={event} />
                 <Link to={`/${event.id}`}>
                   <button>Show Details</button>
