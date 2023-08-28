@@ -4,7 +4,7 @@ const data: Event[] = [
   {
     id: 1,
     type: EventTypes.DoctorVisit,
-    dateTime: '2023-05-02',
+    dateTime: '2023-08-23T20:26:06.679Z',
     diagnosis: 'mild allergy',
     doctorName: 'Avicenna',
     details: `Patient complained about eye itching, running nose, 
@@ -12,11 +12,13 @@ const data: Event[] = [
       Patient also complained about a headache, symptops started 3 days ago. 
       Further lab tests are needed and meantime painkillers are prescribed
       `,
+    comments:
+      'do not eat anything before coming to clinic do not eat anything before coming to clinic do not eat anything before coming to clinic',
   },
   {
     id: 2,
     type: EventTypes.Prescription,
-    dateTime: '2023-05-02',
+    dateTime: new Date().toJSON(),
     drugs: [
       {
         name: 'antihistamin',
@@ -40,7 +42,7 @@ const data: Event[] = [
   {
     id: 3,
     type: EventTypes.Lab,
-    dateTime: '2023-05-02',
+    dateTime: '2023-08-22T14:26:06.679Z',
     tests: ['CRP', 'CBC'],
     doctorName: 'Avicenna',
     technicianName: 'Sophia',
@@ -50,7 +52,7 @@ const data: Event[] = [
   {
     id: 4,
     type: EventTypes.NurseVisit,
-    dateTime: '2023-8-02',
+    dateTime: '2023-07-11T00:26:06.679Z',
     nurseName: 'Bianca',
     details: ' ',
   },

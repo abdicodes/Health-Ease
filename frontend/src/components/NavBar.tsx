@@ -48,8 +48,8 @@ export default function Example() {
                         href="#"
                         className={classNames(
                           active
-                            ? 'bg-blue-200 text-blue-900'
-                            : 'text-blue-800',
+                            ? 'bg-blue-200 text-black font-semibold'
+                            : 'text-blue-950',
                           'block px-4 py-2 text-sm'
                         )}
                       >
@@ -63,8 +63,8 @@ export default function Example() {
                         href="#"
                         className={classNames(
                           active
-                            ? 'bg-blue-200 text-blue-900'
-                            : 'text-blue-800',
+                            ? 'bg-blue-200 text-black font-semibold'
+                            : 'text-blue-950',
                           'block px-4 py-2 text-sm'
                         )}
                       >
@@ -80,8 +80,8 @@ export default function Example() {
                         href="#"
                         className={classNames(
                           active
-                            ? 'bg-blue-200 text-blue-900'
-                            : 'text-blue-800',
+                            ? 'bg-blue-200 text-black font-semibold'
+                            : 'text-blue-950',
                           'block px-4 py-2 text-sm'
                         )}
                       >
@@ -95,8 +95,8 @@ export default function Example() {
                         href="#"
                         className={classNames(
                           active
-                            ? 'bg-blue-200 text-blue-900'
-                            : 'text-blue-800',
+                            ? 'bg-blue-200 text-black font-semibold'
+                            : 'text-blue-950',
                           'block px-4 py-2 text-sm'
                         )}
                       >
@@ -112,8 +112,8 @@ export default function Example() {
                         href="#"
                         className={classNames(
                           active
-                            ? 'bg-blue-200 text-blue-900'
-                            : 'text-blue-800',
+                            ? 'bg-blue-200 text-black font-semibold'
+                            : 'text-blue-950',
                           'block px-4 py-2 text-sm'
                         )}
                       >
@@ -127,8 +127,8 @@ export default function Example() {
                         href="#"
                         className={classNames(
                           active
-                            ? 'bg-blue-200 text-blue-900'
-                            : 'text-blue-800',
+                            ? 'bg-blue-200 text-black font-semibold'
+                            : 'text-blue-950',
                           'block px-4 py-2 text-sm'
                         )}
                       >
@@ -144,8 +144,8 @@ export default function Example() {
                         href="#"
                         className={classNames(
                           active
-                            ? 'bg-blue-200 text-blue-900'
-                            : 'text-blue-800',
+                            ? 'bg-blue-200 text-black font-semibold'
+                            : 'text-blue-950',
                           'block px-4 py-2 text-sm'
                         )}
                       >
@@ -162,7 +162,7 @@ export default function Example() {
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg  md:flex-row md:space-x-6 lg:space-x-8 md:mt-0 md:border-0 ">
               <li
                 onClick={() => console.log('hello')}
-                className="bg-blue-500  opacity-80  rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-24  cursor-pointer mx-5 hover:bg-blue-600"
+                className="bg-blue-500 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-24  cursor-pointer mx-5 hover:bg-blue-600"
               >
                 <FiHome className="text-l" />
                 <h2 className=" my-1 mx-2 font-medium ">Home</h2>
@@ -170,21 +170,21 @@ export default function Example() {
 
               <li
                 onClick={() => console.log('hello')}
-                className="bg-blue-500  opacity-80 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-24  cursor-pointer mx-5 hover:bg-blue-600"
+                className="bg-blue-500 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-24  cursor-pointer mx-5 hover:bg-blue-600"
               >
                 <FiMail className="text-l" />
                 <h2 className=" my-1 mx-2 font-medium ">Inbox</h2>
               </li>
               <li
                 onClick={() => console.log('hello')}
-                className="bg-blue-500  opacity-80 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-28  cursor-pointer mx-5 hover:bg-blue-600"
+                className="bg-blue-500 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-28  cursor-pointer mx-5 hover:bg-blue-600"
               >
                 <FiSettings className="text-l" />
                 <h2 className=" my-1 mx-2 font-medium ">Settings</h2>
               </li>
               <li
                 onClick={() => console.log('hello')}
-                className="bg-blue-500  opacity-80 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-28  cursor-pointer mx-5 hover:bg-blue-600"
+                className="bg-blue-500 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-28  cursor-pointer mx-5 hover:bg-blue-600"
               >
                 <FiLogOut className="text-l" />
                 <h2 className=" my-1 mx-2 font-medium ">Log Out</h2>

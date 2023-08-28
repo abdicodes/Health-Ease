@@ -5,8 +5,8 @@ export enum EventTypes {
   EmergencyVisit = 'Emergency Visit',
   Discharge = 'discharge',
   InPatientVisit = 'In-patient Visit',
-  Lab = 'Lab Test',
-  Scan = 'scan',
+  Lab = 'Laboratory test',
+  Scan = 'Medical Imaging',
   Prescription = 'Prescription',
 }
 

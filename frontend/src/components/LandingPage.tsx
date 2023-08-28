@@ -22,13 +22,13 @@ const LandingPage = () => {
       <section className=" flex flex-col md:flex-row justify-center items-center">
         <div className="bg-blue-500 p-2 px-2 my-4 rounded-2xl shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-l w-52  cursor-pointer mx-5 hover:bg-blue-600">
           <FaUserAlt />
-          <h2 className=" my-4 mx-3 font-medium mb-4">Individuals</h2>
+          <h2 className=" my-4 mx-3 font-semibold mb-4">Individuals</h2>
           <BiLogIn className="text-2xl" />
         </div>
 
         <div className="bg-blue-50 p-2 px-2 my-4 rounded-2xl border-blue-300 border-2 shadow-lg flex flex-row items-center justify-center text-blue-600 text-l w-56  cursor-pointer mx-5 hover:bg-blue-200">
           <FaHospitalUser className="text-2xl" />
-          <h2 className="my-4 mx-3 font-medium mb-4"> Staff Portal</h2>
+          <h2 className="my-4 mx-3 font-semibold mb-4"> Staff Portal</h2>
           <BiLogIn className="text-2xl" />
         </div>
       </section>

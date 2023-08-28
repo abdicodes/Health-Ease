@@ -16,7 +16,13 @@ const DateParser = ({
       else if (currentDay - day > 0) return <p>Yesterday</p>
       else return <p>Tomorrow</p>
     case 1:
-      return <p> Yesterday</p>
+      if (currentDay - day === 1) return <p> Yesterday</p>
+      else
+        return (
+          <p>
+            {day} {month}
+          </p>
+        )
     case -1:
       return <p> Tomorrow</p>
     default:
@@ -33,17 +39,19 @@ const DateComponent = ({ timestamp }: { timestamp: string }) => {
 
   const month: string = date.toDateString().split(' ')[1]
   const day: number = date.getDate()
-  const hour: number = date.getHours()
-  const minute: number = date.getMinutes()
+  const hour: string =
+    date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`
+  const minute: string =
+    date.getMinutes() < 10 ? `0${date.getMinutes()}` : `${date.getMinutes()}`
   const daysDifference: number = Math.floor(
     (new Date().getTime() - date.getTime()) / 1000 / 60 / 60 / 24
   )
   let backgroundColorClass: string
 
   if (daysDifference === 0) {
-    backgroundColorClass = 'bg-orange-200'
+    backgroundColorClass = 'bg-red-200'
   } else if (daysDifference < 0) {
-    backgroundColorClass = 'bg-green-200'
+    backgroundColorClass = 'bg-blue-100'
   } else {
     backgroundColorClass = 'bg-neutral-200'
   }
