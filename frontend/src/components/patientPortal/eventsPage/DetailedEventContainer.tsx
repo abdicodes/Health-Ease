@@ -21,6 +21,10 @@ import lab from '/lab.png'
 import radiography from '/radiography.png'
 import prescription from '/prescription.png'
 import discharge from '/discharge.png'
+import { TbReportSearch, TbReport } from 'react-icons/tb'
+import { BsCalendar4Event } from 'react-icons/bs'
+import { FaUserNurse } from 'react-icons/fa'
+import { BiSolidCommentDetail } from 'react-icons/bi'
 
 interface EventProps {
   event: Event | never
@@ -68,15 +72,46 @@ const assertNever = (value: never): never => {
 const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
   event,
 }) => {
-  const { diagnosis, dateTime, details, doctorName } = event
+  const { diagnosis, dateTime, details, doctorName, type, comments } = event
   return (
-    <main className=" ">
-      <section className=" ml-10 pt-10 ">
-        <img src={doctor} className=" w-20 mx-auto text-blue-800" />
-        {diagnosis && <p> Diagnosis: {diagnosis}</p>}
-        <h3> Date: {dateTime}</h3>
-        <h3>Visit summary : {details}</h3>
-        <h3>Doctor's name: {doctorName}</h3>
+    <main className="  bg-blue-100 mx-4 my-10 rounded-xl shadow-2xl shadow-blue-950 max-w-3xl">
+      <section className=" mx-10 my-2 ">
+        <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
+          <img src={doctor} className=" w-20  text-blue-800" />
+          <h1 className="text-3xl  ml-4 font-semibold">{type}</h1>
+        </div>
+
+        {diagnosis && (
+          <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
+            <TbReportSearch className="mr-1 text-lg" /> Diagnosis: {diagnosis}
+          </div>
+        )}
+
+        <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
+          <BsCalendar4Event className="mr-1 text-base" />
+          Date: {new Date(dateTime).toDateString()}
+        </div>
+        <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
+          <FaUserNurse className="mr-1 " />
+          Doctor's name: {doctorName}
+        </div>
+        <div className="mt-6 text-lg font-semibold text-blue-900 flex items-center">
+          <TbReport className="mr-1 text-lg" /> Visit summary :
+        </div>
+        <div className=" text-amber-950 leading-8 bg-white p-4 rounded-2xl border-slate-500 border-2 mb-6 ">
+          {details}
+        </div>
+
+        {comments && (
+          <>
+            <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
+              <BiSolidCommentDetail className="mr-1 " /> Comments
+            </div>
+            <div className=" text-amber-950 leading-8 bg-white p-4 rounded-2xl border-slate-500 border-2 mb-6 ">
+              {comments}
+            </div>
+          </>
+        )}
       </section>
     </main>
   )
@@ -89,7 +124,9 @@ const NurseVisitComponent: React.FC<NurseVisitComponentProps> = ({ event }) => {
       <section className=" ml-10 pt-10 ">
         <img src={nurse} className=" w-20 mx-auto text-blue-800" />
         {diagnosis && <p> Diagnosis: {diagnosis}</p>}
-        <h3> Date: {dateTime}</h3>
+        <h3>
+          <BsCalendar4Event /> Date: {dateTime}
+        </h3>
         <h3>Visit summary : {details}</h3>
         <h3>Nurse's name: {nurseName}</h3>
       </section>
