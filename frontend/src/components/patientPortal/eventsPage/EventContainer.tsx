@@ -2,6 +2,7 @@ import React from 'react'
 import { Event } from '../../../types'
 import DateComponent from './DateComponent'
 import { Link } from 'react-router-dom'
+import { MdReadMore } from 'react-icons/md'
 
 type eventProps = {
   event: Event
@@ -24,8 +25,10 @@ const EventContainer: React.FC<eventProps> = ({ event }: eventProps) => {
           )}
         </div>
         <Link to={`/${event.id}`}>
-          <div className="my-2 p-3 font-medium rounded-2xl  shadow-xl border-blue-300 border-2 bg-blue-50 text-blue-900 hover:bg-blue-500 hover:border-0 hover:text-white hover:p-3.5 ">
-            View details
+          <div>
+            <button className="flex items-center my-2 p-3 font-medium rounded-2xl  shadow-xl border-blue-300 border-2 bg-blue-50 text-blue-900 hover:bg-blue-500 hover:border-0 hover:text-white hover:p-3.5 ">
+              <MdReadMore className="text-2xl mr-1" /> View details
+            </button>
           </div>
         </Link>
       </div>

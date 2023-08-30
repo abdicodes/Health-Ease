@@ -69,12 +69,12 @@ const assertNever = (value: never): never => {
   throw new Error(`Unhandled error ${JSON.stringify(value)}`)
 }
 
-const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
+export const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
   event,
 }) => {
   const { diagnosis, dateTime, details, doctorName, type, comments } = event
   return (
-    <main className="  bg-blue-100 mx-4 my-10 rounded-xl shadow-2xl shadow-blue-950 max-w-3xl">
+    <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
       <section className=" mx-10 my-2 ">
         <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
           <img src={doctor} className=" w-20  text-blue-800" />
@@ -89,7 +89,7 @@ const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
 
         <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
           <BsCalendar4Event className="mr-1 text-base" />
-          Date: {new Date(dateTime).toDateString()}
+          Visit Date: {new Date(dateTime).toDateString()}
         </div>
         <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
           <FaUserNurse className="mr-1 " />
