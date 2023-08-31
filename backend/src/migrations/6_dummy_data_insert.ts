@@ -137,7 +137,7 @@ const inpatient_visit = [
           Patient also complained about a headache, symptops started 3 days ago.
           Further lab tests are needed and meantime painkillers are prescribed
           `,
-    comments: 'He farts a lot',
+    comments: 'She panics a lot',
     created_at: new Date(),
     updated_at: new Date(),
   },
@@ -146,7 +146,7 @@ const inpatient_visit = [
     diagnosis: 'strong allergy',
     staff_id: 1,
     details: `Patient complained about eye itching`,
-    comments: 'He went fart alot ',
+    comments: 'He is nervous alot ',
     created_at: new Date(),
     updated_at: new Date(),
   },
@@ -157,7 +157,7 @@ const lab_visits = [
     patient_id: 1,
     ordered_by: 2,
     processed_by: 4,
-    comments: 'He is pussiyo scared from needles',
+    comments: 'He suffers from phobia related to insersion of needles',
     created_at: new Date(),
     updated_at: new Date(),
   },

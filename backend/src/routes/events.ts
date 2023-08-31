@@ -29,4 +29,15 @@ router.get('/', (async (_req, res, next) => {
   }
 }) as RequestHandler)
 
+router.post('/', (async (_req, res, next) => {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const newTest = await LabEvent.create(_req.body)
+    res.send(newTest)
+  } catch (error) {
+    // Pass the error to the next middleware for error handling
+    next(error)
+  }
+}) as RequestHandler)
+
 export default router

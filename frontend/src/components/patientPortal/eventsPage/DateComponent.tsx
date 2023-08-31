@@ -13,7 +13,6 @@ const DateParser = ({
 }) => {
   const currentYear: number = new Date().getFullYear()
   const currentDay: number = new Date().getDate()
-  console.log(currentYear, year)
   switch (daysDifference) {
     case 0:
       if (currentDay - day === 0) return <p>Today</p>
@@ -62,7 +61,7 @@ const DateComponent = ({ timestamp }: { timestamp: string }) => {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center rounded-2xl p-2 px-8  md:font-semibold  md:p-4 md:px-8 text-lg md:text-xl  ${backgroundColorClass}`}
+      className={`flex flex-col justify-center items-center rounded-2xl p-2 px-4  md:font-semibold  md:p-4 md:px-8 text-lg md:text-xl  ${backgroundColorClass}`}
     >
       <div className="  flex items-center ">
         <FiCalendar className=" mr-2" />

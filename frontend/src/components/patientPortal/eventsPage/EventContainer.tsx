@@ -18,11 +18,6 @@ const EventContainer: React.FC<eventProps> = ({ event }: eventProps) => {
           <h3 className=" mb-2 mr-1 font-semibold text-blue-950  ">
             {event.type}
           </h3>
-          {event.comments && (
-            <p className="hidden max-w-md text-neutral-600 leading-relaxed text-sm md:flex md:px-10 ">
-              {event.comments}
-            </p>
-          )}
         </div>
         <Link to={`/${event.id}`}>
           <div>
