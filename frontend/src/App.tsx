@@ -1,5 +1,5 @@
 import Events from './components/patientPortal/eventsPage/Events'
-import DetailedEvent from './components/patientPortal/eventsPage/DetailedEvent'
+import DetailedEvent from './components/patientPortal/detailedEventPage/DetailedEvent'
 import { Routes, Route } from 'react-router-dom'
 import data from './data'
 import LandingPage from './components/LandingPage'

@@ -9,7 +9,7 @@ type eventProps = {
 }
 const EventContainer: React.FC<eventProps> = ({ event }: eventProps) => {
   return (
-    <div className="py-5 shadow-md bg-neutral-50 pl-6 rounded-2xl my-10 flex  items-center justify-between  md:mx-10 lg:mx-20 md:text-xl ">
+    <div className="py-5 shadow-md bg-neutral-50 pl-6 rounded-2xl my-5 flex  items-center justify-between  md:mx-10 lg:mx-20 md:text-xl ">
       <div>
         <DateComponent timestamp={event.dateTime} />
       </div>
