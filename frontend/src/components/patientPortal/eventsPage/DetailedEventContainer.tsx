@@ -232,18 +232,18 @@ const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
                 return (
                   <div key={i}>
                     <div
-                      className={`p-4  flex justify-between items-center hover:bg-slate-100 hover:font-semibold  ${
+                      className={`p-5  flex justify-between items-center hover:bg-slate-100 hover:font-semibold md: ${
                         i % 2 === 0 ? 'bg-white ' : 'bg-neutral-50 '
                       }`}
                     >
-                      <div className="ml-3  mr-10 md:mr-10 ">{test.name}</div>
+                      <div className="    ">{test.name}</div>
                       {test.status && (
-                        <div className="mr-3 ml-8 md:ml-20 leading-8 font-semibold ">
+                        <div className=" leading-8 font-semibold ">
                           {test.result}
                         </div>
                       )}
                       {!test.status && (
-                        <div className="mr-3 ml-10 md:ml-18 leading-8  border-orange-700 text-orange-700  rounded-xl ">
+                        <div className="leading-8  border-orange-700 text-orange-700  rounded-xl font-semibold  ">
                           • pending
                         </div>
                       )}
