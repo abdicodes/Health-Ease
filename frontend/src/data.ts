@@ -30,7 +30,7 @@ const data: Event[] = [
         name: 'Paracetamol',
         quantity: 30,
         dose: '500mg',
-        instruction: 'before food',
+        instruction: '1  tablet 2 times a day before food',
       },
     ],
     doctorName: 'Avicenna',
