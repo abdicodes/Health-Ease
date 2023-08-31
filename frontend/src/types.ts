@@ -17,6 +17,12 @@ interface Drug {
   instruction: string
 }
 
+interface Test {
+  name: string
+  status: boolean
+  result?: string
+}
+
 export interface BasicEvent {
   id: number
   type: EventTypes
@@ -68,11 +74,9 @@ export interface EmergencyVisit extends BasicEvent {
 
 export interface Lab extends BasicEvent {
   type: EventTypes.Lab
-  tests: string[]
+  tests: Test[]
   doctorName: string
   technicianName?: string
-  results: string[]
-  pending: boolean
 }
 
 export interface Scan extends BasicEvent {

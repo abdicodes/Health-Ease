@@ -20,12 +20,13 @@ module.exports = {
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },
+
       processed_by: {
         type: DataTypes.INTEGER,
         references: { model: 'staffs', key: 'id' },
       },
       tests: {
-        type: DataTypes.JSONB, // Store an array of test objects here
+        type: DataTypes.ARRAY(DataTypes.JSONB), // Store an array of test objects here
       },
       comments: {
         type: DataTypes.STRING,
@@ -65,7 +66,7 @@ module.exports = {
         references: { model: 'staffs', key: 'id' },
       },
       tests: {
-        type: DataTypes.JSONB, // Store an array of test objects here
+        type: DataTypes.ARRAY(DataTypes.JSONB), // Store an array of test objects here
       },
       comments: {
         type: DataTypes.STRING,

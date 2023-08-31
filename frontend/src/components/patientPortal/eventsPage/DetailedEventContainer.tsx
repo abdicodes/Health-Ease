@@ -24,7 +24,7 @@ import discharge from '/discharge.png'
 import { TbReportSearch, TbReport } from 'react-icons/tb'
 import { BsCalendar4Event } from 'react-icons/bs'
 import { FaUserNurse } from 'react-icons/fa'
-import { BiSolidCommentDetail } from 'react-icons/bi'
+import { BiSolidCommentDetail, BiTestTube } from 'react-icons/bi'
 
 interface EventProps {
   event: Event | never
@@ -199,26 +199,73 @@ const DischargeComponent: React.FC<DischargeComponentProps> = ({ event }) => {
 }
 
 const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
-  const { doctorName, technicianName, tests, results, dateTime } = event
+  const { doctorName, tests, dateTime, comments, type } = event
   return (
-    <main>
-      <img src={lab} />
-      <h3> Date: {dateTime}</h3>
-      <h3>Tests requested:</h3>
-      <ul>
-        {tests.map((test, i) => (
-          <li key={i}>{test}</li>
-        ))}
-      </ul>
-      <h3> Requested by Dr: {doctorName}</h3>
-      {technicianName && <p> Done by : {technicianName}</p>}
-      <h3> Results: </h3>
-      <ul>
-        {results.map((result, i) => (
-          <li key={i}>{result}</li>
-        ))}
-      </ul>
-    </main>
+    <>
+      <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 w-auto">
+        <section className=" mx-10 my-2 ">
+          <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
+            <img src={lab} aria-label="lab" className=" w-14  text-blue-800" />
+            <h1 className="text-3xl  ml-4 font-semibold">{type}</h1>
+          </div>
+
+          <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
+            <BsCalendar4Event className="mr-1 text-base" />
+            Visit Date: {new Date(dateTime).toDateString()}
+          </div>
+          <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
+            <FaUserNurse className="mr-1 " />
+            Ordered by: Dr. {doctorName}
+          </div>
+
+          <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
+            <BiTestTube className="mr-1 " /> Results
+          </div>
+          <div className=" border-slate-500 rounded-md my-6 shadow-xl">
+            <div className=" flex font-medium justify-between text-blue-950  bg-blue-200 p-3 rounded-sm  ">
+              <div className="ml-3"> Test type</div>
+
+              <div className="mr-3"> Value</div>
+            </div>
+            <div className="flex flex-col  border-blue-600  ">
+              {tests.map((test, i) => {
+                return (
+                  <div key={i}>
+                    <div
+                      className={`p-4  flex justify-between items-center hover:bg-slate-100 hover:font-semibold  ${
+                        i % 2 === 0 ? 'bg-white ' : 'bg-neutral-50 '
+                      }`}
+                    >
+                      <div className="ml-3  mr-10 md:mr-10 ">{test.name}</div>
+                      {test.status && (
+                        <div className="mr-3 ml-8 md:ml-20 leading-8 font-semibold ">
+                          {test.result}
+                        </div>
+                      )}
+                      {!test.status && (
+                        <div className="mr-3 ml-10 md:ml-18 leading-8  border-orange-700 text-orange-700  rounded-xl ">
+                          • pending
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+          {comments && (
+            <>
+              <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
+                <BiSolidCommentDetail className="mr-1 " /> Comments
+              </div>
+              <div className=" text-amber-950 leading-8 bg-white p-4 rounded-2xl border-slate-500 border-2 mb-6 ">
+                {comments}
+              </div>
+            </>
+          )}
+        </section>
+      </main>
+    </>
   )
 }
 
