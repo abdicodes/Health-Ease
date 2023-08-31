@@ -65,8 +65,8 @@ module.exports = {
         type: DataTypes.INTEGER,
         references: { model: 'staffs', key: 'id' },
       },
-      tests: {
-        type: DataTypes.ARRAY(DataTypes.JSONB), // Store an array of test objects here
+      image: {
+        type: DataTypes.JSONB, // Store image objects here
       },
       comments: {
         type: DataTypes.STRING,

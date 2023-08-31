@@ -17,10 +17,19 @@ interface Drug {
   instruction: string
 }
 
+//isNormal should return true
 interface Test {
   name: string
   status: boolean
   result?: string
+  isNormal?: boolean
+}
+
+interface Image {
+  name: string
+  status: boolean
+  result?: string
+  isNormal?: boolean
 }
 
 export interface BasicEvent {
@@ -81,11 +90,9 @@ export interface Lab extends BasicEvent {
 
 export interface Scan extends BasicEvent {
   type: EventTypes.Scan
-  tests: string[]
+  image: Image
   doctorName: string
   technicianName?: string
-  results: string[]
-  pending: boolean
 }
 
 export interface Prescription extends BasicEvent {

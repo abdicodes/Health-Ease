@@ -27,7 +27,7 @@ LabEvent.init(
       references: { model: 'staffs', key: 'id' },
     },
     tests: {
-      type: DataTypes.JSONB, // Store an array of test objects here
+      type: DataTypes.ARRAY(DataTypes.JSONB), // Store an array of test objects here
     },
     comments: {
       type: DataTypes.STRING,
@@ -64,8 +64,8 @@ ScanEvent.init(
       type: DataTypes.INTEGER,
       references: { model: 'staffs', key: 'id' },
     },
-    tests: {
-      type: DataTypes.JSONB, // Store an array of test objects here
+    image: {
+      type: DataTypes.JSONB, // Store image objects here
     },
     comments: {
       type: DataTypes.STRING,
