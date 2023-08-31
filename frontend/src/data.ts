@@ -45,7 +45,7 @@ const data: Event[] = [
     dateTime: '2023-08-22T14:26:06.679Z',
     tests: [
       { name: 'CRP', status: true, result: 'negative' },
-      { name: 'blood count', status: false, result: '100 mg/l' },
+      { name: 'blood count', status: false },
     ],
     doctorName: 'Avicenna',
     comments: 'hello',
@@ -71,6 +71,62 @@ const data: Event[] = [
 
     doctorName: 'Avicenna',
     comments: 'hello',
+  },
+  {
+    id: 6,
+    type: EventTypes.EmergencyVisit,
+    dateTime: '2023-08-23T20:26:06.679Z',
+    diagnosis: 'mild allergy',
+    doctorName: 'Avicenna',
+    details: `Patient complained about eye itching, running nose, 
+      possible symptops of pollen allergy. Antihistamen is prescribed. 
+      Patient also complained about a headache, symptops started 3 days ago. 
+      Further lab tests are needed and meantime painkillers are prescribed
+      `,
+    comments:
+      'do not eat anything before coming to clinic do not eat anything before coming to clinic do not eat anything before coming to clinic',
+  },
+  {
+    id: 7,
+    type: EventTypes.Admission,
+    dateTime: '2023-08-23T20:26:06.679Z',
+    diagnosis: 'mild allergy',
+    doctorName: 'Avicenna',
+    details: `Patient complained about eye itching, running nose, 
+      possible symptops of pollen allergy. Antihistamen is prescribed. 
+      Patient also complained about a headache, symptops started 3 days ago. 
+      Further lab tests are needed and meantime painkillers are prescribed
+      `,
+    comments:
+      'do not eat anything before coming to clinic do not eat anything before coming to clinic do not eat anything before coming to clinic',
+  },
+  {
+    id: 8,
+    type: EventTypes.Discharge,
+    dateTime: '2023-08-23T20:26:06.679Z',
+    diagnosis: 'mild allergy',
+    doctorName: 'Avicenna',
+    details: `Patient complained about eye itching, running nose, 
+      possible symptops of pollen allergy. Antihistamen is prescribed. 
+      Patient also complained about a headache, symptops started 3 days ago. 
+      Further lab tests are needed and meantime painkillers are prescribed
+      `,
+    comments:
+      'do not eat anything before coming to clinic do not eat anything before coming to clinic do not eat anything before coming to clinic',
+  },
+  {
+    id: 9,
+    type: EventTypes.InPatientVisit,
+    dateTime: '2023-08-23T20:26:06.679Z',
+    diagnosis: 'mild allergy',
+    doctorName: 'Avicenna',
+    details: `Patient complained about eye itching, running nose, 
+      possible symptops of pollen allergy. Antihistamen is prescribed. 
+      Patient also complained about a headache, symptops started 3 days ago. 
+      Further lab tests are needed and meantime painkillers are prescribed
+      `,
+    comments:
+      'do not eat anything before coming to clinic do not eat anything before coming to clinic do not eat anything before coming to clinic',
   },
 ]
 
