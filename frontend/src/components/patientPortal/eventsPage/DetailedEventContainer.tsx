@@ -272,25 +272,6 @@ const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
 const ScanComponent: React.FC<ScanComponentProps> = ({ event }) => {
   const { doctorName, image, comments, dateTime, type } = event
   return (
-    // <main>
-    //   <img src={radiography} />
-    //   <h3> Date: {dateTime}</h3>
-    //   <h3>Tests requested:</h3>
-    //   <ul>
-    //     {tests.map((test, i) => (
-    //       <li key={i}>{test}</li>
-    //     ))}
-    //   </ul>
-    //   <h3> Requested by Dr: {doctorName}</h3>
-    //   {technicianName && <p> Done by : {technicianName}</p>}
-    //   <h3> Results: </h3>
-    //   <ul>
-    //     {results.map((result, i) => (
-    //       <li key={i}>{result}</li>
-    //     ))}
-    //   </ul>
-    // </main>
-
     <>
       <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 w-auto">
         <section className=" mx-10 my-2 ">
@@ -326,7 +307,7 @@ const ScanComponent: React.FC<ScanComponentProps> = ({ event }) => {
                     image type: {image.name}
                   </div>
                   {image.status && (
-                    <div className=" leading-8 font-normal mx-2 ">
+                    <div className=" leading-10 font-normal mx-2 max-w-4xl ">
                       {image.result}
                     </div>
                   )}
