@@ -89,7 +89,7 @@ const data: Event[] = [
   {
     id: 7,
     type: EventTypes.Admission,
-    dateTime: '2023-08-23T20:26:06.679Z',
+    dateTime: '2023-08-30T20:26:06.679Z',
     diagnosis: 'mild allergy',
     doctorName: 'Avicenna',
     details: `Patient complained about eye itching, running nose, 
@@ -103,7 +103,7 @@ const data: Event[] = [
   {
     id: 8,
     type: EventTypes.Discharge,
-    dateTime: '2023-08-23T20:26:06.679Z',
+    dateTime: '2023-09-01T10:26:06.679Z',
     diagnosis: 'mild allergy',
     doctorName: 'Avicenna',
     details: `Patient complained about eye itching, running nose, 
@@ -117,7 +117,7 @@ const data: Event[] = [
   {
     id: 9,
     type: EventTypes.InPatientVisit,
-    dateTime: '2023-08-23T20:26:06.679Z',
+    dateTime: '2023-09-01T20:26:06.679Z',
     diagnosis: 'mild allergy',
     doctorName: 'Avicenna',
     details: `Patient complained about eye itching, running nose, 
