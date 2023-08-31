@@ -1,6 +1,6 @@
 import Patient from './patient'
 import Staff from './staff'
-import { LabEvent, ScanEvent } from './tests'
+import { LabEvent, ScanEvent } from './tests_prescription'
 import { Role, StaffRole } from './role'
 import {
   OutpatientVisit,

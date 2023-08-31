@@ -55,7 +55,8 @@ const data: Event[] = [
     type: EventTypes.NurseVisit,
     dateTime: '2022-07-11T00:26:06.679Z',
     nurseName: 'Bianca',
-    details: ' ',
+    details:
+      ' Patient complained about shortness of breathing. clinical assessment was conducted and patient was referred to the respiratory clinic ',
   },
   {
     id: 5,
