@@ -3,6 +3,7 @@ import cors from 'cors'
 import { connectToDatabase } from './utils/db'
 import config from './utils/config'
 import events from './routes/events'
+import { tokenExtractor } from './utils/middleware'
 
 const app = express()
 app.use(express.json())
@@ -16,6 +17,7 @@ app.use(express.json())
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 app.use(cors())
 
+app.use(tokenExtractor as express.RequestHandler)
 app.get('/api/ping', (_req, res) => {
   console.log('someone pinged here')
   res.send('pong')
@@ -27,7 +29,6 @@ const start = async (): Promise<void> => {
   await connectToDatabase()
   app.listen(config.PORT, () => {
     console.log(`Server running on port ${config.PORT}`)
-    // logger.info(`Server running on port ${PORT}`)
   })
 }
 
