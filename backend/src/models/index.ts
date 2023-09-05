@@ -11,8 +11,8 @@ import {
   Discharge,
 } from './event'
 
-Role.belongsToMany(Staff, { through: StaffRole, as: 'current_roles' })
-Staff.belongsToMany(Role, { through: StaffRole, as: 'staff_list' })
+Role.belongsToMany(Staff, { through: StaffRole, as: 'staff_list' })
+Staff.belongsToMany(Role, { through: StaffRole, as: 'current_roles' })
 
 OutpatientVisit.belongsTo(Staff, {
   foreignKey: 'staffId',

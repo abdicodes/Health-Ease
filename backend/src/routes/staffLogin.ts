@@ -3,6 +3,7 @@ import Staff from '../models/staff'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import config from '../utils/config'
+import { Role } from '../models'
 
 interface RequestBody {
   username: string
@@ -12,6 +13,7 @@ interface RequestBody {
 interface UserForToken {
   username: string
   id: string
+  loginMode: string
 }
 
 const router = express.Router()
@@ -19,7 +21,6 @@ const router = express.Router()
 router.post('/', (async (req, res, next) => {
   try {
     if (!(req.body.username && req.body.password)) {
-      console.log(req.body.username, req.body.password)
       res.status(401).json({
         error: 'malformed request',
       })
@@ -27,6 +28,10 @@ router.post('/', (async (req, res, next) => {
     }
     const { username, password } = req.body as RequestBody
     const user = await Staff.findOne({
+      include: {
+        model: Role,
+        as: 'current_roles',
+      },
       where: {
         username: username,
       },
@@ -41,7 +46,7 @@ router.post('/', (async (req, res, next) => {
 
     const passwordCorrect =
       user === null ? false : await bcrypt.compare(password, user.password)
-    console.log(passwordCorrect)
+
     if (!(user && passwordCorrect)) {
       res.status(401).json({
         error: 'invalid username or password',
@@ -54,12 +59,11 @@ router.post('/', (async (req, res, next) => {
     const userForToken: UserForToken = {
       username: user.username,
       id: id,
+      loginMode: 'staff',
     }
     const token = jwt.sign(userForToken, config.SECRET)
 
-    res
-      .status(200)
-      .send({ token, username: user.username, name: user.name, id: user.id })
+    res.status(200).send({ user, token })
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)

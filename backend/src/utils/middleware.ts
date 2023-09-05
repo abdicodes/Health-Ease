@@ -1,13 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
-import jwt, { JwtPayload } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import { Request, Response, NextFunction } from 'express'
 import config from './config'
-import { Patient } from '../models'
+import { Patient, Staff } from '../models'
 
 interface RequestWithToken extends Request {
-  token: string
-  user: Patient | null
+  token?: string
+  user?: Patient | Staff | null
+}
+
+interface UserForToken {
+  username: string
+  id: string
+  loginMode: 'staff' | 'patient'
 }
 
 const tokenExtractor = (
@@ -38,25 +42,38 @@ const userExtractor = async (
       return
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    const decodedToken: JwtPayload = jwt.verify(
+    const decodedToken: UserForToken = jwt.verify(
       req.token,
       config.SECRET
-    ) as JwtPayload
+    ) as UserForToken
 
     if (!decodedToken.id) {
       res.status(401).json({ error: 'token missing or invalid' })
       return
     }
 
-    const id: string = decodedToken.id
-    const user = await Patient.findByPk(id)
+    const { id, loginMode } = decodedToken
 
-    if (!user) {
-      res.status(404).json({ error: 'user not found!' })
-      return
+    if (loginMode === 'staff') {
+      const user = await Staff.findByPk(id)
+
+      if (!user) {
+        res.status(404).json({ error: 'user not found!' })
+        return
+      }
+      req.user = user
     }
-    req.user = user
+
+    if (loginMode === 'patient') {
+      const user = await Patient.findByPk(id)
+
+      if (!user) {
+        res.status(404).json({ error: 'user not found!' })
+        return
+      }
+      req.user = user
+    }
+
     next()
   } catch (error) {
     next(error)

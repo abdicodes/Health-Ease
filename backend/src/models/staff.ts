@@ -2,14 +2,26 @@ import { Model, DataTypes } from 'sequelize'
 
 import { sequelize } from '../utils/db'
 
-class Staff extends Model {}
+interface StaffAttributes {
+  id?: number
+  name: string
+  username: string
+  password: string
+  email: string
+}
+class Staff extends Model<StaffAttributes> implements StaffAttributes {
+  id?: number
+  name!: string
+  username!: string
+  password!: string
+  email!: string
+}
 
 Staff.init(
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
       autoIncrement: true,
     },
     name: {
