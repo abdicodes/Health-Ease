@@ -1,5 +1,6 @@
 import express, { RequestHandler } from 'express'
 import { LabEvent, Patient, OutpatientVisit, Staff } from '../models'
+import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
 
 const router = express.Router()
 
@@ -29,7 +30,11 @@ router.get('/', (async (_req, res, next) => {
   }
 }) as RequestHandler)
 
-router.post('/', (async (_req, res, next) => {
+router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
+  _req,
+  res,
+  next
+) => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const newTest = await LabEvent.create(_req.body)

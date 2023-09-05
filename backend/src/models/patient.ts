@@ -7,7 +7,30 @@ enum GenderEnum {
   Female = 'female',
 }
 
-class Patient extends Model {}
+interface PatientAttributes {
+  id?: number
+  name: string
+  username: string
+  password: string
+  email: string
+  phoneNumber?: string
+  dateOfBirth: string
+  address?: string
+  gender: string
+  bloodType?: string
+}
+class Patient extends Model<PatientAttributes> implements PatientAttributes {
+  id?: number
+  name!: string
+  username!: string
+  password!: string
+  email!: string
+  phoneNumber?: string
+  dateOfBirth!: string
+  address?: string
+  gender!: string
+  bloodType?: string
+}
 
 Patient.init(
   {
@@ -42,6 +65,7 @@ Patient.init(
     },
     dateOfBirth: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     address: {
       type: DataTypes.STRING,

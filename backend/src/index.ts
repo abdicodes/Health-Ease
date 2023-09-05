@@ -6,6 +6,9 @@ import events from './routes/events'
 import { tokenExtractor } from './utils/middleware'
 import staffLoginRouter from './routes/staffLogin'
 import staffSignupRouter from './routes/staffSignup'
+import patientLoginRouter from './routes/patientLogin'
+import patientSignupRouter from './routes/patientSignup'
+
 const app = express()
 app.use(express.json())
 
@@ -27,6 +30,8 @@ app.get('/api/ping', (_req, res) => {
 app.use('/events', events)
 app.use('/staff-login', staffLoginRouter)
 app.use('/staff-signup', staffSignupRouter)
+app.use('/patient-login', patientLoginRouter)
+app.use('/patient-signup', patientSignupRouter)
 
 const start = async (): Promise<void> => {
   await connectToDatabase()
