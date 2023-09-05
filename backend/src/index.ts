@@ -27,11 +27,11 @@ app.get('/api/ping', (_req, res) => {
   res.send('pong')
 })
 
-app.use('/events', events)
-app.use('/staff-login', staffLoginRouter)
-app.use('/staff-signup', staffSignupRouter)
-app.use('/patient-login', patientLoginRouter)
-app.use('/patient-signup', patientSignupRouter)
+app.use('/api/events', events)
+app.use('/api/staff-login', staffLoginRouter)
+app.use('/api/staff-signup', staffSignupRouter)
+app.use('/api/patient-login', patientLoginRouter)
+app.use('/api/patient-signup', patientSignupRouter)
 
 const start = async (): Promise<void> => {
   await connectToDatabase()
