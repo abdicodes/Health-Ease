@@ -1,14 +1,19 @@
+/*  base code borrowed from
+https://flowbite.com/docs/components/navbar/#sticky-navbar
+ */
+
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-// import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { useAuth } from '../context/AuthContext'
 import { FiMenu, FiHome, FiMail, FiSettings, FiLogOut } from 'react-icons/fi'
 import heart from '/heart.png'
 
-function classNames(...classes: string[]) {
+const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+const NavBar = () => {
+  const { logout } = useAuth()
   return (
     <nav>
       <nav className="bg-blue-100 border-blue-100 shadow-lg  md:px-4 lg:px-8">
@@ -53,7 +58,7 @@ export default function Example() {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Edit
+                        Events
                       </a>
                     )}
                   </Menu.Item>
@@ -68,39 +73,7 @@ export default function Example() {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Duplicate
-                      </a>
-                    )}
-                  </Menu.Item>
-                </div>
-                <div className="py-1">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? 'bg-blue-200 text-black font-semibold'
-                            : 'text-blue-950',
-                          'block px-4 py-2 text-sm'
-                        )}
-                      >
-                        Archive
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? 'bg-blue-200 text-black font-semibold'
-                            : 'text-blue-950',
-                          'block px-4 py-2 text-sm'
-                        )}
-                      >
-                        Move
+                        Messages
                       </a>
                     )}
                   </Menu.Item>
@@ -117,26 +90,12 @@ export default function Example() {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Share
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(
-                          active
-                            ? 'bg-blue-200 text-black font-semibold'
-                            : 'text-blue-950',
-                          'block px-4 py-2 text-sm'
-                        )}
-                      >
-                        Add to favorites
+                        Settings
                       </a>
                     )}
                   </Menu.Item>
                 </div>
+
                 <div className="py-1">
                   <Menu.Item>
                     {({ active }) => (
@@ -149,7 +108,7 @@ export default function Example() {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Delete
+                        Log out
                       </a>
                     )}
                   </Menu.Item>
@@ -165,15 +124,15 @@ export default function Example() {
                 className="bg-blue-500 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-24  cursor-pointer mx-5 hover:bg-blue-600"
               >
                 <FiHome className="text-l" />
-                <h2 className=" my-1 mx-2 font-medium ">Home</h2>
+                <h2 className=" my-1 mx-2 font-medium ">Events</h2>
               </li>
 
               <li
                 onClick={() => console.log('hello')}
-                className="bg-blue-500 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-24  cursor-pointer mx-5 hover:bg-blue-600"
+                className="bg-blue-500 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-32  cursor-pointer mx-5 hover:bg-blue-600"
               >
                 <FiMail className="text-l" />
-                <h2 className=" my-1 mx-2 font-medium ">Inbox</h2>
+                <h2 className=" my-1 mx-2 font-medium ">Messages</h2>
               </li>
               <li
                 onClick={() => console.log('hello')}
@@ -183,7 +142,7 @@ export default function Example() {
                 <h2 className=" my-1 mx-2 font-medium ">Settings</h2>
               </li>
               <li
-                onClick={() => console.log('hello')}
+                onClick={() => logout()}
                 className="bg-blue-500 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-28  cursor-pointer mx-5 hover:bg-blue-600"
               >
                 <FiLogOut className="text-l" />
@@ -196,3 +155,5 @@ export default function Example() {
     </nav>
   )
 }
+
+export default NavBar
