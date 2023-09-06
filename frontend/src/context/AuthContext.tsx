@@ -2,11 +2,36 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
-
+interface LoginProps {
+  username: string
+  password: string
+}
+interface SignupProps {
+  name: string
+  username: string
+  password: string
+  email: string
+  phoneNumber?: string
+  dateOfBirth: string
+  address?: string
+  gender: string
+  bloodType?: string
+}
 //  the user context
 interface AuthContextType {
   response: ResponseData | null
-  login: (username: string, password: string) => Promise<void>
+  login: ({ username, password }: LoginProps) => Promise<void>
+  signUp: ({
+    username,
+    password,
+    name,
+    email,
+    phoneNumber,
+    dateOfBirth,
+    address,
+    gender,
+    bloodType,
+  }: SignupProps) => Promise<void>
   logout: () => void
 }
 interface ResponseData {
@@ -43,7 +68,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, [])
 
   // Function to log in the user
-  const login = async (username: string, password: string) => {
+  const login = async ({ username, password }: LoginProps) => {
     try {
       // Replace with your API endpoint for login
       const response: AxiosResponse<ResponseData> = await axios.post(
@@ -67,6 +92,51 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }
 
+  const signUp = async ({
+    name,
+    username,
+    password,
+    email,
+    phoneNumber,
+    dateOfBirth,
+    address,
+    gender,
+    bloodType,
+  }: SignupProps) => {
+    try {
+      // Replace with your API endpoint for login
+      const response: AxiosResponse<ResponseData> = await axios.post(
+        'http://localhost:3001/api/patient-signup',
+        {
+          name,
+          username,
+          password,
+          email,
+          phoneNumber,
+          dateOfBirth,
+          address,
+          gender,
+          bloodType,
+        }
+      )
+      console.log(response.data)
+      console.log(
+        name,
+        username,
+        password,
+        email,
+        phoneNumber,
+        dateOfBirth,
+        address,
+        gender,
+        bloodType
+      )
+    } catch (error) {
+      // Handle login error (e.g., show an error message)
+      console.error('Login error:', error)
+    }
+  }
+
   // Function to log out the user
   const logout = () => {
     // Clear the token from localStorage
@@ -78,7 +148,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ response, login, logout }}>
+    <AuthContext.Provider value={{ response, login, logout, signUp }}>
       {children}
     </AuthContext.Provider>
   )

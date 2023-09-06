@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import LoginPage from './components/patientPortal/loginPage'
 import PatientPortal from './components/patientPortal'
+import SignUpPage from './components/patientPortal/SignupPage'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         {/* <Route path="*" element={<Events events={data} />} /> */}
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<SignUpPage />} />
         <Route path="/patient-portal" element={<PatientPortal />} />
         <Route path="/:id" element={<DetailedEvent />} />
         <Route path="/" element={<LandingPage />} />
