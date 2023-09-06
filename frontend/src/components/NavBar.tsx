@@ -7,6 +7,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { useAuth } from '../context/AuthContext'
 import { FiMenu, FiHome, FiMail, FiSettings, FiLogOut } from 'react-icons/fi'
 import heart from '/heart.png'
+import { useNavigate } from 'react-router-dom'
 
 const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(' ')
@@ -14,6 +15,12 @@ const classNames = (...classes: string[]) => {
 
 const NavBar = () => {
   const { logout } = useAuth()
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
+
   return (
     <nav>
       <nav className="bg-blue-100 border-blue-100 shadow-lg  md:px-4 lg:px-8">
@@ -142,7 +149,7 @@ const NavBar = () => {
                 <h2 className=" my-1 mx-2 font-medium ">Settings</h2>
               </li>
               <li
-                onClick={() => logout()}
+                onClick={handleLogout}
                 className="bg-blue-500 p-1 px-2 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-28  cursor-pointer mx-5 hover:bg-blue-600"
               >
                 <FiLogOut className="text-l" />
