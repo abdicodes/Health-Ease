@@ -1,8 +1,10 @@
 import LoginForm from './LoginForm'
 import { useAuth } from '../../../context/AuthContext'
 import heart from '/heart.png'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
+  const navigate = useNavigate()
   const { login } = useAuth()
   interface FormValues {
     username: string
@@ -10,7 +12,7 @@ const LoginPage = () => {
   }
 
   const handleLogin = (values: FormValues) => {
-    login(values.username, values.password)
+    login({ ...values })
   }
 
   return (
@@ -24,7 +26,10 @@ const LoginPage = () => {
       </div>
       <div className="mx-auto mt-8 text-blue-800">
         <h2>Don't have an account yet?</h2>
-        <button className="underline hover:text-red-800 cursor-pointer">
+        <button
+          className="underline hover:text-red-800 cursor-pointer"
+          onClick={() => navigate('/register')}
+        >
           Sign up
         </button>
       </div>
