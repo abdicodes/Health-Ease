@@ -125,7 +125,7 @@ const NavBar = () => {
           </Menu>
 
           <div className="hidden w-full md:block md:w-auto">
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg  md:flex-row md:space-x-6 lg:space-x-8 md:mt-0 md:border-0 ">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg  md:flex-row md:space-x-2 lg:space-x-10 md:mt-0 md:border-0 ">
               <li
                 onClick={() => console.log('hello')}
                 className="bg-blue-500 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-24  cursor-pointer mx-5 hover:bg-blue-600"
