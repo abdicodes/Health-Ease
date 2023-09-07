@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
+import { Event } from '../types'
 interface LoginProps {
   username: string
   password: string
@@ -17,6 +18,13 @@ interface SignupProps {
   gender: string
   bloodType?: string
 }
+interface ResponseData {
+  user: UserData
+  token: string
+  loginMode: string
+  events: Event[]
+}
+
 //  the user context
 interface AuthContextType {
   response: ResponseData | null
@@ -34,14 +42,10 @@ interface AuthContextType {
   }: SignupProps) => Promise<void>
   logout: () => void
 }
-interface ResponseData {
-  user: UserData
-  token: string
-}
 
 //  the user data structure
 interface UserData {
-  username: string
+  name: string
   id: number
 }
 
@@ -60,10 +64,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Check if a token is saved in localStorage and set the user accordingly
     const token = localStorage.getItem('token')
     const id = Number(localStorage.getItem('id'))
-    const username = localStorage.getItem('username')
+    const name = localStorage.getItem('name')
+    const loginMode = localStorage.getItem('loginMode')
 
-    if (token && id && username) {
-      setResponse({ user: { id, username }, token })
+    if (token && id && name && loginMode) {
+      const fetchEvents = async () => {
+        const events: AxiosResponse<Event[]> = await axios.get(
+          'http://localhost:3001/api/events/3'
+        )
+        console.log(events.data)
+        setResponse({
+          user: { id, name },
+          loginMode,
+          token,
+          events: events.data,
+        })
+      }
+      fetchEvents()
     }
   }, [])
 
@@ -78,11 +95,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           password,
         }
       )
-
+      console.log(response.data)
       // Save the token to localStorage
       localStorage.setItem('token', response.data.token)
-      localStorage.setItem('username', response.data.user.username)
+      localStorage.setItem('name', response.data.user.name)
       localStorage.setItem('id', response.data.user.id.toString())
+      localStorage.setItem('loginMode', response.data.loginMode)
 
       // Set the user state
       setResponse(response.data)
@@ -105,22 +123,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }: SignupProps) => {
     try {
       // Replace with your API endpoint for login
-      const response: AxiosResponse<ResponseData> = await axios.post(
-        'http://localhost:3001/api/patient-signup',
-        {
-          name,
-          username,
-          password,
-          email,
-          phoneNumber,
-          dateOfBirth,
-          address,
-          gender,
-          bloodType,
-        }
-      )
-      console.log(response.data)
-      console.log(
+      await axios.post('http://localhost:3001/api/patient-signup', {
         name,
         username,
         password,
@@ -129,8 +132,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         dateOfBirth,
         address,
         gender,
-        bloodType
-      )
+        bloodType,
+      })
+      const response2 = await axios.get('http://localhost:3001/api/events/1')
+      console.log(response2)
     } catch (error) {
       // Handle login error (e.g., show an error message)
       console.error('Login error:', error)
@@ -142,7 +147,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Clear the token from localStorage
     localStorage.removeItem('token')
     localStorage.removeItem('id')
-    localStorage.removeItem('username')
+    localStorage.removeItem('name')
+    localStorage.removeItem('loginMode')
     // Remove the user from state
     setResponse(null)
   }
