@@ -68,11 +68,13 @@ const staff = [
 const roles = [
   {
     id: 1,
-    name: 'General Doctor',
+    name: 'Doctor',
   },
-  { id: 2, name: 'Surgeon' },
-  { id: 3, name: 'nurse' },
-  { id: 4, name: 'Lab Technician' },
+  { id: 2, name: 'Nurse' },
+  { id: 3, name: 'Lab Technician ' },
+  { id: 4, name: 'Scan Technician' },
+  { id: 5, name: 'Pharmacist' },
+  { id: 6, name: 'Receptionist' },
 ]
 
 const staff_role = [

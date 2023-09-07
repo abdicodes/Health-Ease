@@ -2,19 +2,26 @@ import { Model, DataTypes } from 'sequelize'
 
 import { sequelize } from '../utils/db'
 
+interface current_roles {
+  id: number
+}
 interface StaffAttributes {
   id?: number
   name: string
   username: string
   password: string
   email: string
+  disabled?: boolean
 }
+
 class Staff extends Model<StaffAttributes> implements StaffAttributes {
   id?: number
   name!: string
   username!: string
   password!: string
   email!: string
+  current_roles?: current_roles[]
+  disabled?: boolean
 }
 
 Staff.init(
@@ -44,6 +51,11 @@ Staff.init(
       validate: {
         isEmail: true,
       },
+    },
+    disabled: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   },
   {

@@ -11,7 +11,7 @@ interface RequestBody {
 }
 
 interface UserForToken {
-  username: string
+  name: string
   id: string
   loginMode: string
 }
@@ -28,9 +28,16 @@ router.post('/', (async (req, res, next) => {
     }
     const { username, password } = req.body as RequestBody
     const user = await Staff.findOne({
+      attributes: {
+        exclude: ['createdAt', 'updatedAt', 'email', 'username'],
+      },
       include: {
         model: Role,
         as: 'current_roles',
+        attributes: ['id'],
+        through: {
+          attributes: [],
+        },
       },
       where: {
         username: username,
@@ -57,13 +64,18 @@ router.post('/', (async (req, res, next) => {
     const id: string = user.id.toString()
 
     const userForToken: UserForToken = {
-      username: user.username,
+      name: user.name,
       id: id,
+
       loginMode: 'staff',
     }
     const token = jwt.sign(userForToken, config.SECRET)
 
-    res.status(200).send({ user, token })
+    const roles: number[] | undefined = user.current_roles?.map((e) => e.id)
+
+    res
+      .status(200)
+      .send({ user: { id: user.id, name: user.name }, token, roles: roles })
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)
