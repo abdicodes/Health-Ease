@@ -95,6 +95,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           password,
         }
       )
+      const events: AxiosResponse<Event[]> = await axios.get(
+        'http://localhost:3001/api/events/3'
+      )
       console.log(response.data)
       // Save the token to localStorage
       localStorage.setItem('token', response.data.token)
@@ -104,6 +107,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       // Set the user state
       setResponse(response.data)
+      setResponse({
+        user: response.data.user,
+        loginMode: response.data.loginMode,
+        token: response.data.token,
+        events: events.data,
+      })
     } catch (error) {
       // Handle login error (e.g., show an error message)
       console.error('Login error:', error)

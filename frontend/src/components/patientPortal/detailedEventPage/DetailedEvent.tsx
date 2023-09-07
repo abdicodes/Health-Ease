@@ -5,11 +5,18 @@ import DetailedEventContainer from './DetailedEventContainer'
 import { useNavigate } from 'react-router-dom'
 import NavBar from '../../NavBar'
 import { useAuth } from '../../../context/AuthContext'
+import LoginPage from '../loginPage'
 
 const DetailedEvent = () => {
   const { response } = useAuth()
+
   const match = useMatch('/:id')
   const navigate = useNavigate()
+
+  if (!(response?.user && response.loginMode === 'patient')) {
+    console.log(response)
+    return <LoginPage />
+  }
   if (!match) return null
 
   const { id } = match.params
