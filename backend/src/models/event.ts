@@ -1,8 +1,19 @@
 import { Model, DataTypes } from 'sequelize'
+import { Staff } from './index'
 
 import { sequelize } from '../utils/db'
 
-class OutpatientVisit extends Model {}
+class OutpatientVisit extends Model {
+  id!: number
+  type!: string
+  patientId!: number
+  diagnosis?: string
+  staffId!: string
+  details?: string
+  comments?: string
+  updatedAt!: string
+  outpatient_visit_staff?: Staff
+}
 
 OutpatientVisit.init(
   {
@@ -11,6 +22,11 @@ OutpatientVisit.init(
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Doctor Visit',
     },
     patientId: {
       type: DataTypes.INTEGER,
@@ -39,7 +55,17 @@ OutpatientVisit.init(
   }
 )
 
-class NurseVisit extends Model {}
+class NurseVisit extends Model {
+  id!: number
+  type!: string
+  patientId!: number
+  diagnosis?: string
+  staffId!: string
+  details?: string
+  comments?: string
+  updatedAt!: string
+  nurse_visit_staff?: Staff
+}
 
 NurseVisit.init(
   {
@@ -48,6 +74,11 @@ NurseVisit.init(
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Nurse Visit',
     },
     patientId: {
       type: DataTypes.INTEGER,
@@ -76,7 +107,17 @@ NurseVisit.init(
   }
 )
 
-class InpatientVisit extends Model {}
+class InpatientVisit extends Model {
+  id!: number
+  type!: string
+  patientId!: number
+  diagnosis?: string
+  staffId!: string
+  details?: string
+  comments?: string
+  updatedAt!: string
+  inpatient_visit_staff?: Staff
+}
 
 InpatientVisit.init(
   {
@@ -85,6 +126,11 @@ InpatientVisit.init(
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'In-Patient Visit',
     },
     patientId: {
       type: DataTypes.INTEGER,
@@ -113,7 +159,17 @@ InpatientVisit.init(
   }
 )
 
-class EmergencyVisit extends Model {}
+class EmergencyVisit extends Model {
+  id!: number
+  type!: string
+  patientId!: number
+  diagnosis?: string
+  staffId!: string
+  details?: string
+  comments?: string
+  updatedAt!: string
+  emergency_visit_staff?: Staff
+}
 
 EmergencyVisit.init(
   {
@@ -122,6 +178,11 @@ EmergencyVisit.init(
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Emergency Visit',
     },
     patientId: {
       type: DataTypes.INTEGER,
@@ -150,7 +211,17 @@ EmergencyVisit.init(
   }
 )
 
-class Admission extends Model {}
+class Admission extends Model {
+  id!: number
+  type!: string
+  patientId!: number
+  diagnosis?: string
+  staffId!: string
+  details?: string
+  comments?: string
+  updatedAt!: string
+  admission_staff?: Staff
+}
 
 Admission.init(
   {
@@ -159,6 +230,11 @@ Admission.init(
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Admission',
     },
     patientId: {
       type: DataTypes.INTEGER,
@@ -187,7 +263,17 @@ Admission.init(
   }
 )
 
-class Discharge extends Model {}
+class Discharge extends Model {
+  id!: number
+  type!: string
+  patientId!: number
+  diagnosis?: string
+  staffId!: string
+  details?: string
+  comments?: string
+  updatedAt!: string
+  discharge_staff?: Staff
+}
 
 Discharge.init(
   {
@@ -196,6 +282,11 @@ Discharge.init(
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Discharge',
     },
     patientId: {
       type: DataTypes.INTEGER,

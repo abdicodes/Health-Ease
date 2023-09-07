@@ -1,6 +1,6 @@
 import Patient from './patient'
 import Staff from './staff'
-import { LabEvent, ScanEvent } from './tests_prescription'
+import { LabEvent, ScanEvent, PrescriptionEvent } from './tests_prescription'
 import { Role, StaffRole } from './role'
 import {
   OutpatientVisit,
@@ -32,6 +32,16 @@ Discharge.belongsTo(Staff, { foreignKey: 'staffId', as: 'discharge_staff' })
 
 LabEvent.belongsTo(Staff, { foreignKey: 'orderedBy', as: 'lab_ordered_by' })
 LabEvent.belongsTo(Staff, { foreignKey: 'processedBy', as: 'lab_processed_by' })
+
+PrescriptionEvent.belongsTo(Staff, {
+  foreignKey: 'orderedBy',
+  as: 'prescription_ordered_by',
+})
+PrescriptionEvent.belongsTo(Staff, {
+  foreignKey: 'processedBy',
+  as: 'prescription_processed_by',
+})
+
 ScanEvent.belongsTo(Staff, { foreignKey: 'orderedBy', as: 'scan_ordered_by' })
 ScanEvent.belongsTo(Staff, {
   foreignKey: 'processedBy',
@@ -70,6 +80,10 @@ ScanEvent.belongsTo(Patient, {
   foreignKey: 'patientId',
   as: 'scan_event_patient',
 })
+PrescriptionEvent.belongsTo(Patient, {
+  foreignKey: 'patientId',
+  as: 'prescription_event_patient',
+})
 
 export {
   Patient,
@@ -84,4 +98,5 @@ export {
   NurseVisit,
   Admission,
   Discharge,
+  PrescriptionEvent,
 }

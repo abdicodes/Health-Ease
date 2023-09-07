@@ -20,9 +20,7 @@ interface Drug {
 //isNormal should return true
 interface Test {
   name: string
-  status: boolean
   result?: string
-  isNormal?: boolean
 }
 
 interface Image {
@@ -101,7 +99,6 @@ export interface Prescription extends BasicEvent {
   doctorName: string
   pharmacist?: string
   active: boolean
-  expirayDate: string
 }
 
 export type Event =
