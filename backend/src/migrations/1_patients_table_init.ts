@@ -40,6 +40,7 @@ module.exports = {
       },
       date_of_birth: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       address: {
         type: DataTypes.STRING,

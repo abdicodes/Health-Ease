@@ -2,7 +2,7 @@ import { QueryInterface, DataTypes } from 'sequelize'
 
 module.exports = {
   up: async ({ context: queryInterface }: { context: QueryInterface }) => {
-    // Create the DoctorVisit
+    //   Doctor Visit
     await queryInterface.createTable('outpatient_visits', {
       id: {
         type: DataTypes.INTEGER,
@@ -14,6 +14,11 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
+      },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Doctor Visit',
       },
       diagnosis: {
         type: DataTypes.STRING,
@@ -48,6 +53,12 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+      },
+
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'In-Patient Visit',
       },
       patient_id: {
         type: DataTypes.INTEGER,
@@ -89,6 +100,11 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
       },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Admission',
+      },
       patient_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -128,6 +144,11 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+      },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Discharge',
       },
       patient_id: {
         type: DataTypes.INTEGER,
@@ -169,6 +190,11 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
       },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Emergency Visit',
+      },
       patient_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -207,6 +233,11 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+      },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Nurse Visit',
       },
       patient_id: {
         type: DataTypes.INTEGER,

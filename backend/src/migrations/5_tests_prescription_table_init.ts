@@ -10,6 +10,11 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
       },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Laboratory tests',
+      },
       patient_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -51,6 +56,12 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
       },
+
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Medical Imaging',
+      },
       patient_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -89,6 +100,16 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
+      },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Prescriptions',
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
       },
       patient_id: {
         type: DataTypes.INTEGER,

@@ -112,16 +112,18 @@ const outpatient_visit = [
         Patient also complained about a headache, symptops started 3 days ago.
         Further lab tests are needed and meantime painkillers are prescribed
         `,
-    comments: 'He farts a lot',
+    comments: 'He coughts a lot',
     created_at: new Date(),
     updated_at: new Date(),
+    type: 'Doctor Visit',
   },
   {
     patient_id: 2,
     diagnosis: 'strong allergy',
     staff_id: 3,
     details: `Patient complained about eye itching`,
-    comments: 'He went fart alot ',
+    comments: 'He went coughing alot ',
+    type: 'Doctor Visit',
     created_at: new Date(),
     updated_at: new Date(),
   },
@@ -132,6 +134,7 @@ const inpatient_visit = [
     patient_id: 2,
     diagnosis: 'mild allergy',
     staff_id: 1,
+    type: 'In-Patient Visit',
     details: `Patient complained about eye itching, running nose,
           possible symptops of pollen allergy. Antihistamen is prescribed.
           Patient also complained about a headache, symptops started 3 days ago.
@@ -144,6 +147,7 @@ const inpatient_visit = [
   {
     patient_id: 1,
     diagnosis: 'strong allergy',
+    type: 'In-Patient Visit',
     staff_id: 1,
     details: `Patient complained about eye itching`,
     comments: 'He is nervous alot ',
@@ -160,6 +164,7 @@ const lab_visits = [
     comments: 'He suffers from phobia related to insersion of needles',
     created_at: new Date(),
     updated_at: new Date(),
+    type: 'Laboratory tests',
   },
 ]
 module.exports = {
