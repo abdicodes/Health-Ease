@@ -392,26 +392,29 @@ const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {tests.map((test, i) => {
-                        return (
-                          <tr
-                            key={i}
-                            className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 "
-                          >
-                            <td className=" px-4 py-4 font-medium">
-                              {test.name}
-                            </td>
-
-                            <td
-                              className={` px-4 py-4 font-medium ${
-                                test.result ? '' : '  text-orange-700 pl-1.5  '
-                              }`}
+                      {tests &&
+                        tests.map((test, i) => {
+                          return (
+                            <tr
+                              key={i}
+                              className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 "
                             >
-                              {test.result ? test.result : '• pending '}
-                            </td>
-                          </tr>
-                        )
-                      })}
+                              <td className=" px-4 py-4 font-medium">
+                                {test.name}
+                              </td>
+
+                              <td
+                                className={` px-4 py-4 font-medium ${
+                                  test.result
+                                    ? ''
+                                    : '  text-orange-700 pl-1.5  '
+                                }`}
+                              >
+                                {test.result ? test.result : '• pending '}
+                              </td>
+                            </tr>
+                          )
+                        })}
                     </tbody>
                   </table>
                 </div>

@@ -1,11 +1,13 @@
 import { useMatch } from 'react-router-dom'
-import data from '../../../data'
+// import data from '../../../data'
 import { Event } from '../../../types'
 import DetailedEventContainer from './DetailedEventContainer'
 import { useNavigate } from 'react-router-dom'
 import NavBar from '../../NavBar'
+import { useAuth } from '../../../context/AuthContext'
 
 const DetailedEvent = () => {
+  const { response } = useAuth()
   const match = useMatch('/:id')
   const navigate = useNavigate()
   if (!match) return null
@@ -14,7 +16,9 @@ const DetailedEvent = () => {
 
   if (!id) return null
 
-  const event = data.find((element: Event) => element.id === Number(id))
+  const event = response?.events.find(
+    (element: Event) => element.id === Number(id)
+  )
   if (!event) return null
 
   return (
