@@ -8,6 +8,7 @@ import staffLoginRouter from './routes/staffLogin'
 import staffSignupRouter from './routes/staffSignup'
 import patientLoginRouter from './routes/patientLogin'
 import patientSignupRouter from './routes/patientSignup'
+import rolesRouter from './routes/staffRoles'
 
 const app = express()
 app.use(express.json())
@@ -32,6 +33,7 @@ app.use('/api/staff-login', staffLoginRouter)
 app.use('/api/staff-signup', staffSignupRouter)
 app.use('/api/patient-login', patientLoginRouter)
 app.use('/api/patient-signup', patientSignupRouter)
+app.use('/api/roles', rolesRouter)
 
 const start = async (): Promise<void> => {
   await connectToDatabase()

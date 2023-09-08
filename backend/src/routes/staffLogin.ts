@@ -75,7 +75,12 @@ router.post('/', (async (req, res, next) => {
 
     res
       .status(200)
-      .send({ user: { id: user.id, name: user.name }, token, roles: roles })
+      .send({
+        user: { id: user.id, name: user.name },
+        token,
+        roles: roles,
+        loginMode: 'staff',
+      })
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)

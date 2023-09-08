@@ -26,7 +26,9 @@ Role.init(
   }
 )
 
-class StaffRole extends Model {}
+class StaffRole extends Model {
+  roleId!: number
+}
 
 StaffRole.init(
   {
