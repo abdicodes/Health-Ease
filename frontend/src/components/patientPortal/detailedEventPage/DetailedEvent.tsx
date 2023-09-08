@@ -8,13 +8,13 @@ import { useAuth } from '../../../context/AuthContext'
 import LoginPage from '../loginPage'
 
 const DetailedEvent = () => {
-  const { response } = useAuth()
+  const { patientResponse } = useAuth()
 
   const match = useMatch('/:id')
   const navigate = useNavigate()
 
-  if (!(response?.user && response.loginMode === 'patient')) {
-    console.log(response)
+  if (!(patientResponse?.user && patientResponse.loginMode === 'patient')) {
+    console.log(patientResponse)
     return <LoginPage />
   }
   if (!match) return null
@@ -23,7 +23,7 @@ const DetailedEvent = () => {
 
   if (!id) return null
 
-  const event = response?.events.find(
+  const event = patientResponse?.events.find(
     (element: Event) => element.id === Number(id)
   )
   if (!event) return null

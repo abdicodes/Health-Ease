@@ -5,14 +5,19 @@ import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
   const navigate = useNavigate()
-  const { login } = useAuth()
+  const { patientLogin } = useAuth()
   interface FormValues {
     username: string
     password: string
   }
 
-  const handleLogin = (values: FormValues) => {
-    login({ ...values })
+  const handleLogin = async (values: FormValues) => {
+    try {
+      await patientLogin({ ...values })
+      navigate('/patient-portal')
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return (

@@ -17,10 +17,14 @@ const SignUpPage = () => {
     bloodType?: string
   }
 
-  const handleSignup = (values: FormValues) => {
-    signUp({ ...values })
+  const handleSignup = async (values: FormValues) => {
+    try {
+      await signUp({ ...values })
+      navigate('/login')
+    } catch (e) {
+      console.error(e)
+    }
   }
-
   return (
     <div className=" flex flex-col mt-6">
       <div className=" flex items-center flex-col  justify-center text-2xl text-blue-800">

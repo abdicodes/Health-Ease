@@ -4,12 +4,12 @@ import LoginPage from './loginPage'
 // import data from '../../data'
 
 const PatientPortal = () => {
-  const { response } = useAuth()
+  const { patientResponse } = useAuth()
 
-  if (!(response?.user && response.loginMode === 'patient')) {
-    console.log(response)
+  if (!(patientResponse?.user && patientResponse.loginMode === 'patient')) {
+    console.log(patientResponse)
     return <LoginPage />
-  } else return <Events events={response.events} />
+  } else return <Events events={patientResponse.events} />
 }
 
 export default PatientPortal
