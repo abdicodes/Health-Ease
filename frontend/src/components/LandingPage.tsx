@@ -28,12 +28,13 @@ const LandingPage = () => {
             <BiLogIn className="text-2xl" />
           </button>
         </Link>
-
-        <button className="bg-blue-50 p-2 px-2 my-4 rounded-2xl border-blue-300 border-2 shadow-lg flex flex-row items-center justify-center text-blue-600 text-l w-56  cursor-pointer mx-5 hover:bg-blue-200">
-          <FaHospitalUser className="text-2xl" />
-          <h2 className="my-4 mx-3 font-semibold mb-4"> Staff Portal</h2>
-          <BiLogIn className="text-2xl" />
-        </button>
+        <Link to={'/staff-portal'}>
+          <button className="bg-blue-50 p-2 px-2 my-4 rounded-2xl border-blue-300 border-2 shadow-lg flex flex-row items-center justify-center text-blue-600 text-l w-56  cursor-pointer mx-5 hover:bg-blue-200">
+            <FaHospitalUser className="text-2xl" />
+            <h2 className="my-4 mx-3 font-semibold mb-4"> Staff Portal</h2>
+            <BiLogIn className="text-2xl" />
+          </button>
+        </Link>
       </section>
     </main>
   )

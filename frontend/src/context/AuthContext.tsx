@@ -3,11 +3,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { Event } from '../types'
+
+const baseUrl: string = 'http://localhost:3001/api'
+
+console.log(baseUrl)
 interface LoginProps {
   username: string
   password: string
 }
-interface SignupProps {
+interface PatientSignupProps {
   name: string
   username: string
   password: string
@@ -18,17 +22,27 @@ interface SignupProps {
   gender: string
   bloodType?: string
 }
-interface ResponseData {
+
+interface PatientResponseData {
   user: UserData
   token: string
   loginMode: string
   events: Event[]
 }
 
+interface StaffResponseData {
+  user: UserData
+  token: string
+  loginMode: string
+  roles: number[]
+}
+
 //  the user context
 interface AuthContextType {
-  response: ResponseData | null
-  login: ({ username, password }: LoginProps) => Promise<void>
+  patientResponse: PatientResponseData | null
+  staffResponse: StaffResponseData | null
+  patientLogin: ({ username, password }: LoginProps) => Promise<void>
+  staffLogin: ({ username, password }: LoginProps) => Promise<void>
   signUp: ({
     username,
     password,
@@ -39,7 +53,7 @@ interface AuthContextType {
     address,
     gender,
     bloodType,
-  }: SignupProps) => Promise<void>
+  }: PatientSignupProps) => Promise<void>
   logout: () => void
 }
 
@@ -58,7 +72,12 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 // Create a component to provide the context
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [response, setResponse] = useState<ResponseData | null>(null)
+  const [patientResponse, setPatientResponse] =
+    useState<PatientResponseData | null>(null)
+
+  const [staffResponse, setStaffResponse] = useState<StaffResponseData | null>(
+    null
+  )
 
   useEffect(() => {
     // Check if a token is saved in localStorage and set the user accordingly
@@ -67,13 +86,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const name = localStorage.getItem('name')
     const loginMode = localStorage.getItem('loginMode')
 
-    if (token && id && name && loginMode) {
+    if (token && id && name && loginMode === 'patient') {
       const fetchEvents = async () => {
         const events: AxiosResponse<Event[]> = await axios.get(
-          'http://localhost:3001/api/events/3'
+          `${baseUrl}/events}/${id}`
         )
-        console.log(events.data)
-        setResponse({
+
+        setPatientResponse({
           user: { id, name },
           loginMode,
           token,
@@ -82,32 +101,48 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
       fetchEvents()
     }
+
+    if (token && id && name && loginMode === 'staff') {
+      const fetchRoles = async () => {
+        const roles: AxiosResponse<number[]> = await axios.get(
+          `${baseUrl}/roles/${id}`
+        )
+        if (roles)
+          setStaffResponse({
+            token,
+            user: { id, name },
+            loginMode,
+            roles: roles.data,
+          })
+      }
+      fetchRoles()
+    }
   }, [])
 
-  // Function to log in the user
-  const login = async ({ username, password }: LoginProps) => {
+  // to log in the patients
+  const patientLogin = async ({ username, password }: LoginProps) => {
     try {
-      // Replace with your API endpoint for login
-      const response: AxiosResponse<ResponseData> = await axios.post(
-        'http://localhost:3001/api/patient-login',
+      // API endpoint for login
+      const response: AxiosResponse<PatientResponseData> = await axios.post(
+        `${baseUrl}/patient-login`,
         {
           username,
           password,
         }
       )
       const events: AxiosResponse<Event[]> = await axios.get(
-        'http://localhost:3001/api/events/3'
+        `${baseUrl}/events/${response.data.user.id}`
       )
-      console.log(response.data)
+
+      //clear localStorage just in case any information exi
       // Save the token to localStorage
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('name', response.data.user.name)
       localStorage.setItem('id', response.data.user.id.toString())
       localStorage.setItem('loginMode', response.data.loginMode)
 
-      // Set the user state
-      setResponse(response.data)
-      setResponse({
+      // Set the patient user state
+      setPatientResponse({
         user: response.data.user,
         loginMode: response.data.loginMode,
         token: response.data.token,
@@ -129,7 +164,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     address,
     gender,
     bloodType,
-  }: SignupProps) => {
+  }: PatientSignupProps) => {
     try {
       // Replace with your API endpoint for login
       await axios.post('http://localhost:3001/api/patient-signup', {
@@ -143,15 +178,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         gender,
         bloodType,
       })
-      const response2 = await axios.get('http://localhost:3001/api/events/1')
-      console.log(response2)
     } catch (error) {
       // Handle login error (e.g., show an error message)
       console.error('Login error:', error)
+      throw Error()
     }
   }
 
-  // Function to log out the user
+  // Function to log out the user it works on both user types
   const logout = () => {
     // Clear the token from localStorage
     localStorage.removeItem('token')
@@ -159,11 +193,46 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     localStorage.removeItem('name')
     localStorage.removeItem('loginMode')
     // Remove the user from state
-    setResponse(null)
+    setPatientResponse(null)
+    setStaffResponse(null)
+  }
+
+  const staffLogin = async ({ username, password }: LoginProps) => {
+    try {
+      // API endpoint for login
+      const response: AxiosResponse<StaffResponseData> = await axios.post(
+        `${baseUrl}/staff-login`,
+        {
+          username,
+          password,
+        }
+      )
+
+      // Save the token to localStorage
+      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('name', response.data.user.name)
+      localStorage.setItem('id', response.data.user.id.toString())
+      localStorage.setItem('loginMode', response.data.loginMode)
+
+      // Set the user state
+      setStaffResponse(response.data)
+    } catch (error) {
+      // Handle login error (e.g., show an error message)
+      console.error('Login error:', error)
+    }
   }
 
   return (
-    <AuthContext.Provider value={{ response, login, logout, signUp }}>
+    <AuthContext.Provider
+      value={{
+        patientResponse,
+        staffResponse,
+        patientLogin,
+        staffLogin,
+        logout,
+        signUp,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )
