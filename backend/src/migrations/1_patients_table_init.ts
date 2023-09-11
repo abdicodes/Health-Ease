@@ -52,6 +52,11 @@ module.exports = {
       blood_type: {
         type: DataTypes.STRING,
       },
+      is_admitted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       created_at: {
         type: DataTypes.DATE,
         allowNull: false,

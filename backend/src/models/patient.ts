@@ -18,6 +18,7 @@ interface PatientAttributes {
   address?: string
   gender: string
   bloodType?: string
+  isAdmitted?: boolean
 }
 class Patient extends Model<PatientAttributes> implements PatientAttributes {
   id?: number
@@ -30,6 +31,7 @@ class Patient extends Model<PatientAttributes> implements PatientAttributes {
   address?: string
   gender!: string
   bloodType?: string
+  isAdmitted?: boolean
 }
 
 Patient.init(
@@ -76,6 +78,11 @@ Patient.init(
     },
     bloodType: {
       type: DataTypes.STRING,
+    },
+    isAdmitted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   },
   {
