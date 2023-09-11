@@ -131,7 +131,7 @@ const NavBar = () => {
                 className="bg-blue-500 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-24  cursor-pointer mx-5 hover:bg-blue-600"
               >
                 <FiHome className="text-l" />
-                <h2 className=" my-1 mx-2 font-medium ">Events</h2>
+                <h2 className=" my-1 mx-2 font-medium ">Dashboard</h2>
               </li>
 
               <li
