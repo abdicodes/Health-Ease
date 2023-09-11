@@ -10,7 +10,7 @@ const StaffPortal = () => {
   } else {
     return (
       <StaffLanding
-        roles={staffResponse.roles}
+        roles={[0, 1, 2, 3, 4, 5, 6]}
         name={staffResponse.user.name}
       />
     )
