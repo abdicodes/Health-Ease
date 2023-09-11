@@ -2,7 +2,7 @@ import React from 'react'
 import { Event } from '../../../types'
 import EventContainer from './EventContainer'
 import { isFutureEvent } from '../../../utils/isFutureEvent'
-import Navbar from '../../NavBar'
+import Navbar from '../NavBar'
 import { FiCheckSquare, FiAlertOctagon } from 'react-icons/fi'
 
 interface EventsProps {

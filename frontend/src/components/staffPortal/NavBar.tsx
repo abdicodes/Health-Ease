@@ -4,7 +4,7 @@ https://flowbite.com/docs/components/navbar/#sticky-navbar
 
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 import { FiMenu, FiHome, FiMail, FiSettings, FiLogOut } from 'react-icons/fi'
 import heart from '/heart.png'
 import { useNavigate } from 'react-router-dom'
@@ -65,7 +65,7 @@ const NavBar = () => {
                           'block px-4 py-2 text-sm'
                         )}
                       >
-                        Events
+                        Dashboard
                       </a>
                     )}
                   </Menu.Item>

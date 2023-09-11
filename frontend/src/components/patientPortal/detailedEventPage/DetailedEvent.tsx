@@ -3,7 +3,7 @@ import { useMatch } from 'react-router-dom'
 import { Event } from '../../../types'
 import DetailedEventContainer from './DetailedEventContainer'
 import { useNavigate } from 'react-router-dom'
-import NavBar from '../../NavBar'
+import NavBar from '../NavBar'
 import { useAuth } from '../../../context/AuthContext'
 import LoginPage from '../loginPage'
 
