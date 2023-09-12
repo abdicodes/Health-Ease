@@ -111,3 +111,19 @@ export type Event =
   | Lab
   | Scan
   | Prescription
+
+export interface PatientData {
+  id: number
+  name: string
+  email: string
+  phoneNumber: string | null
+  dateOfBirth: string
+  address?: string | null
+  gender: string
+  bloodType?: string | null
+  isAdmitted: boolean
+}
+export interface PatientCardProps {
+  patient: PatientData
+  onClose: () => void
+}
