@@ -3,6 +3,7 @@ import { MdReadMore } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { PatientData } from '../../../types'
 import PatientCard from '../PatientCard'
+import PatientSearch from '../PatientSearch'
 
 const patients: PatientData[] = [
   {
@@ -58,6 +59,9 @@ const PatientList = ({ patients }: { patients: PatientData[] }) => {
       tabIndex={0} // This makes the element focusable and able to receive keyboard events
       onKeyDown={handleKeyDown}
     >
+      <div>
+        <PatientSearch />
+      </div>
       <div
         onClick={isPatientCardOpen ? closePatientCard : undefined}
         className={

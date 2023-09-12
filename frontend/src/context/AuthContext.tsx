@@ -11,7 +11,7 @@ interface LoginProps {
   username: string
   password: string
 }
-interface PatientSignupProps {
+interface PatientProps {
   name: string
   username: string
   password: string
@@ -39,9 +39,11 @@ interface StaffResponseData {
 
 //  the user context
 interface AuthContextType {
+  patient: PatientProps | null
   patientResponse: PatientResponseData | null
   staffResponse: StaffResponseData | null
   patientLogin: ({ username, password }: LoginProps) => Promise<void>
+  searchPatientApi: (id: string) => Promise<void>
   staffLogin: ({ username, password }: LoginProps) => Promise<void>
   signUp: ({
     username,
@@ -53,7 +55,7 @@ interface AuthContextType {
     address,
     gender,
     bloodType,
-  }: PatientSignupProps) => Promise<void>
+  }: PatientProps) => Promise<void>
   logout: () => void
 }
 
@@ -78,6 +80,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [staffResponse, setStaffResponse] = useState<StaffResponseData | null>(
     null
   )
+  const [patient, setPatient] = useState<PatientProps | null>(null)
 
   useEffect(() => {
     // Check if a token is saved in localStorage and set the user accordingly
@@ -154,6 +157,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }
 
+  const searchPatientApi = async (id: string) => {
+    try {
+      const patient: AxiosResponse<PatientProps> = await axios.get(
+        `${baseUrl}/staff-query/patients/${id}`
+      )
+      setPatient(patient.data)
+    } catch (error) {
+      // Handle login error (e.g., show an error message)
+      console.error('Login error:', error)
+      throw Error()
+    }
+  }
+
   const signUp = async ({
     name,
     username,
@@ -164,7 +180,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     address,
     gender,
     bloodType,
-  }: PatientSignupProps) => {
+  }: PatientProps) => {
     try {
       // Replace with your API endpoint for login
       await axios.post('http://localhost:3001/api/patient-signup', {
@@ -225,8 +241,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        patient,
         patientResponse,
         staffResponse,
+        searchPatientApi,
         patientLogin,
         staffLogin,
         logout,

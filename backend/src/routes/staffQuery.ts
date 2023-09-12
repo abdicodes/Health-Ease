@@ -14,17 +14,6 @@ import {
 } from '../models'
 import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
 
-// interface PatientResBody {
-//   name: string
-//   id: number
-//   dateOfBirth: string
-//   gender: string
-//   bloodType?: string
-//   email: string
-//   isAdmitted: boolean
-//   address?: string
-// }
-
 const router = express.Router()
 
 router.get('/patients', (async (_req, res, next) => {
@@ -36,6 +25,23 @@ router.get('/patients', (async (_req, res, next) => {
     })
 
     res.json(patients)
+  } catch (error) {
+    // Pass the error to the next middleware for error handling
+    next(error)
+  }
+}) as RequestHandler)
+
+router.get('/patients/:id', (async (req, res, next) => {
+  const id: number = Number(req.params.id)
+  try {
+    const patient = await Patient.findOne({
+      attributes: {
+        exclude: ['username', 'password', 'createdAt', 'updatedAt'],
+      },
+      where: { id: id },
+    })
+
+    res.json(patient)
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)
