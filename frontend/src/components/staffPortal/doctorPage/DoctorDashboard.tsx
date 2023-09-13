@@ -34,43 +34,58 @@ const patients: PatientData[] = [
 const SinglePatient = ({
   patient,
   openPatientCard,
+  handleKeyDown,
+  closePatientCard,
+  isPatientCardOpen,
 }: {
   patient: PatientData
+  handleKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void
+  closePatientCard: () => void
   openPatientCard: (patient: PatientData) => void
+  isPatientCardOpen: boolean
 }) => {
   return (
-    <div
-      className="flex  border-b items-center hover:bg-sky-100"
-      key={patient.id}
-    >
-      <div className="flex flex-col  justify-between md:flex-row ml-2 md:ml-10 ">
-        <div className="font-base flex items-center text-base text-blue-950 my-1 p-2   ">
-          {patient.name}
-        </div>
-      </div>
-      <div className="  mr-4 flex items-end justify-end flex-col flex-1 md:flex-row   ">
-        <div>
-          <button className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  ">
-            <MdReadMore className="text-2xl mr-1" /> New Entry
-          </button>
-        </div>
-        <Link to={`/staff-portal/patients/${patient.id}}`}>
-          <div>
-            <button className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  ">
-              <MdReadMore className="text-lg mr-1" /> Medical history
-            </button>
+    <main className=" " tabIndex={0} onKeyDown={handleKeyDown}>
+      <div
+        onClick={isPatientCardOpen ? closePatientCard : undefined}
+        className={
+          isPatientCardOpen ? 'opacity-20 relative ' : ' bg-blue-50   '
+        }
+      >
+        <div
+          className="flex  border-b items-center hover:bg-sky-100 bg-blue-50 my-3"
+          key={patient.id}
+        >
+          <div className="flex flex-col  justify-between md:flex-row ml-2 md:ml-10 ">
+            <div className="font-base flex items-center text-base text-blue-950 my-1 p-2   ">
+              {patient.name}
+            </div>
           </div>
-        </Link>
-        <div>
-          <button
-            onClick={() => openPatientCard(patient)}
-            className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  "
-          >
-            <MdReadMore className="text-2xl mr-1" /> Patient info
-          </button>
+          <div className="  mr-4 flex items-end justify-end flex-col flex-1 md:flex-row   ">
+            <div>
+              <button className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  ">
+                <MdReadMore className="text-2xl mr-1" /> New Entry
+              </button>
+            </div>
+            <Link to={`/staff-portal/patients/${patient.id}}`}>
+              <div>
+                <button className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  ">
+                  <MdReadMore className="text-lg mr-1" /> Medical history
+                </button>
+              </div>
+            </Link>
+            <div>
+              <button
+                onClick={() => openPatientCard(patient)}
+                className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  "
+              >
+                <MdReadMore className="text-2xl mr-1" /> Patient info
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 
@@ -102,6 +117,9 @@ const PatientList = ({
             key={patient.id} // Don't forget to add a unique key for each element in a list
             patient={patient}
             openPatientCard={openPatientCard}
+            closePatientCard={closePatientCard}
+            handleKeyDown={handleKeyDown}
+            isPatientCardOpen={isPatientCardOpen}
           />
         ))}
       </div>
@@ -151,7 +169,13 @@ const DoctorDashboard = () => {
         Search Result
       </div>
       {patient && (
-        <SinglePatient patient={patient} openPatientCard={openPatientCard} />
+        <SinglePatient
+          patient={patient}
+          openPatientCard={openPatientCard}
+          closePatientCard={closePatientCard}
+          isPatientCardOpen={isPatientCardOpen}
+          handleKeyDown={handleKeyDown}
+        />
       )}
 
       {patientErrorMessage && (

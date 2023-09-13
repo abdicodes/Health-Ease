@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { MdDateRange, MdFemale, MdMale, MdContentCopy } from 'react-icons/md'
 import { PatientCardProps } from '../../types'
 import { PiIdentificationCard } from 'react-icons/pi'
-import { AiOutlineCheckCircle } from 'react-icons/ai'
+import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 
 const PatientCard = ({ patient, onClose }: PatientCardProps) => {
   const [copyEmail, setCopyEmail] = useState<boolean>(false)
@@ -22,17 +22,17 @@ const PatientCard = ({ patient, onClose }: PatientCardProps) => {
   }
 
   return (
-    <main className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-50 rounded-lg shadow-lg border">
+    <main className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-white to-blue-50 rounded-lg shadow-lg border p-2">
       <div className="flex flex-col  justify-between">
-        <div className="font-medium flex items-center  text-blue-950  p-8 text-xl     bg-white   ">
-          name: {patient.name}
+        <div className="font-medium flex items-center  justify-center text-blue-950  p-8 text-xl      ">
+          {patient.name}
         </div>
 
-        <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1 border-b rounded-xl    ">
+        <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1   rounded-xl    ">
           D.O.B. <MdDateRange className="mx-1" />
           {patient.dateOfBirth}
         </div>
-        <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1 border-b rounded-xl   ">
+        <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1   rounded-xl   ">
           ID Number: <PiIdentificationCard className="text-xl mx-1" />
           {patient.id}{' '}
           <button
@@ -44,7 +44,7 @@ const PatientCard = ({ patient, onClose }: PatientCardProps) => {
             <AiOutlineCheckCircle className="text-xl text-emerald-700 " />
           )}
         </div>
-        <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1 border-b rounded-xl   ">
+        <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1   rounded-xl   ">
           Email: {patient.email}{' '}
           <button onClick={() => copyToClipboard(patient.email, setCopyEmail)}>
             <MdContentCopy className="mx-4 text-xl hover:text-amber-800 cursor-pointer" />
@@ -54,7 +54,7 @@ const PatientCard = ({ patient, onClose }: PatientCardProps) => {
           )}
         </div>
         {patient.phoneNumber && (
-          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1 border-b rounded-xl   ">
+          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1   rounded-xl   ">
             Phone Number: {patient.phoneNumber}{' '}
             <button
               onClick={() => copyToClipboard(patient.phoneNumber, setCopyPhone)}
@@ -67,7 +67,7 @@ const PatientCard = ({ patient, onClose }: PatientCardProps) => {
           </div>
         )}
         {patient.address && (
-          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1 border-b rounded-xl n  ">
+          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1   rounded-xl n  ">
             Address: {patient.address}{' '}
             <button
               onClick={() => copyToClipboard(patient.address, setCopyAddress)}
@@ -80,16 +80,16 @@ const PatientCard = ({ patient, onClose }: PatientCardProps) => {
           </div>
         )}
         {patient.gender === 'male' ? (
-          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2  mx-1 border-b rounded-xl   ">
+          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2  mx-1   rounded-xl   ">
             Gender: <MdMale className="mx-1" /> {patient.gender}
           </div>
         ) : (
-          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 border-b rounded-xl   ">
+          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2   rounded-xl   ">
             Gender: <MdFemale className="mx-1" /> {patient.gender}
           </div>
         )}
         {patient.bloodType && (
-          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1 border-b rounded-xl   ">
+          <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1   rounded-xl   ">
             Blood type: {patient.bloodType}
           </div>
         )}
@@ -97,9 +97,9 @@ const PatientCard = ({ patient, onClose }: PatientCardProps) => {
       <div>
         <button
           onClick={onClose}
-          className="  bg-red-700 text-neutral-100 py-3 rounded-lg my-1 cursor-pointer w-full font-medium hover:bg-rose-800"
+          className="   text-red-600 py-3 rounded-lg my-1 cursor-pointer w-full font-medium flex items-center justify-center hover:text-red-700"
         >
-          Close
+          <AiOutlineCloseCircle className="mx-1 text-2xl" />
         </button>
       </div>
     </main>
