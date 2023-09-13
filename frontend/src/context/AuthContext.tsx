@@ -3,24 +3,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { Event } from '../types'
-
+import { PatientData, PatientProps } from '../types'
 const baseUrl: string = 'http://localhost:3001/api'
 
 console.log(baseUrl)
 interface LoginProps {
   username: string
   password: string
-}
-interface PatientProps {
-  name: string
-  username: string
-  password: string
-  email: string
-  phoneNumber?: string
-  dateOfBirth: string
-  address?: string
-  gender: string
-  bloodType?: string
 }
 
 interface PatientResponseData {
@@ -39,9 +28,10 @@ interface StaffResponseData {
 
 //  the user context
 interface AuthContextType {
-  patient: PatientProps | null
+  patient: PatientData | null
   patientResponse: PatientResponseData | null
   staffResponse: StaffResponseData | null
+  patientErrorMessage: string | null
   patientLogin: ({ username, password }: LoginProps) => Promise<void>
   searchPatientApi: (id: string) => Promise<void>
   staffLogin: ({ username, password }: LoginProps) => Promise<void>
@@ -80,7 +70,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [staffResponse, setStaffResponse] = useState<StaffResponseData | null>(
     null
   )
-  const [patient, setPatient] = useState<PatientProps | null>(null)
+  const [patient, setPatient] = useState<PatientData | null>(null)
+  const [patientErrorMessage, setPatientErrorMessage] = useState<string | null>(
+    null
+  )
 
   useEffect(() => {
     // Check if a token is saved in localStorage and set the user accordingly
@@ -159,14 +152,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const searchPatientApi = async (id: string) => {
     try {
-      const patient: AxiosResponse<PatientProps> = await axios.get(
+      const patient: AxiosResponse<PatientData> = await axios.get(
         `${baseUrl}/staff-query/patients/${id}`
       )
       setPatient(patient.data)
     } catch (error) {
-      // Handle login error (e.g., show an error message)
-      console.error('Login error:', error)
-      throw Error()
+      // Handle  error (e.g., show an error message)
+      setPatientErrorMessage(
+        'Patient is not found! check if ID no. is correct '
+      )
+      setPatient(null)
+      setTimeout(() => {
+        setPatientErrorMessage(null)
+      }, 5000)
     }
   }
 
@@ -244,6 +242,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         patient,
         patientResponse,
         staffResponse,
+        patientErrorMessage,
         searchPatientApi,
         patientLogin,
         staffLogin,

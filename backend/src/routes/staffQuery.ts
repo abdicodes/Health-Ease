@@ -41,6 +41,11 @@ router.get('/patients/:id', (async (req, res, next) => {
       where: { id: id },
     })
 
+    if (!patient) {
+      res.status(404).json({ error: 'user not found' })
+      return
+    }
+
     res.json(patient)
   } catch (error) {
     // Pass the error to the next middleware for error handling

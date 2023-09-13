@@ -123,6 +123,18 @@ export interface PatientData {
   bloodType?: string | null
   isAdmitted: boolean
 }
+
+export interface PatientProps {
+  name: string
+  username: string
+  password: string
+  email: string
+  phoneNumber?: string
+  dateOfBirth: string
+  address?: string
+  gender: string
+  bloodType?: string
+}
 export interface PatientCardProps {
   patient: PatientData
   onClose: () => void
