@@ -32,6 +32,8 @@ interface AuthContextType {
   patientResponse: PatientResponseData | null
   staffResponse: StaffResponseData | null
   patientErrorMessage: string | null
+  events: Event[]
+  searchEventsApi: (id: string) => Promise<void>
   patientLogin: ({ username, password }: LoginProps) => Promise<void>
   searchPatientApi: (id: string) => Promise<void>
   staffLogin: ({ username, password }: LoginProps) => Promise<void>
@@ -74,6 +76,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [patientErrorMessage, setPatientErrorMessage] = useState<string | null>(
     null
   )
+  const [events, setEvents] = useState<Event[]>([])
 
   useEffect(() => {
     // Check if a token is saved in localStorage and set the user accordingly
@@ -115,6 +118,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [])
 
+  const searchEventsApi = async (id: string): Promise<void> => {
+    try {
+      console.log('===========Im here')
+      const response: AxiosResponse<Event[]> = await axios.get(
+        `${baseUrl}/events/${id}`
+      )
+
+      setEvents(response.data)
+      console.log(response.data)
+    } catch (error) {
+      // Handle login error (e.g., show an error message)
+      console.error('Login error:', error)
+    }
+  }
   // to log in the patients
   const patientLogin = async ({ username, password }: LoginProps) => {
     try {
@@ -243,6 +260,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         patientResponse,
         staffResponse,
         patientErrorMessage,
+        events,
+        searchEventsApi,
         searchPatientApi,
         patientLogin,
         staffLogin,

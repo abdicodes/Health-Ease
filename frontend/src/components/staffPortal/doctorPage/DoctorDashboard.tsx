@@ -48,12 +48,10 @@ const SinglePatient = ({
     <main className=" " tabIndex={0} onKeyDown={handleKeyDown}>
       <div
         onClick={isPatientCardOpen ? closePatientCard : undefined}
-        className={
-          isPatientCardOpen ? 'opacity-20 relative ' : ' bg-blue-50   '
-        }
+        className={isPatientCardOpen ? 'opacity-20 relative ' : ''}
       >
         <div
-          className="flex  border-b items-center hover:bg-sky-100 bg-blue-50 my-3"
+          className="flex  border-b items-center hover:bg-sky-100 bg-blue-50 my-3  mx-3 py-2"
           key={patient.id}
         >
           <div className="flex flex-col  justify-between md:flex-row ml-2 md:ml-10 ">
@@ -67,7 +65,7 @@ const SinglePatient = ({
                 <MdReadMore className="text-2xl mr-1" /> New Entry
               </button>
             </div>
-            <Link to={`/staff-portal/patients/${patient.id}}`}>
+            <Link to={`/staff-portal/patients/${patient.id}`}>
               <div>
                 <button className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  ">
                   <MdReadMore className="text-lg mr-1" /> Medical history
@@ -108,9 +106,7 @@ const PatientList = ({
     <main className=" " tabIndex={0} onKeyDown={handleKeyDown}>
       <div
         onClick={isPatientCardOpen ? closePatientCard : undefined}
-        className={
-          isPatientCardOpen ? 'opacity-20 relative ' : ' bg-blue-50   '
-        }
+        className={isPatientCardOpen ? 'opacity-20 relative ' : ''}
       >
         {patients.map((patient) => (
           <SinglePatient
@@ -179,7 +175,7 @@ const DoctorDashboard = () => {
       )}
 
       {patientErrorMessage && (
-        <div className=" border-2 p-3 text-lg text-red-700 border-red-700 my-2  max-w-fit mx-auto rounded-2xl">
+        <div className=" border opacity-60 p-3 text-lg text-red-700 border-red-700 my-4   max-w-fit mx-auto rounded-3xl">
           {patientErrorMessage}
         </div>
       )}
