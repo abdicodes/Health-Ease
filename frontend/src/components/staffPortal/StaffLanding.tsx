@@ -10,8 +10,8 @@ const StaffLanding = ({ roles, name }: { roles: number[]; name: string }) => {
       </div>
       <div className="flex flex-wrap justify-center mt-6 ">
         {roles.length > 0 &&
-          roles.map((role) => {
-            return <Role role={role} />
+          roles.map((role, i) => {
+            return <Role key={i} role={role} />
           })}
       </div>
     </main>

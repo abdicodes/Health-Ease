@@ -5,8 +5,10 @@ import lab from '/lab2.png'
 import receptionist from '/receptionist.png'
 import administrator from '/sysadmin.png'
 import radiographer from '/radiographer.png'
+import { useNavigate } from 'react-router-dom'
 
 const Role = ({ role }: { role: number }) => {
+  const navigate = useNavigate()
   switch (role) {
     case 0:
       return (
@@ -18,7 +20,10 @@ const Role = ({ role }: { role: number }) => {
 
     case 1:
       return (
-        <button className="bg-blue-50 border-opacity-10 border-blue-800 border shadow-lg w-1/2 sm:w-1/3  lg:w-1/5 mx-6 flex flex-col items-center justify-center  my-6 ">
+        <button
+          className="bg-blue-50 border-opacity-10 border-blue-800 border shadow-lg w-1/2 sm:w-1/3  lg:w-1/5 mx-6 flex flex-col items-center justify-center  my-6 "
+          onClick={() => navigate('/staff-portal/doctor')}
+        >
           <img src={doctor} height="100" alt="doctor" />
           <h2 className="py-2 font-medium text-xl">Doctor</h2>
         </button>
@@ -39,6 +44,7 @@ const Role = ({ role }: { role: number }) => {
           <h2 className="py-2 font-medium text-xl">Laboratorian</h2>
         </button>
       )
+
     case 4:
       return (
         <button className="bg-blue-50 border-opacity-10 border-blue-800 border shadow-lg w-1/2 sm:w-1/3  lg:w-1/5 mx-6 flex flex-col items-center justify-center  my-6 ">
