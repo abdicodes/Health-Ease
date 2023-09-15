@@ -1,5 +1,5 @@
 import React from 'react'
-import { Event } from '../../../types'
+import { Event } from '../../types'
 import DateComponent from './DateComponent'
 import { Link } from 'react-router-dom'
 import { MdReadMore } from 'react-icons/md'

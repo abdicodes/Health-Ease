@@ -1,11 +1,11 @@
 import { useMatch } from 'react-router-dom'
 // import data from '../../../data'
-import { Event } from '../../../types'
+import { Event } from '../../types'
 import DetailedEventContainer from './DetailedEventContainer'
 import { useNavigate } from 'react-router-dom'
-import NavBar from '../NavBar'
-import { useAuth } from '../../../context/AuthContext'
-import LoginPage from '../loginPage'
+import NavBar from '../patientPortal/NavBar'
+import { useAuth } from '../../context/AuthContext'
+import LoginPage from '../patientPortal/loginPage'
 
 const DetailedEvent = () => {
   const { patientResponse } = useAuth()
