@@ -15,7 +15,7 @@ const LandingPage = () => {
             you can change user's type anytime!{' '}
           </h3>
           <img
-            className="mx-auto mt-5  max-w-xs  bg-blue-600 bg-opacity-20 rounded-full md:max-w-sm "
+            className="mx-auto mt-5  w-36 md:w-44 lg:w-56 bg-blue-600 bg-opacity-20 rounded-full md:max-w-sm "
             src={Stethoscope}
           />
         </div>
