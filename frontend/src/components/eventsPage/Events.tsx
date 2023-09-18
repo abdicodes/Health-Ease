@@ -12,7 +12,7 @@ const Events: React.FC<EventsProps> = ({ events }) => {
   return (
     <main className="py-5 bg-blue-50 min-h-screen">
       <section className="mx-10  my-5">
-        <h2 className=" flex items-center text-2xl md:text-3xl shadow-2xl rounded-md text-center font-medium mb-6 text-blue-950 bg-blue-200 max-w-fit p-3 mx-auto">
+        <h2 className=" flex items-center text-xl md:text-2xl shadow-2xl rounded-md text-center font-medium mb-6 text-blue-950 bg-blue-200 max-w-fit p-3 mx-auto">
           <FiAlertOctagon className="mr-2" /> Upcoming Events
         </h2>
         {/* {events.filter((element) => isFutureEvent(element.dateTime)).length >
@@ -33,7 +33,7 @@ const Events: React.FC<EventsProps> = ({ events }) => {
         )} */}
       </section>
       <section className="mx-10 text-center my-10">
-        <h2 className=" flex items-center text-2xl md:text-3xl shadow-2xl rounded-md text-center font-medium mb-6 text-blue-950 bg-blue-200 max-w-fit p-3 mx-auto">
+        <h2 className=" flex items-center text-xl md:text-2xl shadow-2xl rounded-md text-center font-medium mb-6 text-blue-950 bg-blue-200 max-w-fit p-3 mx-auto">
           <FiCheckSquare className="mr-2 " /> Past Events
         </h2>
         {events

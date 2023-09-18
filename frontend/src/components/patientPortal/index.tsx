@@ -10,13 +10,14 @@ const PatientPortal = () => {
   if (!(patientResponse?.user && patientResponse.loginMode === 'patient')) {
     console.log(patientResponse)
     return <LoginPage />
-  } else
+  } else {
     return (
       <div>
         <NavBar />
         <Events events={patientResponse.events} />
       </div>
     )
+  }
 }
 
 export default PatientPortal

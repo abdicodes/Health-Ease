@@ -1,12 +1,14 @@
 import Events from '../../eventsPage/Events'
 import NavBar from '../NavBar'
 import { useAuth } from '../../../context/AuthContext'
-import { useMatch, Link } from 'react-router-dom'
+import { useMatch, Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { TbLoader } from 'react-icons/tb'
+import { MdOutlineArrowBack } from 'react-icons/md'
 
 const MedicalHistory = () => {
   const match = useMatch('/staff-portal/patients/:id')
+  const navigate = useNavigate()
   const { staffResponse, events, searchEventsApi } = useAuth()
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -38,7 +40,18 @@ const MedicalHistory = () => {
             No medical record is found for this patient!
           </div>
         ) : (
-          <Events events={events} />
+          <div className=" bg-blue-50 flex flex-col ">
+            <div className=" flex  justify-center items-centertext-2xl py-2  bg-blue-50 shadow-lg  ">
+              <button
+                className=" flex justify-center items-center text-2xl py-2 px-4 rounded-xl bg-blue-200 shadow-lg  "
+                onClick={() => navigate(-1)}
+              >
+                <MdOutlineArrowBack className="mr-2 " /> Back
+              </button>
+            </div>
+
+            <Events events={events} />
+          </div>
         ))}
 
       {loading && (
