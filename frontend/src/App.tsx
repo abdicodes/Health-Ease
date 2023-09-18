@@ -21,7 +21,7 @@ function App() {
         <Route path="/staff-portal" element={<StaffPortal />} />
         <Route path="/staff-portal/doctor" element={<DoctorPage />} />
         <Route path="/staff-portal/patients/:id" element={<MedicalHistory />} />
-        <Route path="/:id" element={<DetailedEvent />} />
+        <Route path="/detailed-event/" element={<DetailedEvent />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/*" element={<LandingPage />} />
       </Routes>

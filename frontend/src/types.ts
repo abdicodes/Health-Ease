@@ -139,3 +139,10 @@ export interface PatientCardProps {
   patient: PatientData
   onClose: () => void
 }
+
+export interface Appointment {
+  id: number
+  doctorName: string
+  startDate: string
+  endDate: string
+}
