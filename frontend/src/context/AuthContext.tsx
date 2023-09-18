@@ -6,7 +6,6 @@ import { Event } from '../types'
 import { PatientData, PatientProps } from '../types'
 const baseUrl: string = 'http://localhost:3001/api'
 
-console.log(baseUrl)
 interface LoginProps {
   username: string
   password: string
@@ -91,7 +90,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (token && id && name && loginMode === 'patient') {
       const fetchEvents = async () => {
         const events: AxiosResponse<Event[]> = await axios.get(
-          `${baseUrl}/events}/${id}`
+          `${baseUrl}/events/${id}`
         )
 
         setPatientResponse({
