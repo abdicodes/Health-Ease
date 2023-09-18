@@ -75,7 +75,7 @@ export const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
 }) => {
   const { diagnosis, dateTime, details, doctorName, type, comments } = event
   return (
-    <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
+    <main className="  bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
       <section className=" mx-10 my-2 ">
         <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
           <img src={doctor} className=" w-16  text-blue-800" />
@@ -121,7 +121,7 @@ export const DoctorVisitComponent: React.FC<DoctorVisitComponentProps> = ({
 const NurseVisitComponent: React.FC<NurseVisitComponentProps> = ({ event }) => {
   const { diagnosis, dateTime, details, nurseName, comments, type } = event
   return (
-    <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
+    <main className="   bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
       <section className=" mx-10 my-2 ">
         <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
           <img src={nurse} className=" w-16  text-blue-800" />
@@ -169,7 +169,7 @@ const EmergencyVisitComponent: React.FC<EmergencyVisitComponentProps> = ({
 }) => {
   const { diagnosis, dateTime, details, doctorName, type, comments } = event
   return (
-    <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
+    <main className="   bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
       <section className=" mx-10 my-2 ">
         <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
           <img src={emergency} className=" w-16  text-blue-800" />
@@ -215,7 +215,7 @@ const EmergencyVisitComponent: React.FC<EmergencyVisitComponentProps> = ({
 const AdmissionComponent: React.FC<AdmissionComponentProps> = ({ event }) => {
   const { diagnosis, dateTime, details, doctorName, type, comments } = event
   return (
-    <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
+    <main className="   bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
       <section className=" mx-10 my-2 ">
         <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
           <img src={hospital} className=" w-14  text-blue-800" />
@@ -263,7 +263,7 @@ const InPatientVisitComponent: React.FC<InPatientVisitComponentProps> = ({
 }) => {
   const { diagnosis, dateTime, details, doctorName, type, comments } = event
   return (
-    <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
+    <main className="   bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
       <section className=" mx-10 my-2 ">
         <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
           <img src={hospitalBed} className=" w-16  text-blue-800" />
@@ -309,7 +309,7 @@ const InPatientVisitComponent: React.FC<InPatientVisitComponentProps> = ({
 const DischargeComponent: React.FC<DischargeComponentProps> = ({ event }) => {
   const { diagnosis, dateTime, details, doctorName, type, comments } = event
   return (
-    <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
+    <main className="   bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 max-w-3xl">
       <section className=" mx-10 my-2 ">
         <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
           <img src={discharge} className=" w-14  text-blue-800" />
@@ -356,7 +356,7 @@ const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
   const { doctorName, tests, dateTime, comments, type } = event
   return (
     <>
-      <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 w-auto">
+      <main className="  bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 w-auto">
         <section className=" mx-10 my-2 ">
           <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
             <img src={lab} aria-label="lab" className=" w-14  text-blue-800" />
@@ -441,7 +441,7 @@ const ScanComponent: React.FC<ScanComponentProps> = ({ event }) => {
   const { doctorName, image, comments, dateTime, type } = event
   return (
     <>
-      <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 w-auto">
+      <main className="   bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 w-auto">
         <section className=" mx-10 my-2 ">
           <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
             <img
@@ -510,7 +510,7 @@ const PrescriptionComponent: React.FC<PrescriptionComponentProps> = ({
   const { dateTime, comments, doctorName, type, drugs } = event
   return (
     <>
-      <main className="  bg-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 w-auto">
+      <main className="   bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 w-auto">
         <section className=" mx-10 my-2 ">
           <div className="text-blue-950 flex items-center  pt-4 justify-center mb-6">
             <img

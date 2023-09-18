@@ -19,9 +19,7 @@ const DetailedEvent = () => {
 
           <button
             className="bg-blue-700 font-medium text-white p-2 px-4 my-4 rounded-2xl shadow-lg hover:bg-blue-600 cursor-pointer"
-            onClick={() => {
-              navigate(-1)
-            }}
+            onClick={() => navigate(-1)}
           >
             Go Back
           </button>
