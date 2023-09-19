@@ -1,4 +1,9 @@
-import express, { RequestHandler } from 'express'
+import express, {
+  NextFunction,
+  Request,
+  RequestHandler,
+  Response,
+} from 'express'
 import {
   LabEvent,
   Patient,
@@ -13,6 +18,18 @@ import {
   PrescriptionEvent,
 } from '../models'
 import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
+
+interface RequestWithToken extends Request {
+  token?: string
+  user?: Patient | Staff | null
+}
+
+interface BasicRequestBody {
+  patientId: number
+  diagnosis: string
+  details: string
+  comments?: string
+}
 
 const router = express.Router()
 
@@ -289,18 +306,47 @@ router.get('/:id', (async (req, res, next) => {
 }) as RequestHandler)
 
 router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
-  _req,
-  res,
-  next
+  req: RequestWithToken,
+  res: Response,
+  next: NextFunction
 ) => {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const newTest = await LabEvent.create(_req.body)
-    res.send(newTest)
+    console.log('Im here successfully')
+    const staffId = req.user?.id
+
+    if (!staffId) {
+      res.status(400).json({
+        error: 'Unauthorized access. Staff could have not been verified',
+      })
+      return
+    }
+
+    const type = req.body.type as string
+    console.log(req.body)
+    if (type === 'Doctor Visit') {
+      console.log('im in if brackkets')
+      const { patientId, diagnosis, details, comments } =
+        req.body as BasicRequestBody
+
+      const event = await OutpatientVisit.create({
+        staffId,
+        patientId,
+        diagnosis,
+        details,
+        comments,
+        type,
+      })
+
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+    next()
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)
   }
-}) as RequestHandler)
+}) as unknown as RequestHandler)
 
 export default router
