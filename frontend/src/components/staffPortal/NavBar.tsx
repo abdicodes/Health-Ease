@@ -5,7 +5,8 @@ https://flowbite.com/docs/components/navbar/#sticky-navbar
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { useAuth } from '../../context/AuthContext'
-import { FiMenu, FiHome, FiMail, FiSettings, FiLogOut } from 'react-icons/fi'
+import { FiMenu, FiMail, FiSettings, FiLogOut } from 'react-icons/fi'
+import { MdOutlineDashboard } from 'react-icons/md'
 import heart from '/heart.png'
 import { useNavigate } from 'react-router-dom'
 
@@ -27,7 +28,7 @@ const NavBar = () => {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="#" className="flex items-center">
             <img src={heart} className="h-8 mr-1" alt="Flowbite Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-blue-950">
+            <span className="self-center text-xl font-semibold whitespace-nowrap text-blue-950">
               Health Ease
             </span>
           </a>
@@ -57,15 +58,16 @@ const NavBar = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <a
+                        onClick={() => navigate('/staff-portal')}
                         href="#"
                         className={classNames(
                           active
                             ? 'bg-blue-200 text-black font-semibold'
                             : 'text-blue-950',
-                          'block px-4 py-2 text-sm'
+                          ' px-4 py-2 text-sm flex items-center'
                         )}
                       >
-                        Dashboard
+                        <MdOutlineDashboard className="mr-1" /> Dashboard
                       </a>
                     )}
                   </Menu.Item>
@@ -77,10 +79,10 @@ const NavBar = () => {
                           active
                             ? 'bg-blue-200 text-black font-semibold'
                             : 'text-blue-950',
-                          'block px-4 py-2 text-sm'
+                          'px-4 py-2 text-sm flex items-center'
                         )}
                       >
-                        Messages
+                        <FiMail className="mr-1" /> Messages
                       </a>
                     )}
                   </Menu.Item>
@@ -94,10 +96,10 @@ const NavBar = () => {
                           active
                             ? 'bg-blue-200 text-black font-semibold'
                             : 'text-blue-950',
-                          'block px-4 py-2 text-sm'
+                          'px-4 py-2 text-sm flex items-center'
                         )}
                       >
-                        Settings
+                        <FiSettings className="mr-1" /> Settings
                       </a>
                     )}
                   </Menu.Item>
@@ -112,10 +114,10 @@ const NavBar = () => {
                           active
                             ? 'bg-blue-200 text-black font-semibold'
                             : 'text-blue-950',
-                          'block px-4 py-2 text-sm'
+                          'px-4 py-2 text-sm flex items-center'
                         )}
                       >
-                        Log out
+                        <FiLogOut className="mr-1" /> Log out
                       </a>
                     )}
                   </Menu.Item>
@@ -127,10 +129,10 @@ const NavBar = () => {
           <div className="hidden w-full md:block md:w-auto">
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg  md:flex-row md:space-x-2 lg:space-x-10 md:mt-0 md:border-0 ">
               <li
-                onClick={() => console.log('hello')}
-                className="bg-blue-500 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-24  cursor-pointer mx-5 hover:bg-blue-600"
+                onClick={() => navigate('/staff-portal')}
+                className="bg-blue-500 rounded-full shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-md w-32  cursor-pointer mx-5 hover:bg-blue-600"
               >
-                <FiHome className="text-l" />
+                <MdOutlineDashboard className="text-l" />
                 <h2 className=" my-1 mx-2 font-medium ">Dashboard</h2>
               </li>
 

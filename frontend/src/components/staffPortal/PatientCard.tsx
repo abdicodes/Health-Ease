@@ -99,7 +99,7 @@ const PatientCard = ({ patient, onClose }: PatientCardProps) => {
           onClick={onClose}
           className="   text-red-600 py-3 rounded-lg my-1 cursor-pointer w-full font-medium flex items-center justify-center hover:text-red-700"
         >
-          <AiOutlineCloseCircle className="mx-1 text-2xl" />
+          <AiOutlineCloseCircle className="mx-1 text-2xl" /> Close
         </button>
       </div>
     </main>
