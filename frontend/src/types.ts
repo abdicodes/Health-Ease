@@ -146,3 +146,60 @@ export interface Appointment {
   startDate: string
   endDate: string
 }
+
+export interface BasicFormValues {
+  diagnosis: string
+  details: string
+  comments?: string
+  patientId: number
+}
+
+export interface OutpatientFormValues extends BasicFormValues {
+  type: EventTypes.DoctorVisit
+}
+
+export interface InpatientFormValues extends BasicFormValues {
+  type: EventTypes.InPatientVisit
+}
+
+export interface DischargeFormValues extends BasicFormValues {
+  type: EventTypes.Discharge
+}
+
+export interface EmergencyFormValues extends BasicFormValues {
+  type: EventTypes.EmergencyVisit
+}
+
+export interface NurseFormValues extends BasicFormValues {
+  type: EventTypes.NurseVisit
+}
+
+export interface AdmissionValues extends BasicFormValues {
+  type: EventTypes.Admission
+}
+
+export interface LabFormValues {
+  tests: Test[]
+  comments?: string
+}
+
+export interface ScanFormValues {
+  tests: Image[]
+  comments?: string
+}
+
+export interface PrescriptionFormValues {
+  tests: Drug[]
+  comments?: string
+}
+
+export type EntryFormValues =
+  | OutpatientFormValues
+  | InpatientFormValues
+  | DischargeFormValues
+  | AdmissionValues
+  | NurseFormValues
+  | EmergencyFormValues
+  | LabFormValues
+  | ScanFormValues
+  | PrescriptionFormValues

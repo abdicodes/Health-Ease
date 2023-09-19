@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MdReadMore } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { PatientData } from '../../../types'
 import PatientCard from '../PatientCard'
 import PatientSearch from '../PatientSearch'
@@ -44,6 +44,7 @@ const SinglePatient = ({
   openPatientCard: (patient: PatientData) => void
   isPatientCardOpen: boolean
 }) => {
+  const navigate = useNavigate()
   return (
     <main className=" " tabIndex={0} onKeyDown={handleKeyDown}>
       <div
@@ -61,7 +62,12 @@ const SinglePatient = ({
           </div>
           <div className="  mr-4 flex items-end justify-end flex-col flex-1 md:flex-row   ">
             <div>
-              <button className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  ">
+              <button
+                className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  "
+                onClick={() =>
+                  navigate(`/staff-portal/new-entry/${patient.id}`)
+                }
+              >
                 <MdReadMore className="text-2xl mr-1" /> New Entry
               </button>
             </div>

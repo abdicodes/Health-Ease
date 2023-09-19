@@ -43,10 +43,10 @@ const MedicalHistory = () => {
           <div className=" bg-blue-50 flex flex-col ">
             <div className=" flex  justify-center items-centertext-2xl py-2  bg-blue-50 shadow-lg  ">
               <button
-                className=" flex justify-center items-center text-2xl py-2 px-4 rounded-xl bg-blue-200 shadow-lg  "
+                className=" flex justify-center items-center text-xl md:text-2xl py-2 px-4 rounded-md bg-blue-200 shadow-lg mt-4 "
                 onClick={() => navigate(-1)}
               >
-                <MdOutlineArrowBack className="mr-2 " /> Back
+                <MdOutlineArrowBack className="mr-2 " /> Go Back
               </button>
             </div>
 

@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { Event } from '../types'
-import { PatientData, PatientProps } from '../types'
+import { PatientData, PatientProps, EntryFormValues } from '../types'
 const baseUrl: string = 'http://localhost:3001/api'
 
 interface LoginProps {
@@ -37,6 +37,7 @@ interface AuthContextType {
   searchEventsApi: (id: string) => Promise<void>
   patientLogin: ({ username, password }: LoginProps) => Promise<void>
   searchPatientApi: (id: string) => Promise<void>
+  addEntry: (values: EntryFormValues) => Promise<void>
   staffLogin: ({ username, password }: LoginProps) => Promise<void>
   signUp: ({
     username,
@@ -79,6 +80,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   )
   const [events, setEvents] = useState<Event[]>([])
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
+
+  const config = {
+    headers: { Authorization: `Bearer ${staffResponse?.token}` },
+  }
 
   useEffect(() => {
     // Check if a token is saved in localStorage and set the user accordingly
@@ -134,6 +139,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
   const setEvent = (event: Event) => {
     setSelectedEvent(event)
+  }
+
+  const addEntry = async (values: EntryFormValues) => {
+    try {
+      const response: AxiosResponse<Event> = await axios.post(
+        `${baseUrl}/events`,
+        values,
+        config
+      )
+
+      console.log(response.data)
+    } catch (error) {
+      // Handle login error (e.g., show an error message)
+      console.error('Login error:', error)
+    }
   }
   // to log in the patients
   const patientLogin = async ({ username, password }: LoginProps) => {
@@ -265,6 +285,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         patientErrorMessage,
         events,
         selectedEvent,
+        addEntry,
         setEvent,
         searchEventsApi,
         searchPatientApi,
