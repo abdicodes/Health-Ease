@@ -18,7 +18,7 @@ interface Drug {
 }
 
 //isNormal should return true
-interface Test {
+export interface Test {
   name: string
   result?: string
 }
