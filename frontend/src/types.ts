@@ -149,6 +149,7 @@ export interface AppointmentFormValues {
   duration: string
   patientId: number
   type: EventTypes.Appointment
+  comments?: string
 }
 
 export interface BasicFormValues {

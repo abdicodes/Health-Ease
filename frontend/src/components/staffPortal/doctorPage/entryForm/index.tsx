@@ -1,35 +1,30 @@
-// import OutpatientForm from './OutPatientForm'
-// import { useAuth } from '../../../../context/AuthContext'
+import { useState } from 'react'
+import { useAuth } from '../../../../context/AuthContext'
 import heart from '/heart.png'
 import { useMatch, useNavigate } from 'react-router-dom'
-
 import { EntryFormValues } from '../../../../types'
-// import LabForm from './Labform'
 import AdmissionForm from './AdmissionForm'
 import LabForm from './Labform'
 import OutpatientForm from './OutPatientForm'
-
-import ScanForm from './ScanForm'
-import { useState } from 'react'
-
-import { IoArrowBackOutline } from 'react-icons/io5'
+import AppointmentForm from './AppointmentForm'
 import InpatientForm from './InpatientForm'
 import EmergencyForm from './EmergencyForm'
 import DischargeForm from './DischargeForm'
+import ScanForm from './ScanForm'
+import { IoArrowBackOutline } from 'react-icons/io5'
 import { FaExchangeAlt } from 'react-icons/fa'
 
 const AddEntry = () => {
   const [selectedForm, setSelectedForm] = useState<string | null>(null)
   const match = useMatch('/staff-portal/new-entry/:id')
-  const navigate = useNavigate()
   const id = match?.params.id
-  // const navigate = useNavigate()
-  // const { addEntry } = useAuth()
+  const navigate = useNavigate()
+  const { addEntry } = useAuth()
 
   const handleSubmit = async (values: EntryFormValues) => {
     try {
       console.log(values)
-      // await addEntry(values)
+      await addEntry(values)
     } catch (e) {
       console.error(e)
     }
@@ -148,6 +143,7 @@ const AddEntry = () => {
           </div>
         </div>
       )}
+      <AppointmentForm onSubmit={handleSubmit} patientId={Number(id)} />
     </div>
   )
 }

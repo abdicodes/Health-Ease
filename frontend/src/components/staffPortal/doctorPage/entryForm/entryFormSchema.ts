@@ -33,4 +33,5 @@ export const appointmentSchema = yup.object().shape({
     minutes: yup.number().required('Minutes are required'),
   }),
   duration: yup.number().required('Duration is required'),
+  comments: yup.string(),
 })

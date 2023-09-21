@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { MdReadMore, MdPostAdd } from 'react-icons/md'
 import { LiaFileMedicalAltSolid } from 'react-icons/lia'
 import { Link, useNavigate } from 'react-router-dom'
@@ -134,19 +134,12 @@ const PatientList = ({
   )
 }
 const DoctorDashboard = () => {
-  // const [searchedPatient, setSearchedPatient] = useState<PatientData | null>(
-  //   null
-  // )
-
   const [selectedPatient, setSelectedPatient] = useState<PatientData | null>(
     null
   )
 
   const { patient, patientErrorMessage } = useAuth()
 
-  useEffect(() => {
-    // if (patient) setSearchedPatient(patient)
-  }, [patient, patientErrorMessage])
   // Function to open the patient card
   const openPatientCard = (patient: PatientData) => {
     setSelectedPatient(patient)
@@ -187,6 +180,10 @@ const DoctorDashboard = () => {
           {patientErrorMessage}
         </div>
       )}
+
+      <div className="flex items-center justify-center text-xl text-blue-800 my-4">
+        Admitted patients
+      </div>
 
       <PatientList
         patients={patients}
