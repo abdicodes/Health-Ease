@@ -315,6 +315,59 @@ Discharge.init(
   }
 )
 
+class Appointment extends Model {
+  id!: number
+  type!: string
+  patientId!: number
+  staffId!: string
+  comments?: string
+  startDate!: Date
+  endDate!: Date
+}
+
+Appointment.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Doctor Visit',
+    },
+    patientId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'patients', key: 'id' },
+    },
+    staffId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'staffs', key: 'id' },
+    },
+    comments: {
+      type: DataTypes.STRING,
+    },
+
+    startDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    endDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    underscored: true,
+    modelName: 'appointment',
+  }
+)
+
 export {
   OutpatientVisit,
   InpatientVisit,
@@ -322,4 +375,5 @@ export {
   NurseVisit,
   Admission,
   Discharge,
+  Appointment,
 }

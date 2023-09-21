@@ -18,6 +18,7 @@ import {
   PrescriptionEvent,
 } from '../models'
 import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
+import { Image, Test } from '../types'
 
 interface RequestWithToken extends Request {
   token?: string
@@ -31,6 +32,29 @@ interface BasicRequestBody {
   comments?: string
 }
 
+interface LabRequestBody {
+  patientId: number
+  tests: Test[]
+  comments?: string
+}
+
+interface ScanRequestBody {
+  patientId: number
+  images: Image[]
+  comments?: string
+}
+
+interface AppointmentRequestBody {
+  date: string
+  time: {
+    hours: string
+    minutes: string
+  }
+  duration: string
+  patientId: number
+  type: string
+  comments?: string
+}
 const router = express.Router()
 
 router.get('/', (async (_req, res, next) => {
@@ -324,7 +348,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
     const type = req.body.type as string
     console.log(req.body)
     if (type === 'Doctor Visit') {
-      console.log('im in if brackkets')
       const { patientId, diagnosis, details, comments } =
         req.body as BasicRequestBody
 
@@ -342,6 +365,152 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
       res.send(event)
       return
     }
+
+    if (type === 'In-Patient Visit') {
+      const { patientId, diagnosis, details, comments } =
+        req.body as BasicRequestBody
+
+      const event = await InpatientVisit.create({
+        staffId,
+        patientId,
+        diagnosis,
+        details,
+        comments,
+        type,
+      })
+
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+
+    if (type === 'Admission') {
+      const { patientId, diagnosis, details, comments } =
+        req.body as BasicRequestBody
+
+      const event = await Admission.create({
+        staffId,
+        patientId,
+        diagnosis,
+        details,
+        comments,
+        type,
+      })
+
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+
+    if (type === 'Nurse Visit') {
+      const { patientId, diagnosis, details, comments } =
+        req.body as BasicRequestBody
+
+      const event = await NurseVisit.create({
+        staffId,
+        patientId,
+        diagnosis,
+        details,
+        comments,
+        type,
+      })
+
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+
+    if (type === 'Emergency Visit') {
+      const { patientId, diagnosis, details, comments } =
+        req.body as BasicRequestBody
+
+      const event = await EmergencyVisit.create({
+        staffId,
+        patientId,
+        diagnosis,
+        details,
+        comments,
+        type,
+      })
+
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+
+    if (type === 'Discharge') {
+      const { patientId, diagnosis, details, comments } =
+        req.body as BasicRequestBody
+
+      const event = await Discharge.create({
+        staffId,
+        patientId,
+        diagnosis,
+        details,
+        comments,
+        type,
+      })
+
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+
+    if (type === 'Laboratory tests') {
+      const { patientId, tests, comments } = req.body as LabRequestBody
+
+      const event = await LabEvent.create({
+        orderedBy: staffId,
+        patientId,
+        tests,
+        comments,
+        type,
+      })
+
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+
+    if (type === 'Appointment') {
+      const { patientId, date, time, duration , type, comments} = req.body as AppointmentRequestBody
+
+      const event = await LabEvent.create({
+        staffId,
+        patientId,
+        date, time, duration , 
+        comments,
+        type,
+      })
+
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+
+    if (type === 'Medical Imaging') {
+      const { patientId, images, comments } = req.body as ScanRequestBody
+
+      const event = await LabEvent.create({
+        orderedBy: staffId,
+        patientId,
+        images,
+        comments,
+        type,
+      })
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+
     next()
   } catch (error) {
     // Pass the error to the next middleware for error handling
