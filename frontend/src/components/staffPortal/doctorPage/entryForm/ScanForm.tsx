@@ -66,7 +66,7 @@ const ScanFormFields: React.FC<ScanFormProps> = () => {
                   <button
                     type="button"
                     onClick={() => remove(index)}
-                    className="flex items-center mt-7 mr-1 text-rose-800"
+                    className="flex items-center mt-7 mr-1 text-red-700 hover:text-red-900"
                   >
                     <RiDeleteBin5Line className="text-3xl" />
                     delete
@@ -75,7 +75,7 @@ const ScanFormFields: React.FC<ScanFormProps> = () => {
               ))}
 
               <button
-                className="flex items-center justify-center mt-4 mr-1 text-blue-800 text-lg"
+                className="flex items-center justify-center mt-4 mr-1 text-blue-700 hover:text-blue-900 text-lg "
                 type="button"
                 onClick={() => push({ name: '' })} // Push a new scan with an empty name
               >
