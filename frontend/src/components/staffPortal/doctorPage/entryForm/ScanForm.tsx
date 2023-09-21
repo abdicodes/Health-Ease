@@ -13,7 +13,7 @@ import {
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { MdPostAdd } from 'react-icons/md'
 
-import { labSchema } from './entryFormSchema'
+import { scanSchema } from './entryFormSchema'
 import { ScanFormValues, EventTypes, Image } from '../../../../types'
 
 interface ScanFormProps {
@@ -112,7 +112,7 @@ const ScanForm: React.FC<ScanFormProps> = ({ onSubmit, patientId }) => {
         patientId: patientId,
         type: EventTypes.Scan,
       }}
-      validationSchema={labSchema}
+      validationSchema={scanSchema}
       onSubmit={handleSubmit}
     >
       <ScanFormFields onSubmit={handleSubmit} patientId={patientId} />
