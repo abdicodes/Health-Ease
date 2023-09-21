@@ -24,3 +24,13 @@ export const scanSchema = yup.object().shape({
         .shape({ name: yup.string().required('Scan name is required') })
     ),
 })
+
+// Define a yup schema for form validation
+export const appointmentSchema = yup.object().shape({
+  date: yup.date().required('Date is required'),
+  time: yup.object().shape({
+    hours: yup.number().required('Hour is required'),
+    minutes: yup.number().required('Minutes are required'),
+  }),
+  duration: yup.number().required('Duration is required'),
+})

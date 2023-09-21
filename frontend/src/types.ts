@@ -8,6 +8,7 @@ export enum EventTypes {
   Lab = 'Laboratory tests',
   Scan = 'Medical Imaging',
   Prescription = 'Prescriptions',
+  Appointment = 'Appointment',
 }
 
 interface Drug {
@@ -139,11 +140,15 @@ export interface PatientCardProps {
   onClose: () => void
 }
 
-export interface Appointment {
-  id: number
-  doctorName: string
-  startDate: string
-  endDate: string
+export interface AppointmentFormValues {
+  date: string
+  time: {
+    hours: string
+    minutes: string
+  }
+  duration: string
+  patientId: number
+  type: EventTypes.Appointment
 }
 
 export interface BasicFormValues {
@@ -202,3 +207,4 @@ export type EntryFormValues =
   | LabFormValues
   | ScanFormValues
   | PrescriptionFormValues
+  | AppointmentFormValues
