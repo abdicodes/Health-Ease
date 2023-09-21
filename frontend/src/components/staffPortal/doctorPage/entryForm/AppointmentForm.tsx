@@ -17,82 +17,105 @@ const AppointmentFormFields: React.FC<AppointmentFormProps> = () => {
   return (
     <div className="flex justify-center mt-10 ">
       <Form className="w-2/3">
-        <div className="my-4">
-          <label
-            className="block text-neutral-800 text-opacity-60 text-md font-medium pt-2 pb-1 max-w-xl"
-            htmlFor="date"
-          >
-            Date
-          </label>
-          <Field
-            type="date"
-            className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 block w-full appearance-none"
-            id="date"
-            name="date"
-          />
-          <ErrorMessage
-            component="a"
-            className="text-red-500 text-sm"
-            name="time.date"
-          />
-        </div>
-        <div className="my-4">
-          <label
-            className="block text-neutral-800 text-opacity-60 text-md font-medium pt-2 pb-1 max-w-xl"
-            htmlFor="time"
-          >
-            Time
-          </label>
-          <div className="flex">
-            <Field
-              as="select"
-              name="time.hours"
-              className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 w-1/2 mr-2"
+        <div className="flex items-center flex-col">
+          <div className="my-4  w-full md:w-1/2  ">
+            <label
+              className="block text-neutral-800 text-opacity-60 text-md font-medium pt-2 pb-1 "
+              htmlFor="date"
             >
-              <option value="">Select Hour</option>
-              {Array.from({ length: 10 }, (_, i) => (
-                <option key={i} value={i + 8}>
-                  {i + 8}
-                </option>
-              ))}
-            </Field>
+              Appointment Date
+            </label>
             <Field
-              as="select"
-              name="time.minutes"
-              className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 w-1/2"
-            >
-              <option value="">Select Minutes</option>
-
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i} value={i * 5}>
-                  {i * 5}
-                </option>
-              ))}
-            </Field>
+              type="date"
+              className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 block  w-full appearance-none"
+              id="date"
+              name="date"
+            />
+            <ErrorMessage
+              component="a"
+              className="text-red-500 text-sm"
+              name="time.date"
+            />
           </div>
-          <ErrorMessage
-            component="div"
-            className="text-red-500 text-sm"
-            name="time.minutes"
-          />
+          <div className="my-4  w-full md:w-1/2">
+            <label
+              className="block text-neutral-800 text-opacity-60 text-md font-medium pt-2 pb-1 max-w-xl"
+              htmlFor="time"
+            >
+              Time
+            </label>
+            <div className="flex">
+              <Field
+                as="select"
+                name="time.hours"
+                className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 w-1/2 mr-2"
+              >
+                <option value="">Select Hour</option>
+                {Array.from({ length: 10 }, (_, i) => (
+                  <option key={i} value={i + 8}>
+                    {i + 8}
+                  </option>
+                ))}
+              </Field>
+              <Field
+                as="select"
+                name="time.minutes"
+                className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 w-1/2"
+              >
+                <option value="">Select Minutes</option>
+
+                {Array.from({ length: 12 }, (_, i) => (
+                  <option key={i} value={i * 5}>
+                    {i * 5}
+                  </option>
+                ))}
+              </Field>
+            </div>
+            <ErrorMessage
+              component="div"
+              className="text-red-500 text-sm"
+              name="time.minutes"
+            />
+          </div>
+          <div className="my-4  w-full md:w-1/2">
+            <label
+              className="block text-neutral-800 text-opacity-60 text-md font-medium pt-2 pb-1 max-w-xl"
+              htmlFor="duration"
+            >
+              Duration (minutes)
+            </label>
+            <Field
+              type="number"
+              className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 block w-full appearance-none"
+              id="duration"
+              name="duration"
+            />
+            <ErrorMessage
+              component="a"
+              className="text-red-500 text-sm"
+              name="duration"
+            />
+          </div>
         </div>
-        <div className="my-4">
+        <div className="my-4 ">
           <label
             className="block text-neutral-800 text-opacity-60 text-md font-medium pt-2 pb-1 max-w-xl"
-            htmlFor="duration"
+            htmlFor="comments"
           >
-            Duration (minutes)
+            Comments
           </label>
           <Field
-            type="number"
-            className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 block w-full appearance-none"
-            id="duration"
-            name="duration"
+            className="text-gray-700 focus:outline-none focus:shadow-outline border-2 rounded-lg border-gray-300 py-2 px-4 block w-full appearance-none"
+            id="comments"
+            name="comments"
+            placeholder="  comments (optional)"
+            rows={3}
+            component="textarea"
           />
           <ErrorMessage
             component="a"
             className="text-red-500 text-sm"
-            name="duration"
+            name="comments"
           />
         </div>
 
@@ -130,6 +153,7 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
           },
           duration: '',
           patientId: patientId,
+          comments: '',
           type: EventTypes.Appointment,
         }}
         validationSchema={appointmentSchema}
