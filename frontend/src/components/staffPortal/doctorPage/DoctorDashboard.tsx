@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { MdReadMore } from 'react-icons/md'
+import { MdReadMore, MdPostAdd } from 'react-icons/md'
+import { LiaFileMedicalAltSolid } from 'react-icons/lia'
 import { Link, useNavigate } from 'react-router-dom'
 import { PatientData } from '../../../types'
 import PatientCard from '../PatientCard'
@@ -68,13 +69,14 @@ const SinglePatient = ({
                   navigate(`/staff-portal/new-entry/${patient.id}`)
                 }
               >
-                <MdReadMore className="text-2xl mr-1" /> New Entry
+                <MdPostAdd className="text-2xl mr-1" /> New Entry
               </button>
             </div>
             <Link to={`/staff-portal/patients/${patient.id}`}>
               <div>
                 <button className="flex items-center my-2 mx-2 p-2.5  rounded-2xl  shadow-xl border-blue-300 border bg-blue-50 text-blue-900 hover:bg-blue-500  hover:text-white md:mx-2  ">
-                  <MdReadMore className="text-lg mr-1" /> Medical history
+                  <LiaFileMedicalAltSolid className="text-xl mr-1" /> Medical
+                  history
                 </button>
               </div>
             </Link>
@@ -116,7 +118,7 @@ const PatientList = ({
       >
         {patients.map((patient) => (
           <SinglePatient
-            key={patient.id} // Don't forget to add a unique key for each element in a list
+            key={patient.id}
             patient={patient}
             openPatientCard={openPatientCard}
             closePatientCard={closePatientCard}

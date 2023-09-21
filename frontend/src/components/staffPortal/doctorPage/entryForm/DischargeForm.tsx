@@ -79,10 +79,10 @@ const DischargeFormFields: React.FC<DischargeFormProps> = () => {
           />
         </div>
 
-        <div className="mt-8">
+        <div className="mt-8 flex justify-center ">
           <button
             type="submit"
-            className={` text-white font-bold py-2 px-4 w-full rounded-xl shadow-lg  ${isDisabledButton}`}
+            className={` text-white font-bold py-2 px-4 rounded-xl shadow-lg w-3/5 md:w-2/5 lg:w-1/4  ${isDisabledButton}`}
             disabled={!formik.isValid || !formik.dirty} // Disable if not valid or not dirty
           >
             Submit
