@@ -16,8 +16,8 @@ const AdmissionFormFields: React.FC<AdmissionFormProps> = () => {
       : ' bg-blue-500 hover:bg-blue-600'
 
   return (
-    <div className="flex justify-center mt-10">
-      <Form>
+    <div className="flex justify-center mt-10 ">
+      <Form className="w-2/3">
         <div className="my-4">
           <label
             className="block text-neutral-800 text-opacity-60 text-md font-medium pt-2 pb-1 max-w-xl"
@@ -26,7 +26,7 @@ const AdmissionFormFields: React.FC<AdmissionFormProps> = () => {
             Diagnosis
           </label>
           <Field
-            className="text-gray-700 focus:outline-none focus:shadow-outline border-b-2 border-gray-300 py-2 px-4 block w-full appearance-none"
+            className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 block w-full appearance-none"
             id="diagnosis"
             name="diagnosis"
             placeholder=".... Enter diagnosis here"
@@ -42,13 +42,13 @@ const AdmissionFormFields: React.FC<AdmissionFormProps> = () => {
             className="block text-neutral-800 text-opacity-60 text-md font-medium pt-2 pb-1 max-w-xl"
             htmlFor="details"
           >
-            Summary
+            Admission Summary
           </label>
           <Field
-            className="text-gray-700 focus:outline-none focus:shadow-outline border-b-2 border-gray-300 py-2 px-4 block w-full appearance-none"
+            className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 block w-full appearance-none"
             id="details"
             name="details"
-            placeholder="... Visit summary"
+            placeholder="... Admission summary"
             rows={5}
             component="textarea"
           />
@@ -67,7 +67,7 @@ const AdmissionFormFields: React.FC<AdmissionFormProps> = () => {
             Comments
           </label>
           <Field
-            className="text-gray-700 focus:outline-none focus:shadow-outline border-b-2 border-gray-300 py-2 px-4 block w-full appearance-none"
+            className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 block w-full appearance-none"
             id="comments"
             name="comments"
             placeholder="  comments (optional)"
@@ -103,19 +103,21 @@ const AdmissionForm: React.FC<AdmissionFormProps> = ({
   }
 
   return (
-    <Formik
-      initialValues={{
-        diagnosis: '',
-        details: '',
-        comments: '',
-        patientId: patientId,
-        type: EventTypes.Admission,
-      }}
-      validationSchema={basicSchema}
-      onSubmit={handleSubmit}
-    >
-      <AdmissionFormFields onSubmit={handleSubmit} patientId={patientId} />
-    </Formik>
+    <div>
+      <Formik
+        initialValues={{
+          diagnosis: '',
+          details: '',
+          comments: '',
+          patientId: patientId,
+          type: EventTypes.Admission,
+        }}
+        validationSchema={basicSchema}
+        onSubmit={handleSubmit}
+      >
+        <AdmissionFormFields onSubmit={handleSubmit} patientId={patientId} />
+      </Formik>
+    </div>
   )
 }
 
