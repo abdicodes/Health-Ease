@@ -9,6 +9,7 @@ import {
   NurseVisit,
   Admission,
   Discharge,
+  Appointment,
 } from './event'
 
 Role.belongsToMany(Staff, { through: StaffRole, as: 'staff_list' })
@@ -29,6 +30,8 @@ EmergencyVisit.belongsTo(Staff, {
 NurseVisit.belongsTo(Staff, { foreignKey: 'staffId', as: 'nurse_visit_staff' })
 Admission.belongsTo(Staff, { foreignKey: 'staffId', as: 'admission_staff' })
 Discharge.belongsTo(Staff, { foreignKey: 'staffId', as: 'discharge_staff' })
+
+Appointment.belongsTo(Staff, { foreignKey: 'staffId', as: 'appointment_staff' })
 
 LabEvent.belongsTo(Staff, { foreignKey: 'orderedBy', as: 'lab_ordered_by' })
 LabEvent.belongsTo(Staff, { foreignKey: 'processedBy', as: 'lab_processed_by' })
@@ -72,6 +75,11 @@ Discharge.belongsTo(Patient, {
   foreignKey: 'patientId',
   as: 'discharge_patient',
 })
+
+Appointment.belongsTo(Patient, {
+  foreignKey: 'patientId',
+  as: 'appointment_patient',
+})
 LabEvent.belongsTo(Patient, {
   foreignKey: 'patientId',
   as: 'lab_event_patient',
@@ -99,4 +107,5 @@ export {
   Admission,
   Discharge,
   PrescriptionEvent,
+  Appointment,
 }

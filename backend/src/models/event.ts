@@ -336,7 +336,7 @@ Appointment.init(
     type: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'Doctor Visit',
+      defaultValue: ' Appointment',
     },
     patientId: {
       type: DataTypes.INTEGER,
