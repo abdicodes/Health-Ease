@@ -474,12 +474,12 @@ const ScanComponent: React.FC<ScanComponentProps> = ({ event }) => {
                   <div className=" font-medium bg-blue-200 p-4 rounded-lg shadow-lg my-4 ">
                     image type: {image.name}
                   </div>
-                  {image.status && (
+                  {image.result && (
                     <div className=" leading-10 font-normal mx-2 max-w-4xl ">
                       {image.result}
                     </div>
                   )}
-                  {!image.status && (
+                  {!image.result && (
                     <div className="leading-8  border-orange-700 text-orange-700  rounded-xl font-semibold  ">
                       • pending
                     </div>

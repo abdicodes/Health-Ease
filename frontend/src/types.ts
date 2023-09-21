@@ -23,9 +23,8 @@ export interface Test {
   result?: string
 }
 
-interface Image {
+export interface Image {
   name: string
-  status: boolean
   result?: string
   isNormal?: boolean
 }
@@ -184,7 +183,7 @@ export interface LabFormValues {
 }
 
 export interface ScanFormValues {
-  tests: Image[]
+  images: Image[]
   comments?: string
 }
 
