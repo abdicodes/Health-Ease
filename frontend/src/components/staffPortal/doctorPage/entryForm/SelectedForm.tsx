@@ -7,7 +7,7 @@ import InpatientForm from './InpatientForm'
 import LabForm from './Labform'
 import OutpatientForm from './OutPatientForm'
 import ScanForm from './ScanForm'
-
+import PrescriptionForm from './PrescriptionForm'
 const SelectedForm = ({
   handleSubmit,
   patientId,
@@ -34,6 +34,8 @@ const SelectedForm = ({
       return <ScanForm patientId={patientId} onSubmit={handleSubmit} />
     case 'appointment':
       return <AppointmentForm patientId={patientId} onSubmit={handleSubmit} />
+    case 'prescription':
+      return <PrescriptionForm patientId={patientId} onSubmit={handleSubmit} />
     default:
       return (
         <div className="flex justify-center mt-1 text-neutral-700">

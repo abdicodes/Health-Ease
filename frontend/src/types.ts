@@ -202,7 +202,7 @@ export interface ScanFormValues {
 }
 
 export interface PrescriptionFormValues {
-  tests: Drug[]
+  drugs: Drug[]
   comments?: string
 }
 

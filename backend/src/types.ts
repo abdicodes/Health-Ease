@@ -11,7 +11,7 @@ export enum EventTypes {
   Appointment = 'Appointment',
 }
 
-interface Drug {
+export interface Drug {
   name: string
   quantity: number
   dose: string

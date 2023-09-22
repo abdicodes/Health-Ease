@@ -107,6 +107,13 @@ const AddEntry = () => {
             >
               Appointment
             </button>
+
+            <button
+              onClick={() => setSelectedForm('prescription')}
+              className="mx-4 bg-blue-500 text-white py-1  px-2 rounded-xl my-4 hover:bg-blue-600"
+            >
+              Prescription
+            </button>
           </div>
         </div>
       )}

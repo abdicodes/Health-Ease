@@ -19,7 +19,7 @@ import {
   Appointment,
 } from '../models'
 import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
-import { Image, Test } from '../types'
+import { Drug, Image, Test } from '../types'
 import { uuid } from 'uuidv4'
 
 interface RequestWithToken extends Request {
@@ -43,6 +43,12 @@ interface LabRequestBody {
 interface ScanRequestBody {
   patientId: string
   images: Image[]
+  comments?: string
+}
+
+interface PrescriptionRequestBody {
+  patientId: string
+  drugs: Drug[]
   comments?: string
 }
 
@@ -548,6 +554,23 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         orderedBy: staffId,
         patientId,
         images,
+        comments,
+        type,
+      })
+      console.log(event)
+
+      res.send(event)
+      return
+    }
+
+    if (type === 'Prescriptions') {
+      const { patientId, drugs, comments } = req.body as PrescriptionRequestBody
+
+      const event = await PrescriptionEvent.create({
+        id: uuid(),
+        orderedBy: staffId,
+        patientId,
+        drugs,
         comments,
         type,
       })
