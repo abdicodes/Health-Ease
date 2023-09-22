@@ -25,6 +25,17 @@ export const scanSchema = yup.object().shape({
     ),
 })
 
+export const prescriptionSchema = yup.object().shape({
+  drugs: yup.array().of(
+    yup.object().shape({
+      name: yup.string().required('Drug name is required'),
+      quantity: yup.number().required('Quantity is required'),
+      dose: yup.string().required('Drug dose is required'),
+      instruction: yup.string().required('Use instruction is required'),
+    })
+  ),
+})
+
 // Define a yup schema for form validation
 export const appointmentSchema = yup.object().shape({
   date: yup.date().required('Date is required'),
@@ -34,14 +45,4 @@ export const appointmentSchema = yup.object().shape({
   }),
   duration: yup.number().required('Duration is required'),
   comments: yup.string(),
-})
-
-export const prescriptionSchema = yup.object().shape({
-  images: yup
-    .array()
-    .of(
-      yup
-        .object()
-        .shape({ name: yup.string().required('Scan name is required') })
-    ),
 })
