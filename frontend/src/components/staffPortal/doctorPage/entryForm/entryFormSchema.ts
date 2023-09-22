@@ -35,3 +35,13 @@ export const appointmentSchema = yup.object().shape({
   duration: yup.number().required('Duration is required'),
   comments: yup.string(),
 })
+
+export const prescriptionSchema = yup.object().shape({
+  images: yup
+    .array()
+    .of(
+      yup
+        .object()
+        .shape({ name: yup.string().required('Scan name is required') })
+    ),
+})

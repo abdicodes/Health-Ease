@@ -4,7 +4,7 @@ import { InpatientFormValues, EventTypes } from '../../../../types'
 
 interface InpatientFormProps {
   onSubmit: (values: InpatientFormValues) => void
-  patientId: number
+  patientId: string
 }
 
 const InpatientFormFields: React.FC<InpatientFormProps> = () => {

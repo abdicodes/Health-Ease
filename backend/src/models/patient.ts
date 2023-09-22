@@ -8,7 +8,7 @@ enum GenderEnum {
 }
 
 interface PatientAttributes {
-  id?: number
+  id?: string
   name: string
   username: string
   password: string
@@ -21,7 +21,7 @@ interface PatientAttributes {
   isAdmitted?: boolean
 }
 class Patient extends Model<PatientAttributes> implements PatientAttributes {
-  id?: number
+  id?: string
   name!: string
   username!: string
   password!: string
@@ -37,10 +37,9 @@ class Patient extends Model<PatientAttributes> implements PatientAttributes {
 Patient.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,

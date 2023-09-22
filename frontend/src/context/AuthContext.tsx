@@ -56,7 +56,7 @@ interface AuthContextType {
 //  the user data structure
 interface UserData {
   name: string
-  id: number
+  id: string
 }
 
 //  the props type for AuthProvider
@@ -88,7 +88,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     // Check if a token is saved in localStorage and set the user accordingly
     const token = localStorage.getItem('token')
-    const id = Number(localStorage.getItem('id'))
+    const id = localStorage.getItem('id')
     const name = localStorage.getItem('name')
     const loginMode = localStorage.getItem('loginMode')
 

@@ -33,7 +33,7 @@ const PatientCard = ({ patient, onClose }: PatientCardProps) => {
           {patient.dateOfBirth}
         </div>
         <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1   rounded-xl   ">
-          ID Number: <PiIdentificationCard className="text-xl mx-1" />
+          ID: <PiIdentificationCard className="text-xl mx-1" />
           {patient.id}{' '}
           <button
             onClick={() => copyToClipboard(patient.id.toString(), setCopyId)}
@@ -55,7 +55,7 @@ const PatientCard = ({ patient, onClose }: PatientCardProps) => {
         </div>
         {patient.phoneNumber && (
           <div className="font-medium flex items-center text-base text-blue-950 my-1 p-2 mx-1   rounded-xl   ">
-            Phone Number: {patient.phoneNumber}{' '}
+            Phone Number: {patient.phoneNumber}
             <button
               onClick={() => copyToClipboard(patient.phoneNumber, setCopyPhone)}
             >

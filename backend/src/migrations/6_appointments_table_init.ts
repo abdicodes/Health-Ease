@@ -5,10 +5,9 @@ module.exports = {
     //  appointments
     await queryInterface.createTable('appointments', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       type: {
         type: DataTypes.STRING,
@@ -16,12 +15,12 @@ module.exports = {
         defaultValue: ' Appointment',
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
       staff_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },

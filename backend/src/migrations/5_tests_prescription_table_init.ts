@@ -5,10 +5,9 @@ module.exports = {
     // Lab event table
     await queryInterface.createTable('lab_events', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       type: {
         type: DataTypes.STRING,
@@ -16,18 +15,18 @@ module.exports = {
         defaultValue: 'Laboratory tests',
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
       ordered_by: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },
 
       processed_by: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: { model: 'staffs', key: 'id' },
       },
       tests: {
@@ -51,10 +50,9 @@ module.exports = {
     // Scan event table
     await queryInterface.createTable('scan_events', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
 
       type: {
@@ -63,21 +61,21 @@ module.exports = {
         defaultValue: 'Medical Imaging',
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
       ordered_by: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },
       processed_by: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: { model: 'staffs', key: 'id' },
       },
-      image: {
-        type: DataTypes.JSONB, // Store image objects here
+      images: {
+        type: DataTypes.ARRAY(DataTypes.JSONB), // Store image objects here
       },
       comments: {
         type: DataTypes.STRING,
@@ -96,10 +94,9 @@ module.exports = {
 
     await queryInterface.createTable('prescription_events', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       type: {
         type: DataTypes.STRING,
@@ -112,18 +109,18 @@ module.exports = {
         defaultValue: true,
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
       ordered_by: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },
 
       processed_by: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: { model: 'staffs', key: 'id' },
       },
       drugs: {

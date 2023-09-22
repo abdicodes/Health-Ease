@@ -13,16 +13,16 @@ import {
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { MdPostAdd } from 'react-icons/md'
 
-import { labSchema } from './entryFormSchema'
-import { LabFormValues, EventTypes, Test } from '../../../../types'
+import { prescriptionSchema } from './entryFormSchema'
+import { PrescriptionFormValues, EventTypes, Test } from '../../../../types'
 
-interface LabFormProps {
-  onSubmit: (values: LabFormValues) => void
-  patientId: string
+interface PrescriptionFormProps {
+  onSubmit: (values: PrescriptionFormValues) => void
+  patientId: number
 }
 
-const LabFormFields: React.FC<LabFormProps> = () => {
-  const formik = useFormikContext<LabFormValues>()
+const PrescriptionFormFields: React.FC<PrescriptionFormProps> = () => {
+  const formik = useFormikContext<PrescriptionFormValues>()
 
   const isDisabledButton: string =
     !formik.isValid || !formik.dirty
@@ -98,8 +98,11 @@ const LabFormFields: React.FC<LabFormProps> = () => {
   )
 }
 
-const LabForm: React.FC<LabFormProps> = ({ onSubmit, patientId }) => {
-  const handleSubmit = (values: LabFormValues) => {
+const PrescriptionForm: React.FC<PrescriptionFormProps> = ({
+  onSubmit,
+  patientId,
+}) => {
+  const handleSubmit = (values: PrescriptionFormValues) => {
     // Handle form submission here
     onSubmit(values)
   }
@@ -112,12 +115,12 @@ const LabForm: React.FC<LabFormProps> = ({ onSubmit, patientId }) => {
         patientId: patientId,
         type: EventTypes.Lab,
       }}
-      validationSchema={labSchema}
+      validationSchema={prescriptionSchema}
       onSubmit={handleSubmit}
     >
-      <LabFormFields onSubmit={handleSubmit} patientId={patientId} />
+      <PrescriptionFormFields onSubmit={handleSubmit} patientId={patientId} />
     </Formik>
   )
 }
 
-export default LabForm
+export default PrescriptionForm

@@ -10,10 +10,9 @@ module.exports = {
     // Create the patients table
     await queryInterface.createTable('patients', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING,

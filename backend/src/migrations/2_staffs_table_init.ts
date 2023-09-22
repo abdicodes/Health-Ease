@@ -6,10 +6,9 @@ module.exports = {
 
     await queryInterface.createTable('staffs', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING,

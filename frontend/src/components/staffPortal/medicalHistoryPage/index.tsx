@@ -21,23 +21,29 @@ const MedicalHistory = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [staffResponse])
 
+  console.log(events)
   return (
     <div>
       <NavBar />
       {!loading &&
         (!staffResponse?.user ? (
           <div className="flex  flex-col items-center justify-center mt-20 text-xl  ">
-            Your login information has not been verified{' '}
+            Your login information has not been verified
             <Link to="/staff-portal">
               <button className="text-blue-900">
-                {' '}
                 Click here to login again
               </button>
             </Link>
           </div>
         ) : events.length === 0 ? (
-          <div className="flex justify-center mt-20 text-xl font-semibold text-rose-900">
+          <div className="flex justify-center flex-col items-center mt-20 text-xl font-semibold text-rose-900">
             No medical record is found for this patient!
+            <button
+              onClick={() => navigate(-1)}
+              className="text-blue-900 font-light text-base mt-2"
+            >
+              Click here to go back
+            </button>
           </div>
         ) : (
           <div className=" bg-blue-50 flex flex-col ">

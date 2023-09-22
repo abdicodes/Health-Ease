@@ -32,7 +32,7 @@ router.get('/patients', (async (_req, res, next) => {
 }) as RequestHandler)
 
 router.get('/patients/:id', (async (req, res, next) => {
-  const id: number = Number(req.params.id)
+  const id: string = req.params.id
   try {
     const patient = await Patient.findOne({
       attributes: {
@@ -213,7 +213,7 @@ router.get('/:id', (async (req, res, next) => {
       comments: visit.comments,
       technicianName: visit.scan_processed_by?.name,
       doctorName: visit.scan_ordered_by?.name, // Handle missing doctor name
-      image: visit.image,
+      images: visit.images,
     }))
 
     const labEvents = await LabEvent.findAll({

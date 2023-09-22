@@ -3,7 +3,7 @@ import { appointmentSchema } from './entryFormSchema'
 import { AppointmentFormValues, EventTypes } from '../../../../types'
 interface AppointmentFormProps {
   onSubmit: (values: AppointmentFormValues) => void
-  patientId: number
+  patientId: string
 }
 
 const AppointmentFormFields: React.FC<AppointmentFormProps> = () => {

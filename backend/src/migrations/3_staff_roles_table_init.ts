@@ -20,7 +20,7 @@ module.exports = {
 
     await queryInterface.createTable('staff_roles', {
       staff_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },

@@ -4,7 +4,7 @@ import { sequelize } from '../utils/db'
 import { Staff } from './index'
 
 class LabEvent extends Model {
-  id!: number
+  id!: string
   type!: string
   comments?: string
   updatedAt!: string
@@ -16,7 +16,7 @@ class LabEvent extends Model {
 LabEvent.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
@@ -27,17 +27,17 @@ LabEvent.init(
       defaultValue: 'Laboratory tests',
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
     orderedBy: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },
     processedBy: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       references: { model: 'staffs', key: 'id' },
     },
     tests: {
@@ -55,19 +55,19 @@ LabEvent.init(
 )
 
 class ScanEvent extends Model {
-  id!: number
+  id!: string
   type!: string
   comments?: string
   updatedAt!: string
   scan_ordered_by?: Staff
   scan_processed_by?: Staff
-  image?: string
+  images?: JSON[]
 }
 
 ScanEvent.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
@@ -78,21 +78,21 @@ ScanEvent.init(
       defaultValue: 'Medical Imaging',
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
     orderedBy: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },
     processedBy: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       references: { model: 'staffs', key: 'id' },
     },
-    image: {
-      type: DataTypes.JSONB, // Store image objects here
+    images: {
+      type: DataTypes.ARRAY(DataTypes.JSONB), // Store image objects here
     },
     comments: {
       type: DataTypes.STRING,
@@ -106,7 +106,7 @@ ScanEvent.init(
 )
 
 class PrescriptionEvent extends Model {
-  id!: number
+  id!: string
   type!: string
   comments?: string
   updatedAt!: string
@@ -119,7 +119,7 @@ class PrescriptionEvent extends Model {
 PrescriptionEvent.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
@@ -135,17 +135,17 @@ PrescriptionEvent.init(
       defaultValue: true,
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
     orderedBy: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },
     processedBy: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       references: { model: 'staffs', key: 'id' },
     },
     drugs: {

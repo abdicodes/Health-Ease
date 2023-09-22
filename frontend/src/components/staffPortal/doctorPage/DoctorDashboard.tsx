@@ -9,7 +9,7 @@ import { useAuth } from '../../../context/AuthContext'
 
 const patients: PatientData[] = [
   {
-    id: 1,
+    id: '712a7010-d48a-41c2-bc31-b6805cc52cb2',
     name: 'mike jones junior alpha julio',
     email: 'mike@hotmail.com',
     phoneNumber: '0449208411',
@@ -20,7 +20,7 @@ const patients: PatientData[] = [
     isAdmitted: false,
   },
   {
-    id: 2,
+    id: '22890c7f-3be8-4eb7-8194-be6b17154c12',
     name: 'sandy jones',
     email: 'sandy@hotmail.com',
     phoneNumber: '0449208412',

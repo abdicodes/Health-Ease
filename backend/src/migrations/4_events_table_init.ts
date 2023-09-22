@@ -5,13 +5,12 @@ module.exports = {
     //   Doctor Visit
     await queryInterface.createTable('outpatient_visits', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
@@ -24,7 +23,7 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },
@@ -49,10 +48,9 @@ module.exports = {
     // in-patient visits
     await queryInterface.createTable('inpatient_visits', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
 
       type: {
@@ -61,7 +59,7 @@ module.exports = {
         defaultValue: 'In-Patient Visit',
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
@@ -69,7 +67,7 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },
@@ -95,10 +93,9 @@ module.exports = {
     // Hospital admission
     await queryInterface.createTable('admissions', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       type: {
         type: DataTypes.STRING,
@@ -106,7 +103,7 @@ module.exports = {
         defaultValue: 'Admission',
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
@@ -114,7 +111,7 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },
@@ -140,10 +137,9 @@ module.exports = {
     // Hospital discharge
     await queryInterface.createTable('discharges', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       type: {
         type: DataTypes.STRING,
@@ -151,7 +147,7 @@ module.exports = {
         defaultValue: 'Discharge',
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
@@ -159,7 +155,7 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },
@@ -185,10 +181,9 @@ module.exports = {
     // emergency visit
     await queryInterface.createTable('emergency_visits', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       type: {
         type: DataTypes.STRING,
@@ -196,7 +191,7 @@ module.exports = {
         defaultValue: 'Emergency Visit',
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
@@ -204,7 +199,7 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },
@@ -229,10 +224,9 @@ module.exports = {
     // nurse visit
     await queryInterface.createTable('nurse_visits', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       type: {
         type: DataTypes.STRING,
@@ -240,7 +234,7 @@ module.exports = {
         defaultValue: 'Nurse Visit',
       },
       patient_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'patients', key: 'id' },
       },
@@ -248,7 +242,7 @@ module.exports = {
         type: DataTypes.STRING,
       },
       staff_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         references: { model: 'staffs', key: 'id' },
       },

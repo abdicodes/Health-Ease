@@ -12,6 +12,7 @@ import {
   Scan,
   Prescription,
   Appointment,
+  Image,
 } from '../../types'
 import doctor from '/doctor.png'
 import nurse from '/nurse.png'
@@ -485,7 +486,7 @@ const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
 }
 
 const ScanComponent: React.FC<ScanComponentProps> = ({ event }) => {
-  const { doctorName, image, comments, dateTime, type } = event
+  const { doctorName, images, comments, dateTime, type } = event
   return (
     <>
       <main className="   bg-gradient-to-br from-white to-blue-100 mx-4 md:mx-10 mt-10 rounded-xl shadow-sm shadow-blue-950 w-auto">
@@ -511,29 +512,35 @@ const ScanComponent: React.FC<ScanComponentProps> = ({ event }) => {
           <div className="my-2 text-lg font-semibold text-blue-900 flex items-center">
             <FaXRay className="mr-1 " /> Results
           </div>
-          <div className=" rounded-sm my-6 shadow-lg ">
-            <div className="flex flex-col ">
-              <div>
-                <div
-                  className="p-5  flex justify-between flex-col items-start  
+          <div>
+            {images.map((image: Image, index: number) => {
+              return (
+                <div className=" rounded-sm my-6 shadow-lg " key={index}>
+                  <div className="flex flex-col ">
+                    <div>
+                      <div
+                        className="p-5  rounded-xl flex justify-between flex-col items-start  
                        bg-neutral-50 "
-                >
-                  <div className=" font-medium bg-blue-200 p-4 rounded-lg shadow-lg my-4 ">
-                    image type: {image.name}
+                      >
+                        <div className=" font-medium bg-blue-200 p-4 rounded-lg shadow-lg my-4 ">
+                          image type: {image.name}
+                        </div>
+                        {image.result && (
+                          <div className=" leading-10 font-normal mx-2 max-w-4xl ">
+                            {image.result}
+                          </div>
+                        )}
+                        {!image.result && (
+                          <div className="leading-8  border-orange-700 text-orange-700  rounded-xl font-semibold  ">
+                            • pending
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  {image.result && (
-                    <div className=" leading-10 font-normal mx-2 max-w-4xl ">
-                      {image.result}
-                    </div>
-                  )}
-                  {!image.result && (
-                    <div className="leading-8  border-orange-700 text-orange-700  rounded-xl font-semibold  ">
-                      • pending
-                    </div>
-                  )}
                 </div>
-              </div>
-            </div>
+              )
+            })}
           </div>
           {comments && (
             <div className="flex flex-col justify-center items-center">

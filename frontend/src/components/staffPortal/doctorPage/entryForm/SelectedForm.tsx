@@ -14,7 +14,7 @@ const SelectedForm = ({
   selectedForm,
 }: {
   handleSubmit: (values: EntryFormValues) => Promise<void>
-  patientId: number
+  patientId: string
   selectedForm: string | null
 }) => {
   switch (selectedForm) {

@@ -21,7 +21,7 @@ const SearchFormFields: React.FC<SearchFormProps> = () => {
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center my-2">
       <Form className="flex flex-col sm:flex-row items-center justify-center">
-        <div className=" px-2  p-2 flex justify-center ">
+        <div className=" px-2  p-2 mt-3">
           <label
             className="block text-neutral-950 text-md font-medium pt-2 pb-1 max-w-xl"
             htmlFor="id"
@@ -30,7 +30,7 @@ const SearchFormFields: React.FC<SearchFormProps> = () => {
             className="text-gray-700 focus:outline-none focus:shadow-outline border-2 rounded-2xl border-gray-300 py-2 my-2 px-4 w-full"
             id="id"
             name="id"
-            placeholder="     ... ID number"
+            placeholder="     ... Enter patient's ID here! "
           />
           <ErrorMessage
             component="id"

@@ -18,7 +18,7 @@ import { ScanFormValues, EventTypes, Image } from '../../../../types'
 
 interface ScanFormProps {
   onSubmit: (values: ScanFormValues) => void
-  patientId: number
+  patientId: string
 }
 
 const ScanFormFields: React.FC<ScanFormProps> = () => {

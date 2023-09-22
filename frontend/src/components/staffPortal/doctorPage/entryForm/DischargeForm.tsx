@@ -4,7 +4,7 @@ import { DischargeFormValues, EventTypes } from '../../../../types'
 
 interface DischargeFormProps {
   onSubmit: (values: DischargeFormValues) => void
-  patientId: number
+  patientId: string
 }
 
 const DischargeFormFields: React.FC<DischargeFormProps> = () => {

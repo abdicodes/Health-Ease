@@ -11,7 +11,7 @@ export enum EventTypes {
   Appointment = 'Appointment',
 }
 
-export interface Drug {
+interface Drug {
   name: string
   quantity: number
   dose: string
@@ -35,13 +35,6 @@ export interface BasicEvent {
   type: EventTypes
   dateTime: string
   comments?: string
-}
-
-export interface Appointment extends BasicEvent {
-  type: EventTypes.Appointment
-  duration: number
-  staffName: string
-  active: boolean
 }
 
 export interface DoctorVisit extends BasicEvent {
@@ -95,7 +88,7 @@ export interface Lab extends BasicEvent {
 
 export interface Scan extends BasicEvent {
   type: EventTypes.Scan
-  images: Image[]
+  image: Image
   doctorName: string
   technicianName?: string
 }
@@ -118,7 +111,6 @@ export type Event =
   | Lab
   | Scan
   | Prescription
-  | Appointment
 
 export interface PatientData {
   id: string
@@ -155,7 +147,7 @@ export interface AppointmentFormValues {
     minutes: string
   }
   duration: string
-  patientId: string
+  patientid: string
   type: EventTypes.Appointment
   comments?: string
 }
@@ -164,7 +156,7 @@ export interface BasicFormValues {
   diagnosis: string
   details: string
   comments?: string
-  patientId: string
+  patientid: string
 }
 
 export interface OutpatientFormValues extends BasicFormValues {

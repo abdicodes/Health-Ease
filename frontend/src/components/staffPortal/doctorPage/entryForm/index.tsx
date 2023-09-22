@@ -46,13 +46,13 @@ const AddEntry = () => {
       </div>
 
       <div>
-        {
+        {id && (
           <SelectedForm
             handleSubmit={handleSubmit}
-            patientId={Number(id)}
+            patientId={id}
             selectedForm={selectedForm}
           />
-        }
+        )}
       </div>
 
       {!selectedForm && (

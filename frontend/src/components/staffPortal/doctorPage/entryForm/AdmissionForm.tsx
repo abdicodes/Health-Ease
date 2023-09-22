@@ -4,7 +4,7 @@ import { AdmissionValues, EventTypes } from '../../../../types'
 
 interface AdmissionFormProps {
   onSubmit: (values: AdmissionValues) => void
-  patientId: number
+  patientId: string
 }
 
 const AdmissionFormFields: React.FC<AdmissionFormProps> = () => {

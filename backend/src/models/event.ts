@@ -4,9 +4,9 @@ import { Staff } from './index'
 import { sequelize } from '../utils/db'
 
 class OutpatientVisit extends Model {
-  id!: number
+  id!: string
   type!: string
-  patientId!: number
+  patientid!: string
   diagnosis?: string
   staffId!: string
   details?: string
@@ -18,10 +18,9 @@ class OutpatientVisit extends Model {
 OutpatientVisit.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
     },
     type: {
       type: DataTypes.STRING,
@@ -29,7 +28,7 @@ OutpatientVisit.init(
       defaultValue: 'Doctor Visit',
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
@@ -37,7 +36,7 @@ OutpatientVisit.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },
@@ -56,9 +55,9 @@ OutpatientVisit.init(
 )
 
 class NurseVisit extends Model {
-  id!: number
+  id!: string
   type!: string
-  patientId!: number
+  patientId!: string
   diagnosis?: string
   staffId!: string
   details?: string
@@ -70,10 +69,9 @@ class NurseVisit extends Model {
 NurseVisit.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
     },
     type: {
       type: DataTypes.STRING,
@@ -81,7 +79,7 @@ NurseVisit.init(
       defaultValue: 'Nurse Visit',
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
@@ -89,7 +87,7 @@ NurseVisit.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },
@@ -108,9 +106,9 @@ NurseVisit.init(
 )
 
 class InpatientVisit extends Model {
-  id!: number
+  id!: string
   type!: string
-  patientId!: number
+  patientid!: string
   diagnosis?: string
   staffId!: string
   details?: string
@@ -122,10 +120,9 @@ class InpatientVisit extends Model {
 InpatientVisit.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
     },
     type: {
       type: DataTypes.STRING,
@@ -133,7 +130,7 @@ InpatientVisit.init(
       defaultValue: 'In-Patient Visit',
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
@@ -141,7 +138,7 @@ InpatientVisit.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },
@@ -160,9 +157,9 @@ InpatientVisit.init(
 )
 
 class EmergencyVisit extends Model {
-  id!: number
+  id!: string
   type!: string
-  patientId!: number
+  patientid!: string
   diagnosis?: string
   staffId!: string
   details?: string
@@ -174,10 +171,9 @@ class EmergencyVisit extends Model {
 EmergencyVisit.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
     },
     type: {
       type: DataTypes.STRING,
@@ -185,7 +181,7 @@ EmergencyVisit.init(
       defaultValue: 'Emergency Visit',
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
@@ -193,7 +189,7 @@ EmergencyVisit.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },
@@ -212,9 +208,9 @@ EmergencyVisit.init(
 )
 
 class Admission extends Model {
-  id!: number
+  id!: string
   type!: string
-  patientId!: number
+  patientid!: string
   diagnosis?: string
   staffId!: string
   details?: string
@@ -226,10 +222,9 @@ class Admission extends Model {
 Admission.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
     },
     type: {
       type: DataTypes.STRING,
@@ -237,7 +232,7 @@ Admission.init(
       defaultValue: 'Admission',
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
@@ -245,7 +240,7 @@ Admission.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },
@@ -264,9 +259,9 @@ Admission.init(
 )
 
 class Discharge extends Model {
-  id!: number
+  id!: string
   type!: string
-  patientId!: number
+  patientid!: string
   diagnosis?: string
   staffId!: string
   details?: string
@@ -278,10 +273,9 @@ class Discharge extends Model {
 Discharge.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
     },
     type: {
       type: DataTypes.STRING,
@@ -289,7 +283,7 @@ Discharge.init(
       defaultValue: 'Discharge',
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
@@ -297,7 +291,7 @@ Discharge.init(
       type: DataTypes.STRING,
     },
     staffId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },
@@ -316,9 +310,9 @@ Discharge.init(
 )
 
 class Appointment extends Model {
-  id!: number
+  id!: string
   type!: string
-  patientId!: number
+  patientid!: string
   staffId!: string
   comments?: string
   startDate!: Date
@@ -330,10 +324,9 @@ class Appointment extends Model {
 Appointment.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
     },
     type: {
       type: DataTypes.STRING,
@@ -341,12 +334,12 @@ Appointment.init(
       defaultValue: ' Appointment',
     },
     patientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'patients', key: 'id' },
     },
     staffId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: { model: 'staffs', key: 'id' },
     },

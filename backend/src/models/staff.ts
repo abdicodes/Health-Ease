@@ -6,7 +6,7 @@ interface current_roles {
   id: number
 }
 interface StaffAttributes {
-  id?: number
+  id?: string
   name: string
   username: string
   password: string
@@ -15,7 +15,7 @@ interface StaffAttributes {
 }
 
 class Staff extends Model<StaffAttributes> implements StaffAttributes {
-  id?: number
+  id?: string
   name!: string
   username!: string
   password!: string
@@ -27,7 +27,7 @@ class Staff extends Model<StaffAttributes> implements StaffAttributes {
 Staff.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
       autoIncrement: true,
     },
