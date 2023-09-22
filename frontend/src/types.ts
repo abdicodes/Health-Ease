@@ -37,6 +37,12 @@ export interface BasicEvent {
   comments?: string
 }
 
+export interface Appointment extends BasicEvent {
+  type: EventTypes.Appointment
+  duration: number
+  staffName: string
+}
+
 export interface DoctorVisit extends BasicEvent {
   type: EventTypes.DoctorVisit
   diagnosis?: string
@@ -111,6 +117,7 @@ export type Event =
   | Lab
   | Scan
   | Prescription
+  | Appointment
 
 export interface PatientData {
   id: number

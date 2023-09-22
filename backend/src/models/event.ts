@@ -323,6 +323,8 @@ class Appointment extends Model {
   comments?: string
   startDate!: Date
   endDate!: Date
+  appointment_staff?: Staff
+  active?: boolean
 }
 
 Appointment.init(
@@ -350,6 +352,11 @@ Appointment.init(
     },
     comments: {
       type: DataTypes.STRING,
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
     },
 
     startDate: {

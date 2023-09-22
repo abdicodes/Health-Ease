@@ -16,6 +16,7 @@ import {
   NurseVisit,
   EmergencyVisit,
   PrescriptionEvent,
+  Appointment,
 } from '../models'
 import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
 import { Image, Test } from '../types'
@@ -275,6 +276,32 @@ router.get('/:id', (async (req, res, next) => {
       tests: visit.tests,
     }))
 
+    const appointments = await Appointment.findAll({
+      include: [
+        {
+          model: Staff,
+          as: 'appointment_staff',
+          attributes: ['name'],
+        },
+      ],
+      where: {
+        patientId: id,
+      },
+    })
+
+    const appointmentsTransformed = appointments.map((appointment) => ({
+      id: appointment.id,
+      type: appointment.type,
+      staffName: appointment.appointment_staff?.name,
+      dateTime: appointment.startDate,
+      duration:
+        (appointment.endDate.getTime() - appointment.startDate.getTime()) /
+        1000 /
+        60,
+      comments: appointment.comments,
+      active: appointment.active,
+    }))
+
     const prescriptions = await PrescriptionEvent.findAll({
       include: [
         {
@@ -314,7 +341,8 @@ router.get('/:id', (async (req, res, next) => {
       dischargeTransformed,
       scanEventsTransformed,
       labEventsTransformed,
-      prescriptionsTransformed
+      prescriptionsTransformed,
+      appointmentsTransformed
     )
 
     const flattenedOutcomes = allOutcomes.flat().map((event, i) => {
@@ -479,12 +507,20 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
     }
 
     if (type === 'Appointment') {
-      const { patientId, date, time, duration , type, comments} = req.body as AppointmentRequestBody
+      const { patientId, date, time, duration, type, comments } =
+        req.body as AppointmentRequestBody
 
-      const event = await LabEvent.create({
+      const startDate: Date = new Date(`${date} ${time.hours}:${time.minutes}`)
+      const endDate: Date = new Date(
+        startDate.getTime() + Number(duration) * 1000 * 60
+      )
+
+      console.log(staffId, patientId, startDate, endDate, comments, type)
+      const event = await Appointment.create({
         staffId,
         patientId,
-        date, time, duration , 
+        startDate,
+        endDate,
         comments,
         type,
       })
