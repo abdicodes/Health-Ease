@@ -4,7 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { Event } from '../types'
 import { PatientData, PatientProps, EntryFormValues } from '../types'
-const baseUrl: string = 'http://localhost:3001/api'
+const baseUrl: string = import.meta.env.VITE_BACKEND_URL
 
 interface LoginProps {
   username: string
