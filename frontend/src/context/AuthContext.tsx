@@ -221,7 +221,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }: PatientProps) => {
     try {
       // Replace with your API endpoint for login
-      await axios.post('http://localhost:3001/api/patient-signup', {
+      await axios.post(`${baseUrl}/patient-signup`, {
         name,
         username,
         password,
