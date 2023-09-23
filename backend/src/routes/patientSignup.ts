@@ -1,7 +1,9 @@
 import express, { RequestHandler } from 'express'
 import bcrypt from 'bcrypt'
 import { Patient } from '../models'
-import { uuid } from 'uuidv4'
+import ShortUniqueId from 'short-unique-id'
+
+const uuid = new ShortUniqueId({ length: 10 })
 
 interface RequestBody {
   username: string
@@ -42,7 +44,7 @@ router.post('/', (async (req, res, next) => {
     const passwordHash = await bcrypt.hash(password, saltRounds)
 
     const user = {
-      id: uuid(),
+      id: uuid.rnd(),
       username,
       password: passwordHash,
       name,

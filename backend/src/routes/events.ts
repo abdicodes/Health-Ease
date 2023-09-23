@@ -20,8 +20,9 @@ import {
 } from '../models'
 import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
 import { Drug, Image, Test } from '../types'
-import { uuid } from 'uuidv4'
+import ShortUniqueId from 'short-unique-id'
 
+const uuid = new ShortUniqueId({ length: 10 })
 interface RequestWithToken extends Request {
   token?: string
   user?: Patient | Staff | null
@@ -387,7 +388,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         req.body as BasicRequestBody
 
       const event = await OutpatientVisit.create({
-        id: uuid(),
+        id: uuid.rnd(),
         staffId,
         patientId,
         diagnosis,
@@ -407,7 +408,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         req.body as BasicRequestBody
 
       const event = await InpatientVisit.create({
-        id: uuid(),
+        id: uuid.rnd(),
         staffId,
         patientId,
         diagnosis,
@@ -427,7 +428,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         req.body as BasicRequestBody
 
       const event = await Admission.create({
-        id: uuid(),
+        id: uuid.rnd(),
         staffId,
         patientId,
         diagnosis,
@@ -447,7 +448,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         req.body as BasicRequestBody
 
       const event = await NurseVisit.create({
-        id: uuid(),
+        id: uuid.rnd(),
         staffId,
         patientId,
         diagnosis,
@@ -467,7 +468,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         req.body as BasicRequestBody
 
       const event = await EmergencyVisit.create({
-        id: uuid(),
+        id: uuid.rnd(),
         staffId,
         patientId,
         diagnosis,
@@ -487,7 +488,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         req.body as BasicRequestBody
 
       const event = await Discharge.create({
-        id: uuid(),
+        id: uuid.rnd(),
         staffId,
         patientId,
         diagnosis,
@@ -506,7 +507,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
       const { patientId, tests, comments } = req.body as LabRequestBody
 
       const event = await LabEvent.create({
-        id: uuid(),
+        id: uuid.rnd(),
         orderedBy: staffId,
         patientId,
         tests,
@@ -531,7 +532,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
 
       console.log(staffId, patientId, startDate, endDate, comments, type)
       const event = await Appointment.create({
-        id: uuid(),
+        id: uuid.rnd(),
         staffId,
         patientId,
         startDate,
@@ -550,7 +551,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
       const { patientId, images, comments } = req.body as ScanRequestBody
 
       const event = await ScanEvent.create({
-        id: uuid(),
+        id: uuid.rnd(),
         orderedBy: staffId,
         patientId,
         images,
@@ -567,7 +568,7 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
       const { patientId, drugs, comments } = req.body as PrescriptionRequestBody
 
       const event = await PrescriptionEvent.create({
-        id: uuid(),
+        id: uuid.rnd(),
         orderedBy: staffId,
         patientId,
         drugs,
