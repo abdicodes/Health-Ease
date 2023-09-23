@@ -14,14 +14,15 @@ import staffQueryRouter from './routes/staffQuery'
 const app = express()
 app.use(express.json())
 
-// const allowedOrigins = ['http://localhost:3000']
+const allowedOrigins = '*'
 
-// const options: cors.CorsOptions = {
-//   origin: allowedOrigins,
-// }
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+  credentials: true,
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-app.use(cors())
+app.use(cors(options))
 
 app.use(tokenExtractor as express.RequestHandler)
 app.get('/api/ping', (_req, res) => {

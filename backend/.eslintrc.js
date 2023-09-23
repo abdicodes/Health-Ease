@@ -10,7 +10,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  ignorePatterns: ['build/*', '.eslintrc.js'], // Use 'ignorePatterns' instead of 'exclude'
+  ignorePatterns: ['build/*', '.eslintrc.js', 'src/migrations/*'], // Use 'ignorePatterns' instead of 'exclude'
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',

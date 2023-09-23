@@ -8,3 +8,31 @@ services:
       - POSTGRES_PASSWORD=postgres
     volumes:
       - ./db:/data/db
+  backend:
+    image: backend
+    build:
+      context: ./backend # The context will pick this directory as the "build context"
+      dockerfile: Dockerfile # This will simply tell which dockerfile to read
+    container_name: backend # This will name the container backend
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+      - PORT=5000
+    depends_on: # wait for the database to start
+      - postgres
+    restart: on-failure
+  frontend:
+    image: frontend
+    build:
+      context: ./frontend # The context will pick this directory as the "build context"
+      dockerfile: Dockerfile # This will simply tell which dockerfile to read
+    container_name: frontend # This will name the container frontend
+  nginx:
+    image: nginx:1.20-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
+    depends_on: # wait for the frontend & backend containers to be started
+      - backend
+      - frontend
