@@ -1,12 +1,7 @@
-import { QueryInterface, DataTypes } from 'sequelize'
-
-enum GenderEnum {
-  Male = 'male',
-  Female = 'female',
-}
+const { DataTypes } = require('sequelize')
 
 module.exports = {
-  up: async ({ context: queryInterface }: { context: QueryInterface }) => {
+  up: async ({ context: queryInterface }) => {
     // Create the patients table
     await queryInterface.createTable('patients', {
       id: {
@@ -45,7 +40,7 @@ module.exports = {
         type: DataTypes.STRING,
       },
       gender: {
-        type: DataTypes.ENUM(...Object.values(GenderEnum)),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       blood_type: {
@@ -70,7 +65,7 @@ module.exports = {
   },
 
   // rollback action, here we drop patients table
-  down: async ({ context: queryInterface }: { context: QueryInterface }) => {
+  down: async ({ context: queryInterface }) => {
     await queryInterface.dropTable('patients')
   },
 }

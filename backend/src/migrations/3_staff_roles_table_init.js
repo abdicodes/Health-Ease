@@ -1,7 +1,7 @@
-import { QueryInterface, DataTypes } from 'sequelize'
+const { DataTypes } = require('sequelize')
 
 module.exports = {
-  up: async ({ context: queryInterface }: { context: QueryInterface }) => {
+  up: async ({ context: queryInterface }) => {
     // Create the roles table and connecting table roles_staff!
 
     await queryInterface.createTable('roles', {
@@ -45,7 +45,7 @@ module.exports = {
   },
 
   // rollback action, here we drop roles and staff_roles tables
-  down: async ({ context: queryInterface }: { context: QueryInterface }) => {
+  down: async ({ context: queryInterface }) => {
     await queryInterface.dropTable('roles')
     await queryInterface.dropTable('staff_roles')
   },
