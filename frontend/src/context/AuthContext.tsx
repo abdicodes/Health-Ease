@@ -2,8 +2,13 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
-import { Event } from '../types'
-import { PatientData, PatientProps, EntryFormValues } from '../types'
+import { Event, Lab } from '../types'
+import {
+  PatientData,
+  PatientProps,
+  EntryFormValues,
+  UpdateLabFormvalues,
+} from '../types'
 const baseUrl: string = import.meta.env.VITE_BACKEND_URL
 
 interface LoginProps {
@@ -35,9 +40,11 @@ interface AuthContextType {
   selectedEvent: Event | null
   setEvent: (event: Event) => void
   searchEventsApi: (id: string) => Promise<void>
+  searchLabEventsApi: (id: string) => Promise<void>
   patientLogin: ({ username, password }: LoginProps) => Promise<void>
   searchPatientApi: (id: string) => Promise<void>
   addEntry: (values: EntryFormValues) => Promise<void>
+  updateLab: (values: UpdateLabFormvalues) => Promise<void>
   staffLogin: ({ username, password }: LoginProps) => Promise<void>
   signUp: ({
     username,
@@ -137,6 +144,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.error('Login error:', error)
     }
   }
+
+  const searchLabEventsApi = async (id: string): Promise<void> => {
+    try {
+      const response: AxiosResponse<Lab[]> = await axios.get(
+        `${baseUrl}/staff-query/lab/${id}`
+      )
+
+      setEvents(response.data)
+    } catch (error) {
+      // Handle login error (e.g., show an error message)
+      console.error('Login error:', error)
+    }
+  }
   const setEvent = (event: Event) => {
     setSelectedEvent(event)
   }
@@ -146,6 +166,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const response: AxiosResponse<Event> = await axios.post(
         `${baseUrl}/events`,
         values,
+        config
+      )
+
+      console.log(response.data)
+    } catch (error) {
+      // Handle login error (e.g., show an error message)
+      console.error('Login error:', error)
+    }
+  }
+
+  const updateLab = async (values: UpdateLabFormvalues) => {
+    try {
+      const response: AxiosResponse<Event> = await axios.post(
+        `${baseUrl}/staff-query/${values.id}`,
+        { tests: values.tests, staffId: localStorage.getItem('id') },
         config
       )
 
@@ -178,12 +213,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('loginMode', response.data.loginMode)
 
       // Set the patient user state
-      setPatientResponse({
-        user: response.data.user,
-        loginMode: response.data.loginMode,
-        token: response.data.token,
-        events: events.data,
-      })
+      setTimeout(() => {
+        setPatientResponse({
+          user: response.data.user,
+          loginMode: response.data.loginMode,
+          token: response.data.token,
+          events: events.data,
+        })
+      }, 3000)
     } catch (error) {
       // Handle login error (e.g., show an error message)
       console.error('Login error:', error)
@@ -285,7 +322,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         patientErrorMessage,
         events,
         selectedEvent,
+        searchLabEventsApi,
         addEntry,
+        updateLab,
         setEvent,
         searchEventsApi,
         searchPatientApi,
