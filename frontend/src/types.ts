@@ -207,8 +207,14 @@ export interface PrescriptionFormValues {
 }
 
 export interface UpdateLabFormvalues {
+  comments?: string
   tests: Test[]
   id: string
+}
+export interface UpdateScanFormValues {
+  id: string
+  comments?: string
+  images: Image[]
 }
 
 export type EntryFormValues =

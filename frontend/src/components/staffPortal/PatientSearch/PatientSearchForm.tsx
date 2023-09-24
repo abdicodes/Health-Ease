@@ -27,6 +27,7 @@ const SearchFormFields: React.FC<SearchFormProps> = () => {
             id="id"
             name="id"
             placeholder="... Enter patient's ID "
+            value={formik.values.id || ''}
           />
           <button
             type="submit"
@@ -39,7 +40,7 @@ const SearchFormFields: React.FC<SearchFormProps> = () => {
 
         <div className="">
           <ErrorMessage
-            component="id"
+            component="a"
             className="text-red-500 text-sm"
             name="id"
           />

@@ -11,8 +11,14 @@ import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
 interface LabUpdateRequestBody {
   tests: JSON[]
   staffId: string
+  comments?: string
 }
 
+interface ScanUpdateRequestBody {
+  images: JSON[]
+  staffId: string
+  comments: string
+}
 const router = express.Router()
 
 router.get('/patients', (async (_req, res, next) => {
@@ -145,7 +151,7 @@ router.get('/prescription/:id', (async (req, res, next) => {
 }) as RequestHandler)
 
 router.put('/lab/:id', (async (req, res, next) => {
-  const { tests, staffId } = req.body as LabUpdateRequestBody
+  const { tests, staffId, comments } = req.body as LabUpdateRequestBody
 
   const id: string = req.params.id
   try {
@@ -162,6 +168,7 @@ router.put('/lab/:id', (async (req, res, next) => {
       return
     }
     labEvents.tests = tests
+    labEvents.comments = comments
 
     const processedBy = await Staff.findOne({
       where: {
@@ -174,6 +181,48 @@ router.put('/lab/:id', (async (req, res, next) => {
       labEvents.lab_processed_by = processedBy
       await labEvents.save()
       res.status(200)
+      return
+    }
+    next()
+
+    // res.json(labEvents)
+  } catch (error) {
+    // Pass the error to the next middleware for error handling
+    next(error)
+  }
+}) as RequestHandler)
+
+router.put('/scan/:id', (async (req, res, next) => {
+  const { images, staffId, comments } = req.body as ScanUpdateRequestBody
+
+  const id: string = req.params.id
+  try {
+    const scanEvents = await ScanEvent.findOne({
+      where: {
+        id: id,
+      },
+    })
+
+    console.log(scanEvents)
+
+    if (!scanEvents) {
+      res.status(404).json('event is not found!')
+      return
+    }
+    scanEvents.images = images
+    scanEvents.comments = comments
+
+    const processedBy = await Staff.findOne({
+      where: {
+        id: staffId,
+      },
+    })
+
+    console.log(processedBy)
+    if (processedBy) {
+      scanEvents.scan_processed_by = processedBy
+      await scanEvents.save()
+      res.status(200).json('Scan event updated successfully')
       return
     }
     next()

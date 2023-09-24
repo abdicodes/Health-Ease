@@ -12,21 +12,16 @@ import {
 } from 'formik'
 
 import { labSchema } from './entryFormSchema'
-import { Test, Lab } from '../../../types'
+import { Lab, UpdateLabFormvalues } from '../../../types'
 
-interface LabFormUpdateValues {
-  id: string
-  comments?: string
-  tests: Test[]
-}
 interface LabFormProps {
-  onSubmit: (values: LabFormUpdateValues) => void
+  onSubmit: (values: UpdateLabFormvalues) => void
 
   event: Lab
 }
 
 const LabFormFields: React.FC<LabFormProps> = () => {
-  const formik = useFormikContext<LabFormUpdateValues>()
+  const formik = useFormikContext<UpdateLabFormvalues>()
 
   const isDisabledButton: string =
     !formik.isValid || !formik.dirty
@@ -121,7 +116,7 @@ const LabFormFields: React.FC<LabFormProps> = () => {
 }
 
 const LabForm: React.FC<LabFormProps> = ({ onSubmit, event }) => {
-  const handleSubmit = (values: LabFormUpdateValues) => {
+  const handleSubmit = (values: UpdateLabFormvalues) => {
     // Handle form submission here
     onSubmit(values)
   }
@@ -131,7 +126,7 @@ const LabForm: React.FC<LabFormProps> = ({ onSubmit, event }) => {
       initialValues={{
         tests: event.tests,
         id: event.id,
-        comments: event.comments,
+        comments: event?.comments,
       }}
       validationSchema={labSchema}
       onSubmit={handleSubmit}

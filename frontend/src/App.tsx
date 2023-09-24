@@ -17,6 +17,7 @@ import ScanHistory from './components/staffPortal/scanStaffPage/ScanHistory'
 import PrescriptionHistory from './components/staffPortal/pharmacistPage/PrescriptionHistory'
 import AddEntry from './components/staffPortal/doctorPage/entryForm'
 import UpdateLab from './components/staffPortal/updateLabpage'
+import UpdateScan from './components/staffPortal/updateScanpage'
 function App() {
   return (
     <>
@@ -44,6 +45,7 @@ function App() {
         />
         <Route path="/staff-portal/new-entry/:id" element={<AddEntry />} />
         <Route path="/staff-portal/update-lab/:id" element={<UpdateLab />} />
+        <Route path="/staff-portal/update-scan/:id" element={<UpdateScan />} />
         <Route path="/detailed-event/" element={<DetailedEvent />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/*" element={<LandingPage />} />

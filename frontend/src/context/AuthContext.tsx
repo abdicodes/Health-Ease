@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
-import { Event, Lab, Prescription, Scan } from '../types'
+import { Event, Lab, Prescription, Scan, UpdateScanFormValues } from '../types'
 import {
   PatientData,
   PatientProps,
@@ -47,6 +47,8 @@ interface AuthContextType {
   searchPatientApi: (id: string) => Promise<void>
   addEntry: (values: EntryFormValues) => Promise<void>
   updateLab: (values: UpdateLabFormvalues) => Promise<void>
+  updateScan: (values: UpdateScanFormValues) => Promise<void>
+
   staffLogin: ({ username, password }: LoginProps) => Promise<void>
   signUp: ({
     username,
@@ -212,7 +214,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const response: AxiosResponse<Event> = await axios.put(
         `${baseUrl}/staff-query/lab/${values.id}`,
-        { tests: values.tests, staffId: localStorage.getItem('id') },
+        {
+          tests: values.tests,
+          staffId: localStorage.getItem('id'),
+          comments: values.comments,
+        },
         config
       )
 
@@ -222,6 +228,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.error('Login error:', error)
     }
   }
+
+  const updateScan = async (values: UpdateScanFormValues) => {
+    try {
+      const response: AxiosResponse<Event> = await axios.put(
+        `${baseUrl}/staff-query/scan/${values.id}`,
+        {
+          images: values.images,
+          staffId: localStorage.getItem('id'),
+          comments: values.comments,
+        },
+        config
+      )
+
+      console.log(response.data)
+    } catch (error) {
+      // Handle login error (e.g., show an error message)
+      console.error('Login error:', error)
+    }
+  }
+
   // to log in the patients
   const patientLogin = async ({ username, password }: LoginProps) => {
     try {
@@ -359,6 +385,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         searchScanEventsApi,
         addEntry,
         updateLab,
+        updateScan,
         setEvent,
         searchEventsApi,
         searchPatientApi,
