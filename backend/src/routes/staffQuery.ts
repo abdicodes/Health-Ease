@@ -1,5 +1,11 @@
 import express, { RequestHandler } from 'express'
-import { LabEvent, Patient, ScanEvent, Staff } from '../models'
+import {
+  LabEvent,
+  Patient,
+  ScanEvent,
+  Staff,
+  PrescriptionEvent,
+} from '../models'
 import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
 
 interface LabUpdateRequestBody {
@@ -94,6 +100,44 @@ router.get('/scan/:id', (async (req, res, next) => {
     }))
 
     res.json(scanEventsTransformed)
+  } catch (error) {
+    // Pass the error to the next middleware for error handling
+    next(error)
+  }
+}) as RequestHandler)
+
+router.get('/prescription/:id', (async (req, res, next) => {
+  const id: string = req.params.id
+  try {
+    const prescriptionEvents = await PrescriptionEvent.findAll({
+      include: [
+        {
+          model: Staff,
+          as: 'prescription_ordered_by',
+          attributes: ['name'],
+        },
+        {
+          model: Staff,
+          as: 'prescription_processed_by',
+          attributes: ['name'],
+        },
+      ],
+      where: {
+        patientId: id,
+      },
+    })
+
+    const prescriptionEventsTransformed = prescriptionEvents.map((visit) => ({
+      id: visit.id,
+      type: visit.type,
+      dateTime: visit.updatedAt,
+      comments: visit.comments,
+      pharmacist: visit.prescription_processed_by?.name,
+      doctorName: visit.prescription_ordered_by?.name, // Handle missing doctor name
+      drugs: visit.drugs,
+    }))
+
+    res.json(prescriptionEventsTransformed)
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)
