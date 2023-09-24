@@ -206,6 +206,11 @@ export interface PrescriptionFormValues {
   comments?: string
 }
 
+export interface UpdateLabFormvalues {
+  tests: Test[]
+  id: string
+}
+
 export type EntryFormValues =
   | OutpatientFormValues
   | InpatientFormValues
