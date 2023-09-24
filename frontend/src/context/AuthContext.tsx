@@ -34,6 +34,7 @@ interface StaffResponseData {
 interface AuthContextType {
   patient: PatientData | null
   admittedPatients: PatientData[] | null
+  appointmentPatients: PatientData[] | null
   patientResponse: PatientResponseData | null
   staffResponse: StaffResponseData | null
   patientErrorMessage: string | null
@@ -47,6 +48,7 @@ interface AuthContextType {
   patientLogin: ({ username, password }: LoginProps) => Promise<void>
   searchPatientApi: (id: string) => Promise<void>
   searchAdmittedPatientApi: () => Promise<void>
+  searchAppointmentPatientApi: () => Promise<void>
 
   addEntry: (values: EntryFormValues) => Promise<void>
   updateLab: (values: UpdateLabFormvalues) => Promise<void>
@@ -86,6 +88,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     useState<PatientResponseData | null>(null)
 
   const [admittedPatients, setAdmittedPatients] = useState<
+    PatientData[] | null
+  >(null)
+
+  const [appointmentPatients, setAppointmentPatients] = useState<
     PatientData[] | null
   >(null)
 
@@ -323,6 +329,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }
 
+  const searchAppointmentPatientApi = async () => {
+    try {
+      const id = localStorage.getItem('id')
+
+      const patients: AxiosResponse<PatientData[]> = await axios.get(
+        `${baseUrl}/staff-query/patients/appointment/${id}`
+      )
+      setAppointmentPatients(patients.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const signUp = async ({
     name,
     username,
@@ -396,11 +415,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       value={{
         patient,
         admittedPatients,
+        appointmentPatients,
         patientResponse,
         staffResponse,
         patientErrorMessage,
         events,
         selectedEvent,
+        searchAppointmentPatientApi,
         searchPrescriptionsApi,
         searchLabEventsApi,
         searchScanEventsApi,

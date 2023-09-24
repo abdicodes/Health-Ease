@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize'
-import { Staff } from './index'
+import { Patient, Staff } from './index'
 
 import { sequelize } from '../utils/db'
 
@@ -318,6 +318,8 @@ class Appointment extends Model {
   startDate!: Date
   endDate!: Date
   appointment_staff?: Staff
+  appointment_patient?: Patient
+
   active?: boolean
 }
 

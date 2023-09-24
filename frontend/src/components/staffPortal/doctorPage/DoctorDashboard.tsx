@@ -117,11 +117,14 @@ const DoctorDashboard = () => {
     patient,
     patientErrorMessage,
     admittedPatients,
+    appointmentPatients,
     searchAdmittedPatientApi,
+    searchAppointmentPatientApi,
   } = useAuth()
 
   useEffect(() => {
     searchAdmittedPatientApi()
+    searchAppointmentPatientApi()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   // Function to open the patient card
@@ -165,6 +168,22 @@ const DoctorDashboard = () => {
         </div>
       )}
       <div className="border-t  mx-6 my-10" id="separator"></div>
+      {appointmentPatients && (
+        <div>
+          <div className="flex items-center justify-center text-xl text-blue-800 my-4">
+            Appointments Patients
+          </div>
+          <PatientList
+            patients={appointmentPatients}
+            handleKeyDown={handleKeyDown}
+            closePatientCard={closePatientCard}
+            openPatientCard={openPatientCard}
+            selectedPatient={selectedPatient}
+            isPatientCardOpen={isPatientCardOpen}
+          />
+        </div>
+      )}
+
       {admittedPatients && (
         <div>
           <div className="flex items-center justify-center text-xl text-blue-800 my-4">

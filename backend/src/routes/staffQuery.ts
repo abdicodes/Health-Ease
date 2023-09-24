@@ -5,8 +5,10 @@ import {
   ScanEvent,
   Staff,
   PrescriptionEvent,
+  Appointment,
 } from '../models'
 import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
+import { Op } from 'sequelize'
 
 interface LabUpdateRequestBody {
   tests: JSON[]
@@ -86,6 +88,48 @@ router.get('/lab/:id', (async (req, res, next) => {
     }))
 
     res.json(labEventsTransformed)
+  } catch (error) {
+    // Pass the error to the next middleware for error handling
+    next(error)
+  }
+}) as RequestHandler)
+
+router.get('/patients/appointment/:id', (async (req, res, next) => {
+  try {
+    // To retreive appointments for Today
+    const requestedDate = new Date()
+    const year = requestedDate.getFullYear()
+    const month = requestedDate.getMonth() + 1 // Months are 0-based, so add 1
+    const day = requestedDate.getDate()
+    const startDate = new Date(year, month - 1, day, 0, 0, 0) // Set time to midnight
+    const endDate = new Date(year, month - 1, day, 23, 59, 59) // Set time to end of the day
+
+    const id = req.params.id
+
+    const appointments = await Appointment.findAll({
+      attributes: [],
+      include: {
+        model: Patient,
+        as: 'appointment_patient',
+        attributes: {
+          exclude: ['username', 'password', 'createdAt', 'updatedAt'],
+        },
+      },
+
+      where: {
+        staffId: id,
+        active: true,
+        startDate: {
+          [Op.between]: [startDate, endDate], // Filter appointments
+        },
+      },
+    })
+
+    const appointmentsTransformed = appointments.map(
+      (e) => e.appointment_patient
+    )
+
+    res.json(appointmentsTransformed)
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)
