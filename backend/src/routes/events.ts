@@ -437,7 +437,13 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         type,
       })
 
-      console.log(event)
+      const patient = await Patient.findByPk(patientId)
+      if (!patient) {
+        res.status(404).json('patient is not found')
+        return
+      }
+      patient.isAdmitted = true
+      await patient.save()
 
       res.send(event)
       return
@@ -497,7 +503,14 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         type,
       })
 
-      console.log(event)
+      const patient = await Patient.findByPk(patientId)
+
+      if (!patient) {
+        res.status(404).json('patient is not found')
+        return
+      }
+      patient.isAdmitted = true
+      await patient.save()
 
       res.send(event)
       return

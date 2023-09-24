@@ -36,6 +36,24 @@ router.get('/patients', (async (_req, res, next) => {
   }
 }) as RequestHandler)
 
+router.get('/patients/admitted', (async (_req, res, next) => {
+  try {
+    const patients = await Patient.findAll({
+      attributes: {
+        exclude: ['username', 'password', 'createdAt', 'updatedAt'],
+      },
+      where: {
+        isAdmitted: true,
+      },
+    })
+
+    res.json(patients)
+  } catch (error) {
+    // Pass the error to the next middleware for error handling
+    next(error)
+  }
+}) as RequestHandler)
+
 router.get('/lab/:id', (async (req, res, next) => {
   const id: string = req.params.id
   try {

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { MdReadMore, MdPostAdd } from 'react-icons/md'
 import { LiaFileMedicalAltSolid } from 'react-icons/lia'
 import { Link, useNavigate } from 'react-router-dom'
@@ -6,31 +6,6 @@ import { PatientData } from '../../../types'
 import PatientCard from '../PatientCard'
 import PatientSearch from '../PatientSearch'
 import { useAuth } from '../../../context/AuthContext'
-
-const patients: PatientData[] = [
-  {
-    id: '712a7010-d48a-41c2-bc31-b6805cc52cb2',
-    name: 'mike jones junior alpha julio',
-    email: 'mike@hotmail.com',
-    phoneNumber: '0449208411',
-    dateOfBirth: '11-09-2000',
-    address: 'tuukkalantie 17 I 360, helsinki, 00940 Finland',
-    gender: 'male',
-    bloodType: 'O+',
-    isAdmitted: false,
-  },
-  {
-    id: '22890c7f-3be8-4eb7-8194-be6b17154c12',
-    name: 'sandy jones',
-    email: 'sandy@hotmail.com',
-    phoneNumber: '0449208412',
-    dateOfBirth: '11-10-2000',
-    address: null,
-    gender: 'female',
-    bloodType: null,
-    isAdmitted: false,
-  },
-]
 
 const SinglePatient = ({
   patient,
@@ -138,8 +113,17 @@ const DoctorDashboard = () => {
     null
   )
 
-  const { patient, patientErrorMessage } = useAuth()
+  const {
+    patient,
+    patientErrorMessage,
+    admittedPatients,
+    searchAdmittedPatientApi,
+  } = useAuth()
 
+  useEffect(() => {
+    searchAdmittedPatientApi()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   // Function to open the patient card
   const openPatientCard = (patient: PatientData) => {
     setSelectedPatient(patient)
@@ -180,19 +164,22 @@ const DoctorDashboard = () => {
           {patientErrorMessage}
         </div>
       )}
-
-      <div className="flex items-center justify-center text-xl text-blue-800 my-4">
-        Admitted patients
-      </div>
-
-      <PatientList
-        patients={patients}
-        handleKeyDown={handleKeyDown}
-        closePatientCard={closePatientCard}
-        openPatientCard={openPatientCard}
-        selectedPatient={selectedPatient}
-        isPatientCardOpen={isPatientCardOpen}
-      />
+      <div className="border-t  mx-6 my-10" id="separator"></div>
+      {admittedPatients && (
+        <div>
+          <div className="flex items-center justify-center text-xl text-blue-800 my-4">
+            Admitted patients
+          </div>
+          <PatientList
+            patients={admittedPatients}
+            handleKeyDown={handleKeyDown}
+            closePatientCard={closePatientCard}
+            openPatientCard={openPatientCard}
+            selectedPatient={selectedPatient}
+            isPatientCardOpen={isPatientCardOpen}
+          />
+        </div>
+      )}
     </div>
   )
 }

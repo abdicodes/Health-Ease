@@ -33,6 +33,7 @@ interface StaffResponseData {
 //  the user context
 interface AuthContextType {
   patient: PatientData | null
+  admittedPatients: PatientData[] | null
   patientResponse: PatientResponseData | null
   staffResponse: StaffResponseData | null
   patientErrorMessage: string | null
@@ -45,6 +46,8 @@ interface AuthContextType {
   searchPrescriptionsApi: (id: string) => Promise<void>
   patientLogin: ({ username, password }: LoginProps) => Promise<void>
   searchPatientApi: (id: string) => Promise<void>
+  searchAdmittedPatientApi: () => Promise<void>
+
   addEntry: (values: EntryFormValues) => Promise<void>
   updateLab: (values: UpdateLabFormvalues) => Promise<void>
   updateScan: (values: UpdateScanFormValues) => Promise<void>
@@ -81,6 +84,10 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [patientResponse, setPatientResponse] =
     useState<PatientResponseData | null>(null)
+
+  const [admittedPatients, setAdmittedPatients] = useState<
+    PatientData[] | null
+  >(null)
 
   const [staffResponse, setStaffResponse] = useState<StaffResponseData | null>(
     null
@@ -305,6 +312,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }
 
+  const searchAdmittedPatientApi = async () => {
+    try {
+      const patients: AxiosResponse<PatientData[]> = await axios.get(
+        `${baseUrl}/staff-query/patients/admitted`
+      )
+      setAdmittedPatients(patients.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const signUp = async ({
     name,
     username,
@@ -377,6 +395,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     <AuthContext.Provider
       value={{
         patient,
+        admittedPatients,
         patientResponse,
         staffResponse,
         patientErrorMessage,
@@ -391,6 +410,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setEvent,
         searchEventsApi,
         searchPatientApi,
+        searchAdmittedPatientApi,
         patientLogin,
         staffLogin,
         logout,
