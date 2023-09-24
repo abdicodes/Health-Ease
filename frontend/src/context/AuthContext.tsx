@@ -147,10 +147,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const searchLabEventsApi = async (id: string): Promise<void> => {
     try {
+      console.log('im here')
       const response: AxiosResponse<Lab[]> = await axios.get(
         `${baseUrl}/staff-query/lab/${id}`
       )
-
+      console.log(response.data)
       setEvents(response.data)
     } catch (error) {
       // Handle login error (e.g., show an error message)
@@ -178,8 +179,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const updateLab = async (values: UpdateLabFormvalues) => {
     try {
-      const response: AxiosResponse<Event> = await axios.post(
-        `${baseUrl}/staff-query/${values.id}`,
+      const response: AxiosResponse<Event> = await axios.put(
+        `${baseUrl}/staff-query/lab/${values.id}`,
         { tests: values.tests, staffId: localStorage.getItem('id') },
         config
       )

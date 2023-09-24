@@ -84,6 +84,26 @@ const LabFormFields: React.FC<LabFormProps> = () => {
             </div>
           )}
         </FieldArray>
+
+        <div className="my-4">
+          <label
+            className="block text-neutral-800 text-opacity-60 text-md font-medium pt-2 pb-1 max-w-xl"
+            htmlFor="comments"
+          >
+            Comments
+          </label>
+          <Field
+            className="text-gray-700 focus:outline-none focus:shadow-outline border-2 border-gray-300 py-2 px-4 block w-full appearance-none"
+            id="comments"
+            name="comments"
+            placeholder="  comments (optional)"
+          />
+          <ErrorMessage
+            component="a"
+            className="text-red-500 text-sm"
+            name="comments"
+          />
+        </div>
         <div className="mt-8">
           <button
             type="submit"

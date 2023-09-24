@@ -28,6 +28,7 @@ import { BsCalendar4Event } from 'react-icons/bs'
 import { FaUserNurse, FaXRay } from 'react-icons/fa'
 import { BiSolidCommentDetail, BiTestTube, BiTime } from 'react-icons/bi'
 import { GiMedicines } from 'react-icons/gi'
+import { useNavigate } from 'react-router-dom'
 // import { RiDeleteBin5Line } from 'react-icons/ri'
 
 interface EventProps {
@@ -401,6 +402,7 @@ const DischargeComponent: React.FC<DischargeComponentProps> = ({ event }) => {
 }
 
 const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
+  const navigate = useNavigate()
   const { doctorName, tests, dateTime, comments, type } = event
   return (
     <>
@@ -479,6 +481,14 @@ const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
               </div>
             </>
           )}
+          <div className="flex justify-center">
+            <button
+              className="bg-neutral-50 font-medium text-blue-800 border-blue-800 border p-2 px-4 my-4 rounded-2xl shadow-lg hover:bg-blue-600 hover:text-white cursor-pointer"
+              onClick={() => navigate(`/staff-portal/update-lab/${event.id}`)}
+            >
+              Update results
+            </button>
+          </div>
         </section>
       </main>
     </>

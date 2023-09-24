@@ -5,8 +5,8 @@ import { EventTypes, UpdateLabFormvalues } from '../../../../types'
 import { IoArrowBackOutline } from 'react-icons/io5'
 import LabForm from './Labform'
 
-const AddEntry = () => {
-  const match = useMatch('/staff-portal/new-entry/:id')
+const UpdateLab = () => {
+  const match = useMatch('/staff-portal/update-lab/:id')
   const id = match?.params.id
   const navigate = useNavigate()
   const { updateLab, selectedEvent } = useAuth()
@@ -31,7 +31,7 @@ const AddEntry = () => {
           <IoArrowBackOutline />
           Go Back
         </button>
-        Add new entry
+        Update Lab results
       </div>
 
       <div>
@@ -43,4 +43,4 @@ const AddEntry = () => {
   )
 }
 
-export default AddEntry
+export default UpdateLab
