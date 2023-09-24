@@ -66,40 +66,11 @@ interface AppointmentRequestBody {
 }
 const router = express.Router()
 
-router.get('/', (async (_req, res, next) => {
-  try {
-    const outpatient_visit = await OutpatientVisit.findAll({
-      include: [
-        {
-          model: Patient,
-          as: 'outpatient_visit_patient',
-          attributes: ['name'],
-        },
-        { model: Staff, as: 'outpatient_visit_staff', attributes: ['name'] },
-      ],
-    })
-
-    const lab_event = await LabEvent.findAll({
-      include: {
-        model: Patient,
-        as: 'lab_event_patient',
-        attributes: ['name'],
-      },
-    })
-    res.json([...lab_event, ...outpatient_visit])
-  } catch (error) {
-    // Pass the error to the next middleware for error handling
-    next(error)
-  }
-}) as RequestHandler)
-
 router.get('/:id', (async (req, res, next) => {
   try {
     const id = req.params.id
 
-    console.log('the ID is : ', id)
-
-    // Create an array to collect all outcomes
+    // Create an array to collect all events for a specific patient
     const allOutcomes = []
 
     const outpatientVisits = await OutpatientVisit.findAll({
@@ -371,7 +342,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
   next: NextFunction
 ) => {
   try {
-    console.log('Im here successfully')
     const staffId = req.user?.id
 
     if (!staffId) {
@@ -382,7 +352,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
     }
 
     const type = req.body.type as string
-    console.log(req.body)
     if (type === 'Doctor Visit') {
       const { patientId, diagnosis, details, comments } =
         req.body as BasicRequestBody
@@ -396,8 +365,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         comments,
         type,
       })
-
-      console.log(event)
 
       res.send(event)
       return
@@ -416,8 +383,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         comments,
         type,
       })
-
-      console.log(event)
 
       res.send(event)
       return
@@ -463,8 +428,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         type,
       })
 
-      console.log(event)
-
       res.send(event)
       return
     }
@@ -482,8 +445,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         comments,
         type,
       })
-
-      console.log(event)
 
       res.send(event)
       return
@@ -528,8 +489,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         type,
       })
 
-      console.log(event)
-
       res.send(event)
       return
     }
@@ -542,8 +501,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
       const endDate: Date = new Date(
         startDate.getTime() + Number(duration) * 1000 * 60
       )
-
-      console.log(staffId, patientId, startDate, endDate, comments, type)
       const event = await Appointment.create({
         id: uuid.rnd(),
         staffId,
@@ -553,8 +510,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         comments,
         type,
       })
-
-      console.log(event)
 
       res.send(event)
       return
@@ -571,7 +526,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         comments,
         type,
       })
-      console.log(event)
 
       res.send(event)
       return
@@ -588,7 +542,6 @@ router.post('/', asyncMiddlewareWrapper(userExtractor), (async (
         comments,
         type,
       })
-      console.log(event)
 
       res.send(event)
       return

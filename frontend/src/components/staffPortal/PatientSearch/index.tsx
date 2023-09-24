@@ -5,7 +5,7 @@ import { MdSearch } from 'react-icons/md'
 
 const PatientSearch = () => {
   //   const navigate = useNavigate()
-  const { searchPatientApi, patient } = useAuth()
+  const { searchPatientApi } = useAuth()
   interface SearchFormValues {
     id: string
   }
@@ -14,7 +14,6 @@ const PatientSearch = () => {
     try {
       if (values.id) {
         await searchPatientApi(values.id)
-        console.log(patient)
       }
     } catch (e) {
       console.error(e)

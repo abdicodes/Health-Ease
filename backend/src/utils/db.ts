@@ -11,7 +11,6 @@ const sequelize = new Sequelize(DATABASE_URL)
 
 const connectToDatabase = async () => {
   try {
-    console.log(DATABASE_URL)
     await sequelize.authenticate()
     await runMigrations()
     console.log('database connected')

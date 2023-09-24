@@ -17,7 +17,6 @@ const router = express.Router()
 router.post('/', (async (req, res, next) => {
   try {
     if (!(req.body.username && req.body.password)) {
-      console.log(req.body.username, req.body.password)
       res.status(401).json({
         error: 'malformed request',
       })

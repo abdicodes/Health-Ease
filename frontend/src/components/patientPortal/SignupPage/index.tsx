@@ -28,12 +28,12 @@ const SignUpPage = () => {
       setTimeout(() => {
         setSuccessMessage(null)
         navigate('/login')
-      }, 7000)
+      }, 3000)
     } catch (e) {
       setErrorMessage(values.name)
       setTimeout(() => {
         setErrorMessage(null)
-      }, 7000)
+      }, 3000)
       console.error(e)
     }
   }
@@ -48,7 +48,7 @@ const SignUpPage = () => {
           <div>
             <SignupForm onSubmit={handleSignup} />
           </div>
-          <div className="mx-auto my-8 text-blue-800">
+          <div className="flex justify-center items-center flex-col my-8 text-blue-800">
             <h2>Have an account already!</h2>
             <button
               className="underline hover:text-red-800 cursor-pointer"

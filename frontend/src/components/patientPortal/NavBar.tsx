@@ -25,12 +25,12 @@ const NavBar = () => {
     <nav>
       <nav className="bg-blue-100 border-blue-100 shadow-lg  md:px-4 lg:px-8">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="#" className="flex items-center">
+          <button className="flex items-center" onClick={() => navigate('/')}>
             <img src={heart} className="h-8 mr-1" alt="Flowbite Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-blue-950">
               Health Ease
             </span>
-          </a>
+          </button>
 
           <Menu as="div" className="relative inline-block text-left md:hidden">
             <div>
@@ -57,6 +57,7 @@ const NavBar = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <a
+                        onClick={() => navigate('/patient-portal')}
                         href="#"
                         className={classNames(
                           active
@@ -107,6 +108,7 @@ const NavBar = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <a
+                        onClick={handleLogout}
                         href="#"
                         className={classNames(
                           active

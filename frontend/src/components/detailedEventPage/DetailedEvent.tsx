@@ -9,8 +9,6 @@ const DetailedEvent = () => {
 
   const navigate = useNavigate()
 
-  console.log(selectedEvent?.dateTime)
-
   return (
     <>
       {patientResponse?.user && <PatientNavBar />}

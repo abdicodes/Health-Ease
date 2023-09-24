@@ -223,8 +223,6 @@ router.put('/lab/:id', (async (req, res, next) => {
       },
     })
 
-    console.log(labEvents)
-
     if (!labEvents) {
       res.status(404).json('event is not found!')
       return

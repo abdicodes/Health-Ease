@@ -23,7 +23,7 @@ const LoginPage = () => {
       setTimeout(() => {
         setSuccessMessage(false)
         navigate('/patient-portal')
-      }, 7000)
+      }, 3000)
     } catch (e) {
       setErrorMessage(true)
       setTimeout(() => {
@@ -35,7 +35,7 @@ const LoginPage = () => {
 
   return (
     <div className=" flex flex-col mt-10">
-      <div className=" flex items-center flex-col  justify-center text-3xl text-blue-800">
+      <div className=" flex items-center flex-col  justify-center  text-blue-800">
         <img src={heart} className="h-20 mb-6" alt="healthEase Logo" />
         Login
         {!successMessage && !errorMessage && (
@@ -43,7 +43,7 @@ const LoginPage = () => {
             <div>
               <LoginForm onSubmit={handleLogin} />
             </div>
-            <div className="mx-auto mt-8 text-blue-800">
+            <div className="mx-auto mt-8 mb-4 text-blue-800">
               <h2>Don't have an account yet?</h2>
               <button
                 className="underline hover:text-red-800 cursor-pointer"

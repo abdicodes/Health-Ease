@@ -21,7 +21,6 @@ const ScanHistory = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [staffResponse])
 
-  console.log(events)
   return (
     <div>
       <NavBar />

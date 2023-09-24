@@ -1,7 +1,5 @@
-// import Events from './components/patientPortal/eventsPage/Events'
 import DetailedEvent from './components/detailedEventPage/DetailedEvent'
 import { Routes, Route } from 'react-router-dom'
-// import data from './data'
 import LandingPage from './components/LandingPage'
 import LoginPage from './components/patientPortal/loginPage'
 import PatientPortal from './components/patientPortal'
@@ -38,7 +36,6 @@ function App() {
           path="/staff-portal/patients/prescription/:id"
           element={<PrescriptionHistory />}
         />
-
         <Route
           path="/staff-portal/patients/scan/:id"
           element={<ScanHistory />}

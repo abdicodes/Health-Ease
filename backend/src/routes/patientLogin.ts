@@ -58,13 +58,11 @@ router.post('/', (async (req, res, next) => {
     }
     const token = jwt.sign(userForToken, config.SECRET)
 
-    res
-      .status(200)
-      .send({
-        user: { id: user.id, name: user.name },
-        token,
-        loginMode: 'patient',
-      })
+    res.status(200).send({
+      user: { id: user.id, name: user.name },
+      token,
+      loginMode: 'patient',
+    })
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)

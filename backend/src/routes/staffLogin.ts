@@ -73,14 +73,12 @@ router.post('/', (async (req, res, next) => {
 
     const roles: number[] | undefined = user.current_roles?.map((e) => e.id)
 
-    res
-      .status(200)
-      .send({
-        user: { id: user.id, name: user.name },
-        token,
-        roles: roles,
-        loginMode: 'staff',
-      })
+    res.status(200).send({
+      user: { id: user.id, name: user.name },
+      token,
+      roles: roles,
+      loginMode: 'staff',
+    })
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)

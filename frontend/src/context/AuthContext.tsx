@@ -164,11 +164,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const searchLabEventsApi = async (id: string): Promise<void> => {
     try {
-      console.log('im here')
       const response: AxiosResponse<Lab[]> = await axios.get(
         `${baseUrl}/staff-query/lab/${id}`
       )
-      console.log(response.data)
       setEvents(response.data)
     } catch (error) {
       // Handle login error (e.g., show an error message)
@@ -178,11 +176,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const searchScanEventsApi = async (id: string): Promise<void> => {
     try {
-      console.log('im here')
       const response: AxiosResponse<Scan[]> = await axios.get(
         `${baseUrl}/staff-query/scan/${id}`
       )
-      console.log(response.data)
       setEvents(response.data)
     } catch (error) {
       // Handle login error (e.g., show an error message)
@@ -192,11 +188,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const searchPrescriptionsApi = async (id: string): Promise<void> => {
     try {
-      console.log('im here')
       const response: AxiosResponse<Prescription[]> = await axios.get(
         `${baseUrl}/staff-query/prescription/${id}`
       )
-      console.log(response.data)
       setEvents(response.data)
     } catch (error) {
       // Handle login error (e.g., show an error message)
@@ -210,13 +204,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const addEntry = async (values: EntryFormValues) => {
     try {
-      const response: AxiosResponse<Event> = await axios.post(
-        `${baseUrl}/events`,
-        values,
-        config
-      )
-
-      console.log(response.data)
+      await axios.post(`${baseUrl}/events`, values, config)
     } catch (error) {
       // Handle login error (e.g., show an error message)
       console.error('Login error:', error)
@@ -255,8 +243,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       )
 
       setEvent(response.data)
-
-      console.log(response.data)
     } catch (error) {
       // Handle login error (e.g., show an error message)
       console.error('Login error:', error)
@@ -325,7 +311,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       )
       setAdmittedPatients(patients.data)
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
@@ -338,7 +324,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       )
       setAppointmentPatients(patients.data)
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 

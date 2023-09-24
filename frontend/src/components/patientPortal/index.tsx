@@ -8,7 +8,6 @@ const PatientPortal = () => {
   const { patientResponse } = useAuth()
 
   if (!(patientResponse?.user && patientResponse.loginMode === 'patient')) {
-    console.log(patientResponse)
     return <LoginPage />
   } else {
     return (
