@@ -1,18 +1,5 @@
 import express, { RequestHandler } from 'express'
-import {
-  LabEvent,
-  Patient,
-  Staff,
-  // OutpatientVisit,
-  // Staff,
-  // InpatientVisit,
-  // Admission,
-  // Discharge,
-  // ScanEvent,
-  // NurseVisit,
-  // EmergencyVisit,
-  // PrescriptionEvent,
-} from '../models'
+import { LabEvent, Patient, ScanEvent, Staff } from '../models'
 import { asyncMiddlewareWrapper, userExtractor } from '../utils/middleware'
 
 interface LabUpdateRequestBody {
@@ -69,6 +56,44 @@ router.get('/lab/:id', (async (req, res, next) => {
     }))
 
     res.json(labEventsTransformed)
+  } catch (error) {
+    // Pass the error to the next middleware for error handling
+    next(error)
+  }
+}) as RequestHandler)
+
+router.get('/scan/:id', (async (req, res, next) => {
+  const id: string = req.params.id
+  try {
+    const scanEvents = await ScanEvent.findAll({
+      include: [
+        {
+          model: Staff,
+          as: 'scan_ordered_by',
+          attributes: ['name'],
+        },
+        {
+          model: Staff,
+          as: 'scan_processed_by',
+          attributes: ['name'],
+        },
+      ],
+      where: {
+        patientId: id,
+      },
+    })
+
+    const scanEventsTransformed = scanEvents.map((visit) => ({
+      id: visit.id,
+      type: visit.type,
+      dateTime: visit.updatedAt,
+      comments: visit.comments,
+      technicianName: visit.scan_processed_by?.name,
+      doctorName: visit.scan_ordered_by?.name, // Handle missing doctor name
+      images: visit.images,
+    }))
+
+    res.json(scanEventsTransformed)
   } catch (error) {
     // Pass the error to the next middleware for error handling
     next(error)

@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
-import { Event, Lab } from '../types'
+import { Event, Lab, Scan } from '../types'
 import {
   PatientData,
   PatientProps,
@@ -41,6 +41,7 @@ interface AuthContextType {
   setEvent: (event: Event) => void
   searchEventsApi: (id: string) => Promise<void>
   searchLabEventsApi: (id: string) => Promise<void>
+  searchScanEventsApi: (id: string) => Promise<void>
   patientLogin: ({ username, password }: LoginProps) => Promise<void>
   searchPatientApi: (id: string) => Promise<void>
   addEntry: (values: EntryFormValues) => Promise<void>
@@ -150,6 +151,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.log('im here')
       const response: AxiosResponse<Lab[]> = await axios.get(
         `${baseUrl}/staff-query/lab/${id}`
+      )
+      console.log(response.data)
+      setEvents(response.data)
+    } catch (error) {
+      // Handle login error (e.g., show an error message)
+      console.error('Login error:', error)
+    }
+  }
+
+  const searchScanEventsApi = async (id: string): Promise<void> => {
+    try {
+      console.log('im here')
+      const response: AxiosResponse<Scan[]> = await axios.get(
+        `${baseUrl}/staff-query/scan/${id}`
       )
       console.log(response.data)
       setEvents(response.data)
@@ -324,6 +339,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         events,
         selectedEvent,
         searchLabEventsApi,
+        searchScanEventsApi,
         addEntry,
         updateLab,
         setEvent,

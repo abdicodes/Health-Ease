@@ -50,7 +50,10 @@ const Role = ({ role }: { role: number }) => {
 
     case 4:
       return (
-        <button className="bg-blue-50 border-opacity-10 border-blue-800 border shadow-lg w-1/2 sm:w-1/3  lg:w-1/5 mx-6 flex flex-col items-center justify-center  my-6 hover:border-4 hover:border-orange-400">
+        <button
+          className="bg-blue-50 border-opacity-10 border-blue-800 border shadow-lg w-1/2 sm:w-1/3  lg:w-1/5 mx-6 flex flex-col items-center justify-center  my-6 hover:border-4 hover:border-orange-400"
+          onClick={() => navigate('/staff-portal/scan')}
+        >
           <img src={radiographer} height="100" alt="radiographer" />
           <h2 className="py-2 font-medium text-xl">Radiographer</h2>
         </button>

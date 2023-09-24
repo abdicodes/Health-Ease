@@ -9,10 +9,12 @@ import SignUpPage from './components/patientPortal/SignupPage'
 import StaffPortal from './components/staffPortal'
 import DoctorPage from './components/staffPortal/doctorPage'
 import LabStaffPage from './components/staffPortal/labStaffPage'
+import ScanStaffPage from './components/staffPortal/scanStaffPage'
 import MedicalHistory from './components/staffPortal/medicalHistoryPage'
 import LabHistory from './components/staffPortal/labStaffPage/LabHistory'
+import ScanHistory from './components/staffPortal/scanStaffPage/ScanHistory'
 import AddEntry from './components/staffPortal/doctorPage/entryForm'
-import UpdateLab from './components/staffPortal/labStaffPage/entryForm'
+import UpdateLab from './components/staffPortal/updateLabpage'
 function App() {
   return (
     <>
@@ -24,11 +26,15 @@ function App() {
         <Route path="/staff-portal" element={<StaffPortal />} />
         <Route path="/staff-portal/doctor" element={<DoctorPage />} />
         <Route path="/staff-portal/lab" element={<LabStaffPage />} />
+        <Route path="/staff-portal/scan" element={<ScanStaffPage />} />
         <Route path="/staff-portal/patients/:id" element={<MedicalHistory />} />
         <Route path="/staff-portal/patients/lab/:id" element={<LabHistory />} />
+        <Route
+          path="/staff-portal/patients/scan/:id"
+          element={<ScanHistory />}
+        />
         <Route path="/staff-portal/new-entry/:id" element={<AddEntry />} />
         <Route path="/staff-portal/update-lab/:id" element={<UpdateLab />} />
-
         <Route path="/detailed-event/" element={<DetailedEvent />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/*" element={<LandingPage />} />
