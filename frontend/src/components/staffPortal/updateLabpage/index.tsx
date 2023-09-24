@@ -1,7 +1,7 @@
-import { useAuth } from '../../../../context/AuthContext'
+import { useAuth } from '../../../context/AuthContext'
 import heart from '/heart.png'
 import { useMatch, useNavigate } from 'react-router-dom'
-import { EventTypes, UpdateLabFormvalues } from '../../../../types'
+import { EventTypes, UpdateLabFormvalues } from '../../../types'
 import { IoArrowBackOutline } from 'react-icons/io5'
 import LabForm from './Labform'
 

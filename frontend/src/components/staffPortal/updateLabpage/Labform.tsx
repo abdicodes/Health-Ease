@@ -12,7 +12,7 @@ import {
 } from 'formik'
 
 import { labSchema } from './entryFormSchema'
-import { Test, Lab } from '../../../../types'
+import { Test, Lab } from '../../../types'
 
 interface LabFormUpdateValues {
   id: string
