@@ -22,7 +22,10 @@ const LandingPage = () => {
       </section>
       <section className=" flex flex-col md:flex-row justify-center items-center">
         <Link to={'/patient-portal'}>
-          <button className="bg-blue-500 p-2 px-2 my-4 rounded-2xl shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-l w-52  cursor-pointer mx-5 hover:bg-blue-600">
+          <button
+            className="bg-blue-500 p-2 px-2 my-4 rounded-2xl shadow-md shadow-blue-800 flex flex-row items-center justify-center text-white text-l w-52  cursor-pointer mx-5 hover:bg-blue-600"
+            id="individuals"
+          >
             <FaUserAlt />
             <h2 className=" my-4 mx-3 font-semibold mb-4">Individuals</h2>
             <BiLogIn className="text-2xl" />

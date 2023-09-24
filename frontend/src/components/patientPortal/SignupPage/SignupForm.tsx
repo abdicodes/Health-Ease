@@ -255,6 +255,7 @@ const SignupFormFields = () => {
 
         <div className="my-2 mx-10 md:mx-40 lg:mx-80 xl: 160">
           <button
+            id="submit"
             type="submit"
             className={`text-white font-bold py-2 px-4 w-full rounded-xl shadow-lg ${isDisabledButton}`}
             disabled={!formik.isValid || !formik.dirty}
