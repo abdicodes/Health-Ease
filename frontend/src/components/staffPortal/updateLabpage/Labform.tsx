@@ -94,6 +94,8 @@ const LabFormFields: React.FC<LabFormProps> = () => {
             name="comments"
             placeholder="  comments (optional)"
             value={formik.values.comments || ''}
+            component="textarea"
+            rows={2}
           />
           <ErrorMessage
             component="a"

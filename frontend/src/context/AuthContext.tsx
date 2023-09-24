@@ -222,7 +222,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         config
       )
 
-      console.log(response.data)
+      setEvent(response.data)
     } catch (error) {
       // Handle login error (e.g., show an error message)
       console.error('Login error:', error)
@@ -240,6 +240,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         },
         config
       )
+
+      setEvent(response.data)
 
       console.log(response.data)
     } catch (error) {

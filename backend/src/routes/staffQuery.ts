@@ -176,11 +176,21 @@ router.put('/lab/:id', (async (req, res, next) => {
       },
     })
 
+    const labEventsTransformed = {
+      id: labEvents.id,
+      type: labEvents.type,
+      dateTime: labEvents.updatedAt,
+      comments: labEvents.comments,
+      technicianName: labEvents.lab_processed_by?.name,
+      doctorName: labEvents.lab_ordered_by?.name, // Handle missing doctor name
+      tests: labEvents.tests,
+    }
+
     console.log(processedBy)
     if (processedBy) {
       labEvents.lab_processed_by = processedBy
       await labEvents.save()
-      res.status(200)
+      res.status(200).json(labEventsTransformed)
       return
     }
     next()
@@ -222,7 +232,17 @@ router.put('/scan/:id', (async (req, res, next) => {
     if (processedBy) {
       scanEvents.scan_processed_by = processedBy
       await scanEvents.save()
-      res.status(200).json('Scan event updated successfully')
+
+      const scanEventsTransformed = {
+        id: scanEvents.id,
+        type: scanEvents.type,
+        dateTime: scanEvents.updatedAt,
+        comments: scanEvents.comments,
+        technicianName: scanEvents.scan_processed_by?.name,
+        doctorName: scanEvents.scan_ordered_by?.name, // Handle missing doctor name
+        images: scanEvents.images,
+      }
+      res.status(200).json(scanEventsTransformed)
       return
     }
     next()
