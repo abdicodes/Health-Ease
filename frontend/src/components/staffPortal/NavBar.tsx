@@ -105,7 +105,7 @@ const NavBar = () => {
                   </Menu.Item>
                 </div>
 
-                <div className="py-1">
+                <div className="py-1" onClick={handleLogout}>
                   <Menu.Item>
                     {({ active }) => (
                       <a
