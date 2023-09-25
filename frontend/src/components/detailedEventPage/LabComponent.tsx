@@ -4,12 +4,14 @@ import { FaUserNurse } from 'react-icons/fa'
 import { Lab } from '../../types'
 import lab from '/lab.png'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 interface LabComponentProps {
   event: Lab
 }
 const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
   const navigate = useNavigate()
+  const { patientResponse } = useAuth()
   const { doctorName, tests, dateTime, comments, type } = event
   return (
     <>
@@ -89,12 +91,14 @@ const LabComponent: React.FC<LabComponentProps> = ({ event }) => {
             </>
           )}
           <div className="flex justify-center">
-            <button
-              className="bg-neutral-50 font-medium text-blue-800 border-blue-800 border p-2 px-4 my-4 rounded-2xl shadow-lg hover:bg-blue-600 hover:text-white cursor-pointer"
-              onClick={() => navigate(`/staff-portal/update-lab/${event.id}`)}
-            >
-              Update results
-            </button>
+            {!patientResponse?.user && (
+              <button
+                className="bg-neutral-50 font-medium text-blue-800 border-blue-800 border p-2 px-4 my-4 rounded-2xl shadow-lg hover:bg-blue-600 hover:text-white cursor-pointer"
+                onClick={() => navigate(`/staff-portal/update-lab/${event.id}`)}
+              >
+                Update results
+              </button>
+            )}
           </div>
         </section>
       </main>

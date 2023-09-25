@@ -63,6 +63,7 @@ const LoginFormFields: React.FC<LoginFormProps> = () => {
 
         <div className="mt-8">
           <button
+            id="login"
             type="submit"
             className={` text-white font-bold py-2 px-4 w-full rounded-xl shadow-lg  ${isDisabledButton}`}
             disabled={!formik.isValid || !formik.dirty} // Disable if not valid or not dirty

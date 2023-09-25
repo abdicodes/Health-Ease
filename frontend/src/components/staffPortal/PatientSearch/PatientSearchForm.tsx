@@ -30,6 +30,7 @@ const SearchFormFields: React.FC<SearchFormProps> = () => {
             value={formik.values.id || ''}
           />
           <button
+            id="search"
             type="submit"
             className={`text-white flex items-center font-bold py-3 px-4  max-h-11 rounded-xl shadow-lg ${isDisabledButton}`}
             disabled={!formik.isValid || !formik.dirty} // Disable if not valid or not dirty
